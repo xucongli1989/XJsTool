@@ -54,7 +54,11 @@
         /**
          * 事件相关
          */
-        Events:{}
+        EventsHelper:{},
+        /**
+         * 浏览器相关
+         */
+        BrowserHelper:{}
     };
 
 
@@ -923,7 +927,7 @@
         }
     };
     
-    XCLJsTool.Events={
+    XCLJsTool.EventsHelper={
         /**
          * 阻止事件，默认类名（私有）
          */
@@ -956,6 +960,52 @@
             $obj.removeClass(className);
         }
     };
+
+
+    XCLJsTool.BrowserHelper={
+        /**
+         * 判断是否为IE
+         * @param {int} version（6，7，8，9） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
+         * @returns {bool}
+         */
+        IsIE:function(version){
+            var ie=(!-[1,]);
+            if(!version){
+                return ie;
+            }
+            var result=false;
+            switch(version){
+                case 6:
+                    result=/msie 6/i.test(navigator.userAgent);
+                    break;
+                case 7:
+                    result=/msie 7/i.test(navigator.userAgent);
+                    break;
+                case 8:
+                    result=/msie 8/i.test(navigator.userAgent);
+                    break;
+                case 9:
+                    result=ie && navigator.appVersion.match(/9./i)=="9.";
+                    break;
+            }
+            return result;
+        },
+        
+        /**
+         * 判断是否为Firefox
+         */
+        IsFirefox:function(){
+            return navigator.userAgent.indexOf("Firefox")>0;
+        },
+        
+        /**
+         * 判断是否为Chrome
+         */
+        IsChrome:function(){
+            return window.navigator.userAgent.indexOf("Chrome") !== -1 ;
+        }
+    };
+
 
     
     window.XCLJsTool=window.XCLJsTool || XCLJsTool;
