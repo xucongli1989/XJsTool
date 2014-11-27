@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Index.html" />
+    <Content Include="Js\jquery-1.11.1.min.js" />
     <Content Include="Js\XCLJsTool.js" />
     <Content Include="Web.config" />
   </ItemGroup>

@@ -1,3 +1,9 @@
+/**
+ * 欢迎使用本程序，您可以任意修改、复制、分享本程序所有代码，只需要保留本注释即可，谢谢！
+ * 项目地址：https://github.com/xucongli1989/XCLJsTool
+ * By:XCL @ 2014.11 in Shanghai China
+ */
+
 (function (window){
     "use strict";
     var doc = window.document;
@@ -55,8 +61,8 @@
     XCLJsTool.CommonModel={
         /**
          * key value 模型
-         * @param {type} key
-         * @param {type} value
+         * @param {string} key
+         * @param {object} value
          */
         Dictionary:function(key,value){
             this.key=key;
@@ -69,8 +75,7 @@
     XCLJsTool.CommonHelper = {
         /**
          * 向document输出字符串
-         * @param {type} str
-         * @returns {undefined}
+         * @param {string} str
          */
         Write: function (str) {
             doc.write(str);
@@ -80,7 +85,7 @@
     XCLJsTool.DomHelper = {
         /**
          * 根据id，获取元素的value
-         * @param {type} id
+         * @param {string} id
          * @returns {doc@call;getElementById.value}
          */
         GetElementValue: function (id) {
@@ -92,9 +97,8 @@
         },
         /**
          * 设置指定id的value值
-         * @param {type} id
-         * @param {type} val
-         * @returns {undefined}
+         * @param {string} id
+         * @param {string} val
          */
         SetElementValue: function (id, val) {
             var obj = doc.getElementById(id);
@@ -104,18 +108,16 @@
         },
         /**
          * 根据指定value，选中select对象中option
-         * @param {type} $selectObj
-         * @param {type} val
-         * @returns {undefined}
+         * @param {object} $selectObj
+         * @param {string} val
          */
         SelectOption: function ($selectObj, val) {
             $selectObj.find("option[value='" + val + "']").prop({ "selected": true });
         },
         /**
          * 向form追加hidden，key为name和id
-         * @param {type} $container 被追加的容器（默认为form对象）
-         * @param {type} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
-         * @returns {undefined}
+         * @param {object} $container 被追加的容器（默认为form对象）
+         * @param {json array} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
          */
         AddHiddens:function($container,data){
             $container=$container || $("form");
@@ -131,7 +133,6 @@
 
     /**
      * 正则常量
-     * @type type
      */
     XCLJsTool.RegexHepler.Regex = {
         /**
@@ -247,14 +248,13 @@
     };
     /**
      * 正则验证
-     * @type type
      */
     XCLJsTool.RegexHepler.ValidRegex = {
         /**
          * 验证指定值是否与正则匹配
-         * @param {type} regex
-         * @param {type} str
-         * @returns {unresolved}
+         * @param {RegExp} regex
+         * @param {string} str
+         * @returns {bool}
          */
         IsValid: function (regex, str) {
             return regex.test(str);
@@ -264,32 +264,32 @@
     XCLJsTool.StringHelper = {
         /**
          * 去左右空格
-         * @param {type} str
-         * @returns {unresolved}
+         * @param {string} str
+         * @returns {string}
          */
         Trim: function (str) {
             return str.replace(/^\s+|\s+$/g, "");
         },
         /**
          * 去左空格
-         * @param {type} str
-         * @returns {unresolved}
+         * @param {string} str
+         * @returns {string}
          */
         LTrim: function (str) {
             return str.replace(/^\s+/, "");
         },
         /**
          * 去右空格
-         * @param {type} str
-         * @returns {unresolved}
+         * @param {string} str
+         * @returns {string}
          */
         RTrim: function (str) {
             return str.replace(/\s+$/, "");
         },
         /**
          * 格式输出
-         * @param {type} str
-         * @returns {unresolved}
+         * @param {string} str
+         * @returns {string}
          */
         Format: function (str) {
             if (arguments.length <= 1) {
@@ -306,8 +306,8 @@
     XCLJsTool.CookieHelper = {
         /**
          * 根据cookie名，获取cookie
-         * @param {type} name
-         * @returns {unresolved}
+         * @param {string} name
+         * @returns {string}
          */
         GetCookie: function (name) {
             var nameEQ = name + "=";
@@ -323,10 +323,9 @@
         },
         /**
          * 设置cookie
-         * @param {type} name cookie名
-         * @param {type} value cookie值
-         * @param {type} days 过期时间（天数）
-         * @returns {undefined}
+         * @param {string} name cookie名
+         * @param {string} value cookie值
+         * @param {int} days 过期时间（天数）
          */
         SetCookie: function (name, value, days) {
             if (days) {
@@ -339,8 +338,7 @@
         },
         /**
          * 删除cookie
-         * @param {type} name 名称
-         * @returns {undefined}
+         * @param {string} name 名称
          */
         DelCookie: function (name) {
             this.SetCookie(name, "", -1);
@@ -386,9 +384,9 @@
     XCLJsTool.AjaxHelper = {
         /**
          * 获取同步请求的数据
-         * @param {type} url 请求地址
-         * @param {type} paramData 参数
-         * @returns {String|data}
+         * @param {string} url 请求地址
+         * @param {json} paramData 参数
+         * @returns {string}
          */
         GetSyncData: function (url, paramData) {
             var result = "";
@@ -404,9 +402,9 @@
         },
         /**
          * 获取同步请求的json数据
-         * @param {type} url 请求地址
-         * @param {type} paramData 参数
-         * @returns {Object}
+         * @param {string} url 请求地址
+         * @param {json} paramData 参数
+         * @returns {json}
          */
         GetSyncJsonData: function (url, paramData) {
             var _this = this;
@@ -422,65 +420,65 @@
     XCLJsTool.DataHelper = {
         /**
          * 将值转为int型，若失败，则返回0
-         * @param {type} val
-         * @returns {type}
+         * @param {string} val
+         * @returns {int}
          */
         GetInt: function (val) {
             return this.GetIntDefault(val, 0);
         },
         /**
          * 将值转为int型，若失败，则返回null
-         * @param {type} val
-         * @returns {unresolved|type}
+         * @param {string} val
+         * @returns {int?}
          */
         GetIntNull: function (val) {
             return this.GetIntDefault(val, null);
         },
         /**
          * 将值转为int型，若失败，则返回defaultValue
-         * @param {type} val
-         * @param {type} defaultValue
-         * @returns {unresolved}
+         * @param {string} val
+         * @param {int} defaultValue
+         * @returns {int}
          */
         GetIntDefault: function (val, defaultValue) {
             return parseInt(val, 10) || defaultValue;
         },
         /**
          * 将值转为float型，若失败，则返回0
-         * @param {type} val
-         * @returns {type}
+         * @param {string} val
+         * @returns {float}
          */
         GetFloat: function (val) {
             return this.GetFloatDefault(val, 0);
         },
         /**
          * 将值转为float型，若失败，则返回null
-         * @param {type} val
-         * @returns {type|unresolved}
+         * @param {string} val
+         * @returns {float?}
          */
         GetFloatNull: function (val) {
             return this.GetFloatDefault(val, null);
         },
         /**
          * 将值转为float型，若失败，则返回defaultValue
-         * @param {type} val
-         * @param {type} defaultValue
-         * @returns {unresolved}
+         * @param {string} val
+         * @param {float} defaultValue
+         * @returns {float}
          */
         GetFloatDefault: function (val, defaultValue) {
             return parseFloat(val) || defaultValue;
         },
         /**
          * 将值转为object(eval)
-         * @param {type} val
-         * @returns {unresolved}
+         * @param {string} val
+         * @returns {object}
          */
         GetObject: function (val) {
             return eval(val);
         },
         /**
          * 判断val是否为数字
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsNumber: function (val) {
@@ -488,7 +486,7 @@
         },
         /**
          * 判断指定值是否为一个对象
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsObject: function (val) {
@@ -496,7 +494,7 @@
         },
         /**
          * 判断指定值是否为Date对象
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean|Date}
          */
         IsDate: function (val) {
@@ -504,7 +502,7 @@
         },
         /**
          * 判断指定值是否为数组
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsArray: function (val) {
@@ -512,7 +510,7 @@
         },
         /**
          * 判断指定值为null或为空字符串
-         * @param {type} val
+         * @param {string} val
          * @returns {Boolean}
          */
         IsNullOrEmpty: function (val) {
@@ -520,7 +518,7 @@
         },
         /**
          * 判断指定值为null，或为空字符串，或为空白字符串
-         * @param {type} val
+         * @param {string} val
          * @returns {Boolean}
          */
         IsNullOrWhiteSpace:function (val){
@@ -528,7 +526,7 @@
         },
         /**
          * 判断指定值是否为html元素
-         * @param {type} val
+         * @param {object} val
          * @returns {obj|Boolean}
          */
         IsElement: function (val) {
@@ -536,7 +534,7 @@
         },
         /**
          * 判断指定值是否为function
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsFunction: function (val) {
@@ -544,31 +542,31 @@
         },
         /**
          * 判断指定值是否为String
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsString: function (val) {
             return typeof val == 'string' || val instanceof String;
         },
         /**
-         * 判断指定字符串是否为true/false
-         * @param {type} val
-         * @returns {RegExp}
+         * 判断指定字符串是否为"true"
+         * @param {string} val
+         * @returns {bool}
          */
         IsBoolean: function (val) {
             return /^true$/i.test(val);
         },
         /**
          * 判断指定值是否为RegExp对象
-         * @param {type} val
-         * @returns {unresolved}
+         * @param {object} val
+         * @returns {bool}
          */
         IsRegExp: function (val) {
             return val && val instanceof RegExp;
         },
         /**
          * 判断指定值是否为NaN
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsNaN: function (val) {
@@ -576,7 +574,7 @@
         },
         /**
          * 判断指定值是否为null
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsNull: function (val) {
@@ -584,7 +582,7 @@
         },
         /**
          * 判断指定值是否为undefined
-         * @param {type} val
+         * @param {object} val
          * @returns {Boolean}
          */
         IsUndefined: function (val) {
@@ -592,7 +590,7 @@
         },
         /**
          * 指定值是否全部为大写
-         * @param {type} val
+         * @param {string} val
          * @returns {Boolean}
          */
         IsUpper:function (val){
@@ -600,7 +598,7 @@
         },
         /**
          * 指定值是否全部为小写
-         * @param {type} val
+         * @param {string} val
          * @returns {Boolean}
          */
         IsLower:function(val){
@@ -611,7 +609,7 @@
     XCLJsTool.DateHelper = {
         /**
          * 是否为int（私有）
-         * @param {type} val
+         * @param {string} val
          * @returns {Boolean}
          */
         _isInteger: function (val) {
@@ -623,11 +621,10 @@
         },
         /**
          * 获取int（私有）
-         * @param {type} str
-         * @param {type} i
-         * @param {type} minlength
-         * @param {type} maxlength
-         * @returns {unresolved}
+         * @param {string} str
+         * @param {int} i
+         * @param {int} minlength
+         * @param {int} maxlength
          */
         _getInt: function (str, i, minlength, maxlength) {
             var _this = this;
@@ -651,8 +648,8 @@
         LZ: function (x) { return (x < 0 || x > 9 ? "" : "0") + x },
         /**
          * 格式化date
-         * @param {type} date
-         * @param {type} format
+         * @param {Date} date
+         * @param {string} format
          * @returns {String}
          */
         FormatDate: function (date, format) {
@@ -713,8 +710,8 @@
         },
         /**
          * 根据指定格式，返回 1970 年 1 月 1 日至val的毫秒数
-         * @param {type} val
-         * @param {type} format
+         * @param {string} val
+         * @param {string} format
          * @returns {Number}
          */
         GetDateFromFormat: function (val, format) {
@@ -894,8 +891,8 @@
         },
         /**
          * 将date字符串转为Date对象
-         * @param {type} date
-         * @param {type} format
+         * @param {string} date
+         * @param {string} format
          * @returns {Date}
          */
         ParseDate: function (date, format) { 
@@ -933,9 +930,9 @@
         _stopEventClassName:"XCLJsToolStopEvent",
         /**
          * 阻止指定事件
-         * @param {type} $obj 被操作的元素
-         * @param {type} eventName 事件名，默认为click
-         * @param {type} className 绑定阻止事件时给元素$obj添加的类名，默认为"XCLJsToolStopEvent"
+         * @param {object} $obj 被操作的元素
+         * @param {string} eventName 事件名，默认为click
+         * @param {string} className 绑定阻止事件时给元素$obj添加的类名，默认为"XCLJsToolStopEvent"
          * @returns {Boolean}
          */
         StopEvent:function($obj,eventName,className){
@@ -950,9 +947,8 @@
         },
         /**
          * 移除阻止的事件
-         * @param {type} $obj 被操作的元素
-         * @param {type} className 移除的类名
-         * @returns {undefined}
+         * @param {object} $obj 被操作的元素
+         * @param {string} className 移除的类名
          */
         RemoveStopEvent:function($obj,className){
             var _this=this;
