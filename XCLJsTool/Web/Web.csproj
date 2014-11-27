@@ -57,7 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Js\js.js" />
+    <Content Include="Js\XCLJsTool.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
