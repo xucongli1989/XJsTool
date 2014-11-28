@@ -58,7 +58,11 @@
         /**
          * 浏览器相关
          */
-        Browser:{}
+        Browser:{},
+        /**
+         * 移动端相关
+         */
+        Mobile:{}
     };
 
 
@@ -1024,7 +1028,26 @@
         }
     };
 
-
+    XCLJsTool.Mobile={
+        IsAndroid:function(){
+            return navigator.userAgent.match(/Android/i);
+        },
+        IsBlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        IsIOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        IsOpera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        IsWindows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        IsMobile: function() {
+            return (this.IsAndroid() || this.IsBlackBerry() || this.IsIOS() || this.IsOpera() || this.IsWindows());
+        }
+    };
     
     window.XCLJsTool=window.XCLJsTool || XCLJsTool;
 
