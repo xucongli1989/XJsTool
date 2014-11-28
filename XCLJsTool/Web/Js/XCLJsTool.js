@@ -1034,21 +1034,39 @@
     };
 
     XCLJsTool.Mobile={
+        /**
+         * 判断是否为Android
+         */
         IsAndroid:function(){
             return navigator.userAgent.match(/Android/i);
         },
+        /**
+         * 判断是否为BlackBerry
+         */        
         IsBlackBerry: function() {
             return navigator.userAgent.match(/BlackBerry/i);
         },
+        /**
+         * 判断是否为IOS
+         */        
         IsIOS: function() {
             return navigator.userAgent.match(/iPhone|iPad|iPod/i);
         },
+        /**
+         * 判断是否为Opera
+         */        
         IsOpera: function() {
             return navigator.userAgent.match(/Opera Mini/i);
         },
-        IsWindows: function() {
+        /**
+         * 判断是否为IEMobile
+         */        
+        IsIEMobile: function() {
             return navigator.userAgent.match(/IEMobile/i);
         },
+        /**
+         * 判断是否为移动端
+         */        
         IsMobile: function() {
             return (this.IsAndroid() || this.IsBlackBerry() || this.IsIOS() || this.IsOpera() || this.IsWindows());
         }
