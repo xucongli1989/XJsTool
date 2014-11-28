@@ -1024,14 +1024,14 @@
          * 判断是否为Firefox
          */
         IsFirefox:function(){
-            return navigator.userAgent.indexOf("Firefox")>0;
+            return navigator.userAgent.indexOf("Firefox")>=0;
         },
         
         /**
          * 判断是否为Chrome
          */
         IsChrome:function(){
-            return win.navigator.userAgent.indexOf("Chrome") !== -1 ;
+            return navigator.userAgent.indexOf("Chrome") >=0 ;
         }
     };
 
