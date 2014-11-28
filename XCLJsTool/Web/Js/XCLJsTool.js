@@ -2,6 +2,8 @@
  * 欢迎使用本程序，您可以任意修改、复制、分享本程序所有代码，只需要保留本注释即可，谢谢！
  * 项目地址：https://github.com/xucongli1989/XCLJsTool
  * By:XCL @ 2014.11 in Shanghai China
+ * 使用说明：
+ * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
  */
 
 (function (win){
@@ -147,7 +149,7 @@
     /**
      * 正则常量
      */
-    XCLJsTool.Regex.Regex = {
+    XCLJsTool.Regex.Regexs = {
         /**
          * Email
          * @type RegExp
