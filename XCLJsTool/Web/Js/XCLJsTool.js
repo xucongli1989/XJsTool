@@ -4,10 +4,15 @@
  * By:XCL @ 2014.11 in Shanghai China
  */
 
-(function (window){
+(function (win){
     "use strict";
-    var doc = window.document;
-    var $ = $ || window.jQuery || {};
+    
+    if(win.XCLJsTool){
+        return win.XCLJsTool;
+    }
+    
+    var doc = win.document;
+    var $ = $ || win.jQuery || {};
 
     var XCLJsTool={
         Version:"1.0",
