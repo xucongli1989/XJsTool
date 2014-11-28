@@ -18,11 +18,11 @@
         /**
          * 公共方法
          */    
-        CommonHelper:{},
+        Common:{},
         /**
          * Dom操作
          */    
-        DomHelper:{},
+        Dom:{},
         /**
          * 正则相关
          */    
@@ -30,35 +30,35 @@
         /**
          * 字符串操作相关
          */    
-        StringHelper:{},
+        String:{},
         /**
          * Cookie操作相关
          */    
-        CookieHelper:{},
+        Cookie:{},
         /**
          * Http操作相关
          */    
-        HttpHelper:{},
+        Http:{},
         /**
          * Ajax操作相关
          */    
-        AjaxHelper:{},
+        Ajax:{},
         /**
          * 数据处理操作相关
          */    
-        DataHelper:{},
+        Data:{},
         /**
          * 日期时间处理相关
          */    
-        DateHelper:{},
+        Date:{},
         /**
          * 事件相关
          */
-        EventsHelper:{},
+        Events:{},
         /**
          * 浏览器相关
          */
-        BrowserHelper:{}
+        Browser:{}
     };
 
 
@@ -76,7 +76,7 @@
 
 
 
-    XCLJsTool.CommonHelper = {
+    XCLJsTool.Common = {
         /**
          * 向document输出字符串
          * @param {string} str
@@ -86,7 +86,7 @@
         }
     };
 
-    XCLJsTool.DomHelper = {
+    XCLJsTool.Dom = {
         /**
          * 根据id，获取元素的value
          * @param {string} id
@@ -128,7 +128,7 @@
             if(data && data.length>0){
                 var html="";
                 for(var i=0;i<data.length;i++){
-                    html+=(XCLJsTool.StringHelper.Format("<input type='hidden' name='{0}' id='{0}' value='{1}' />",data[i].key,data[i].value));
+                    html+=(XCLJsTool.String.Format("<input type='hidden' name='{0}' id='{0}' value='{1}' />",data[i].key,data[i].value));
                 }
                 $container.append(html);
             }
@@ -265,7 +265,7 @@
         }
     };
 
-    XCLJsTool.StringHelper = {
+    XCLJsTool.String = {
         /**
          * 去左右空格
          * @param {string} str
@@ -325,7 +325,7 @@
         }
     };
 
-    XCLJsTool.CookieHelper = {
+    XCLJsTool.Cookie = {
         /**
          * 根据cookie名，获取cookie
          * @param {string} name
@@ -367,7 +367,7 @@
         }
     };
 
-    XCLJsTool.HttpHelper = {
+    XCLJsTool.Http = {
         /**
          * 获取HttpRequest对象
          * @returns {XMLHttpRequest|ActiveXObject|Boolean}
@@ -403,7 +403,7 @@
         }
     };
 
-    XCLJsTool.AjaxHelper = {
+    XCLJsTool.Ajax = {
         /**
          * 获取同步请求的数据
          * @param {string} url 请求地址
@@ -439,7 +439,7 @@
         }
     };
 
-    XCLJsTool.DataHelper = {
+    XCLJsTool.Data = {
         /**
          * 将值转为int型，若失败，则返回0
          * @param {string} val
@@ -544,7 +544,7 @@
          * @returns {Boolean}
          */
         IsNullOrWhiteSpace:function (val){
-            return this.IsNullOrEmpty(XCLJsTool.StringHelper.Trim(val));
+            return this.IsNullOrEmpty(XCLJsTool.String.Trim(val));
         },
         /**
          * 判断指定值是否为html元素
@@ -628,7 +628,7 @@
         }
     };
 
-    XCLJsTool.DateHelper = {
+    XCLJsTool.Date = {
         /**
          * 是否为int（私有）
          * @param {string} val
@@ -945,7 +945,7 @@
         }
     };
     
-    XCLJsTool.EventsHelper={
+    XCLJsTool.Events={
         /**
          * 阻止事件，默认类名（私有）
          */
@@ -980,7 +980,7 @@
     };
 
 
-    XCLJsTool.BrowserHelper={
+    XCLJsTool.Browser={
         /**
          * 判断是否为IE
          * @param {int} version（6，7，8，9） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
