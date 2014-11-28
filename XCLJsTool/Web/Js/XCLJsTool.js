@@ -401,9 +401,9 @@
                     xmlhttp = false;
                 }
             }
-            if (!xmlhttp && window.createRequest) {
+            if (!xmlhttp && win.createRequest) {
                 try {
-                    xmlhttp = window.createRequest();
+                    xmlhttp = win.createRequest();
                 } catch (e) {
                     xmlhttp = false;
                 }
@@ -1029,7 +1029,7 @@
          * 判断是否为Chrome
          */
         IsChrome:function(){
-            return window.navigator.userAgent.indexOf("Chrome") !== -1 ;
+            return win.navigator.userAgent.indexOf("Chrome") !== -1 ;
         }
     };
 
@@ -1054,6 +1054,6 @@
         }
     };
     
-    window.XCLJsTool=window.XCLJsTool || XCLJsTool;
+    win.XCLJsTool=win.XCLJsTool || XCLJsTool;
 
 })(window);
