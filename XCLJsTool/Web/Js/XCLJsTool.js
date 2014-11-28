@@ -26,7 +26,7 @@
         /**
          * 正则相关
          */    
-        RegexHepler:{},
+        Regex:{},
         /**
          * 字符串操作相关
          */    
@@ -138,7 +138,7 @@
     /**
      * 正则常量
      */
-    XCLJsTool.RegexHepler.Regex = {
+    XCLJsTool.Regex.Regex = {
         /**
          * Email
          * @type RegExp
@@ -253,7 +253,7 @@
     /**
      * 正则验证
      */
-    XCLJsTool.RegexHepler.ValidRegex = {
+    XCLJsTool.Regex.ValidRegex = {
         /**
          * 验证指定值是否与正则匹配
          * @param {RegExp} regex
