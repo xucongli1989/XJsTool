@@ -304,6 +304,24 @@
                 str = str.replace(new RegExp("\\{" + token + "\\}", "gi"), arguments[token + 1]);
             }
             return str;
+        },
+        /**
+         * 指定源字符串sourceStr中是否包含str字符串
+         * @param {string} sourceStr 源字符串
+         * @param {string} str 要查找的字符串
+         * @param {Boolean} isIgnoreCase 是否忽略大小写
+         * @returns {Boolean}
+         */
+        Contains:function(sourceStr, str,isIgnoreCase){
+            if(sourceStr){
+                if(isIgnoreCase){
+                    sourceStr=sourceStr.toUpperCase();
+                    str=str.toUpperCase();
+                }
+                return sourceStr.indexOf(str)>=0;
+            }else{
+                return false;
+            }
         }
     };
 
