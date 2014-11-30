@@ -21,7 +21,7 @@
         /**
          * 公共model
          */
-        CommonModel:{},        
+        CommonModel:{},
         /**
          * 公共方法
          */    
