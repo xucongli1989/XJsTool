@@ -21,7 +21,7 @@
         /**
          * 公共model
          */
-        CommonModel:{},
+        Models:{},
         /**
          * 公共方法
          */    
@@ -73,7 +73,7 @@
     };
 
 
-    XCLJsTool.CommonModel={
+    XCLJsTool.Models={
         /**
          * key value 模型
          * @param {string} key
