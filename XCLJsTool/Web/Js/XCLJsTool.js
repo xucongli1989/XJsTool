@@ -69,7 +69,15 @@
         /**
          * 移动端相关
          */
-        Mobile:{}
+        Mobile:{},
+        /**
+         * 数学计算相关
+         */
+        Math:{},
+        /**
+         * 随机数相关
+         */
+        Random:{}
     };
 
 
@@ -1071,6 +1079,45 @@
          */        
         IsMobile: function() {
             return (this.IsAndroid() || this.IsBlackBerry() || this.IsIOS() || this.IsOpera() || this.IsWindows());
+        }
+    };
+    
+    XCLJsTool.Math={
+        /**
+         * 返回指定值中的最小值
+         * @param {type} val 可以为一个数组，也可以为多个参数
+         * @returns {Number}
+         */
+        Min:function(val){
+            if(XCLJsTool.Data.IsArray(val)){
+                return Math.min.apply(null,val);
+            }else{
+                return Math.min(arguments);
+            }
+        },
+        /**
+         * 返回指定值中的最大值
+         * @param {type} val 可以为一个数组，也可以为多个参数
+         * @returns {Number}
+         */        
+        Max:function(val){
+            if(XCLJsTool.Data.IsArray(val)){
+                return Math.max.apply(null,val);
+            }else{
+                return Math.max(arguments);
+            }
+        }
+    };
+    
+    XCLJsTool.Random={
+        /**
+         * 生成指定范围内的随机数
+         * @param {type} min 最小值
+         * @param {type} max 最大值
+         * @returns {Number}
+         */
+        Range:function(min,max){
+            return Math.random()*(max-min)+min;
         }
     };
     
