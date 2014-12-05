@@ -13,10 +13,11 @@
         
         var r1=[1,2,3],r2=[4,5,6],r3=[7,8,9];
         
-        var combineArray=XCLJsTool.Array.Combine(r1,r2,r3);
+        var combineArray=XCLJsTool.Array.Concat(r1,r2,r3);
         
-        var result=XCLJsTool.Array.Join("-",combineArray);
+        var result=XCLJsTool.Array.Join("-",r1,r2,r3);
         
+        console.log(combineArray.toString());
         console.log(result);
         
     </script>

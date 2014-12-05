@@ -1132,39 +1132,31 @@
     };
     
     XCLJsTool.Array={
-//        /**
-//         * 合并多个数组为一个数组
-//         * @param {type} args 要合并的数组参数，如：[arr1,arr2,arr3...] 或者直接为：arr1,arr2,arr3...
-//         * @returns {Array} 合并后的结果数组
-//         */
-//        Combine:function(args){
-//            var result=[];
-//            if(arguments.length===1){
-//                Array.prototype.push.apply(result,arguments[0]);
-//            }else if(arguments.length>1){
-//                Array.prototype.push.call(result,arguments);
-//            }
-//            return result;
-//        },
-//        /**
-//         * 将一个或多个数组合并为一个字符串
-//         * @param {type} separator 指定分隔符
-//         * @param {type} args 要合并的数组参数(arg1,arg2,arg3...)
-//         * @returns {string} 合并后的字符串
-//         */
-//        Join:function(separator,args){
-//            var source=[],_this=this;
-//            if(arguments.length===2){
-//                source=arguments[1];
-//            }else if(arguments.length>2){
-//                var arrs=[];
-//                for(var i=1;i<arguments.length;i++){
-//                    arrs.push(arguments[i]);
-//                }
-//                source=_this.Combine(arrs);
-//            }
-//            return source.join(separator);
-//        }
+        /**
+         * 合并多个数组为一个数组
+         * @param {type} args 要合并的数组参数，如：arr1,arr2,arr3...
+         * @returns {Array} 合并后的结果数组
+         */
+        Concat:function(args){
+            return [].concat.apply([],arguments);
+        },
+        /**
+         * 将一个或多个数组合并为一个字符串
+         * @param {type} separator 指定分隔符
+         * @param {type} args 要合并的数组参数(arr1,arr2,arr3...)
+         * @returns {string} 合并后的字符串
+         */
+        Join:function(separator,args){
+            var source=[],_this=this;
+            if(arguments.length>2){
+                for(var i=1;i<arguments.length;i++){
+                    source=source.concat(arguments[i]);
+                }
+            }else{
+                source=arguments[1];
+            }
+            return source.join(separator);
+        }
     };
     
     win.XCLJsTool=win.XCLJsTool || XCLJsTool;
