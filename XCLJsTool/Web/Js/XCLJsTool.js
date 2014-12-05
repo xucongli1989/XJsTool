@@ -111,26 +111,21 @@
 
     XCLJsTool.Dom = {
         /**
-         * 根据id，获取元素的value
-         * @param {string} id
-         * @returns {doc@call;getElementById.value}
+         * 根据id，获取或设置指定元素的value
+         * @param {string} id 元素的id值
+         * @value {string} value 要设置的value值（可选）
          */
-        GetElementValue: function (id) {
+        Val: function (id,value) {
             var obj = doc.getElementById(id);
-            if (obj) {
-                return obj.value;
-            }
-            return null;
-        },
-        /**
-         * 设置指定id的value值
-         * @param {string} id
-         * @param {string} val
-         */
-        SetElementValue: function (id, val) {
-            var obj = doc.getElementById(id);
-            if (obj) {
-                obj.value = val;
+            if(arguments.length===1){
+                if (obj) {
+                    return obj.value;
+                }
+                return null;
+            }else if(arguments.length===2){
+                if (obj) {
+                    obj.value = val;
+                }                
             }
         },
         /**
