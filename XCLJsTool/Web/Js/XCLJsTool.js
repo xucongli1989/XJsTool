@@ -1147,7 +1147,7 @@
          * @returns {string} 合并后的字符串
          */
         Join:function(separator,args){
-            var source=[],_this=this;
+            var source=[];
             if(arguments.length>2){
                 for(var i=1;i<arguments.length;i++){
                     source=source.concat(arguments[i]);
