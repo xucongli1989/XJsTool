@@ -426,34 +426,22 @@
          * 获取同步请求的数据
          * @param {string} url 请求地址
          * @param {json} paramData 参数
+         * @param {object} ajaxOption 自定义option
          * @returns {string}
          */
-        GetSyncData: function (url, paramData) {
+        GetSyncData: function (url, paramData,ajaxOption) {
             var result = "";
-            $.ajax({
+            var defaults={
                 url: url,
                 data: paramData,
                 async: false,
                 success: function (data) {
                     result = data;
                 }
-            });
+            };
+            var options =$.extend({},defaults,ajaxOption || {});
+            $.ajax(options);
             return result;
-        },
-        /**
-         * 获取同步请求的json数据
-         * @param {string} url 请求地址
-         * @param {json} paramData 参数
-         * @returns {json}
-         */
-        GetSyncJsonData: function (url, paramData) {
-            var _this = this;
-            var result = _this.GetSyncData(url, paramData);
-            if (result) {
-                return $.parseJSON(result);
-            } else {
-                return null;
-            }
         }
     };
 
