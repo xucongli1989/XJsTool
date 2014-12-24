@@ -448,7 +448,7 @@
          */
         GetSyncJsonData: function (url, paramData) {
             var _this = this;
-            var result = _this.GetData(url, paramData);
+            var result = _this.GetSyncData(url, paramData);
             if (result) {
                 return $.parseJSON(result);
             } else {
