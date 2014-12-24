@@ -434,12 +434,12 @@
             var defaults={
                 url: url,
                 data: paramData,
-                async: false,
                 success: function (data) {
                     result = data;
                 }
             };
             var options =$.extend({},defaults,ajaxOption || {});
+            options.async=false;
             $.ajax(options);
             return result;
         }
