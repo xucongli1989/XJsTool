@@ -425,7 +425,7 @@
         /**
          * 获取同步请求的数据
          * @param {object} ajaxOption 自定义option
-         * @returns {string}
+         * @returns {object} 请求结果
          */
         GetSyncData: function (ajaxOption) {
             var result = "";
