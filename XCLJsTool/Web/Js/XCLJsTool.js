@@ -424,23 +424,16 @@
     XCLJsTool.Ajax = {
         /**
          * 获取同步请求的数据
-         * @param {string} url 请求地址
-         * @param {json} paramData 参数
          * @param {object} ajaxOption 自定义option
          * @returns {string}
          */
-        GetSyncData: function (url, paramData,ajaxOption) {
+        GetSyncData: function (ajaxOption) {
             var result = "";
-            var defaults={
-                url: url,
-                data: paramData,
-                success: function (data) {
-                    result = data;
-                }
+            ajaxOption.async=false;
+            ajaxOption.success=function(data){
+                result = data;
             };
-            var options =$.extend({},defaults,ajaxOption || {});
-            options.async=false;
-            $.ajax(options);
+            $.ajax(ajaxOption);
             return result;
         }
     };
