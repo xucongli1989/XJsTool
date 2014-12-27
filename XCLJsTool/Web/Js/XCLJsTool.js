@@ -1167,4 +1167,4 @@
     
     win.XCLJsTool=win.XCLJsTool || XCLJsTool;
 
-})(window);
+})(window); 
