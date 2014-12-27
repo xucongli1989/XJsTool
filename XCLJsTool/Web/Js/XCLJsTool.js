@@ -1156,6 +1156,9 @@
             if(params){
                 query=$.param(params);
             }
+            if(query===""){
+                return url;
+            }
             if (url.indexOf('?') > -1) {
                 url = url + '&' + query;
             } else {
