@@ -81,7 +81,11 @@
         /**
          * 数组相关
          */
-        Array:{}
+        Array:{},
+        /**
+         * Url处理相关
+         */
+        URL:{}
     };
 
 
@@ -1137,6 +1141,27 @@
                 source=arguments[1];
             }
             return source.join(separator);
+        }
+    };
+    
+    XCLJsTool.URL={
+        /**
+         * 向URL中添加新的参数
+         * @param {type} url
+         * @param {type} params json参数,如：{k1:v1,k2:v2}
+         * @returns {String}
+         */
+        AddParam: function (url, params) {
+            var query="";
+            if(params){
+                query=$.param(params);
+            }
+            if (url.indexOf('?') > -1) {
+                url = url + '&' + query;
+            } else {
+                url = url + '?' + query;
+            }
+            return url;
         }
     };
     
