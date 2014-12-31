@@ -16,7 +16,7 @@
     var doc = win.document;
     var $ = $ || win.jQuery || {};
 
-    var XCLJsTool={
+    var lib={
         Version:"1.0",
         /**
          * 公共model
@@ -89,7 +89,7 @@
     };
 
 
-    XCLJsTool.Models={
+    lib.Models={
         /**
          * key value 模型
          * @param {string} key
@@ -103,7 +103,7 @@
 
 
 
-    XCLJsTool.Common = {
+    lib.Common = {
         /**
          * 向document输出字符串
          * @param {string} str
@@ -113,7 +113,7 @@
         }
     };
 
-    XCLJsTool.Dom = {
+    lib.Dom = {
         /**
          * 根据id，获取或设置指定元素的value
          * @param {string} id 元素的id值
@@ -150,7 +150,7 @@
             if(data && data.length>0){
                 var html="";
                 for(var i=0;i<data.length;i++){
-                    html+=(XCLJsTool.String.Format("<input type='hidden' name='{0}' id='{0}' value='{1}' />",data[i].key,data[i].value));
+                    html+=(lib.String.Format("<input type='hidden' name='{0}' id='{0}' value='{1}' />",data[i].key,data[i].value));
                 }
                 $container.append(html);
             }
@@ -160,7 +160,7 @@
     /**
      * 正则常量
      */
-    XCLJsTool.Regex.Regexs = {
+    lib.Regex.Regexs = {
         /**
          * Email
          * @type RegExp
@@ -275,7 +275,7 @@
     /**
      * 正则验证
      */
-    XCLJsTool.Regex.ValidRegex = {
+    lib.Regex.ValidRegex = {
         /**
          * 验证指定值是否与正则匹配
          * @param {RegExp} regex
@@ -287,7 +287,7 @@
         }
     };
 
-    XCLJsTool.String = {
+    lib.String = {
         /**
          * 去左右空格
          * @param {string} str
@@ -344,10 +344,49 @@
             }else{
                 return false;
             }
+        },
+        /**
+         * StringBuilder
+         */
+        Builder:function(){
+            this._arr=[];
         }
     };
+    /**
+     * 追加字符
+     */
+    lib.String.Builder.prototype.Append=function(str){
+        this._arr.push(str);
+    };
+    /**
+     * 带格式追加字符
+     */
+    lib.String.Builder.prototype.AppendFormat=function(){
+        this._arr.push(lib.String.Format.apply(null,arguments));
+    };
+    /**
+     * 返回StringBuilder的字符串
+     * @returns {string}
+     */
+    lib.String.Builder.prototype.ToString=function(){
+        return this._arr.join("");
+    };
+    /**
+     * 清除StringBuilder
+     */
+    lib.String.Builder.prototype.Clear=function(){
+        this._arr=[];
+    };
+    /**
+     * 返回StringBuilder的字符串的长度
+     * @returns {int}
+     */
+    lib.String.Builder.prototype.Length=function(){
+        return this.ToString().length;
+    };
+    
 
-    XCLJsTool.Cookie = {
+    lib.Cookie = {
         /**
          * 根据cookie名，获取cookie
          * @param {string} name
@@ -389,7 +428,7 @@
         }
     };
 
-    XCLJsTool.Http = {
+    lib.Http = {
         /**
          * 获取HttpRequest对象
          * @returns {XMLHttpRequest|ActiveXObject|Boolean}
@@ -425,7 +464,7 @@
         }
     };
 
-    XCLJsTool.Ajax = {
+    lib.Ajax = {
         /**
          * 获取同步请求的数据
          * @param {object} ajaxOption 自定义option
@@ -442,7 +481,7 @@
         }
     };
 
-    XCLJsTool.Data = {
+    lib.Data = {
         /**
          * 将值转为int型，若失败，则返回0
          * @param {string} val
@@ -547,7 +586,7 @@
          * @returns {Boolean}
          */
         IsNullOrWhiteSpace:function (val){
-            return this.IsNullOrEmpty(XCLJsTool.String.Trim(val));
+            return this.IsNullOrEmpty(lib.String.Trim(val));
         },
         /**
          * 判断指定值是否为html元素
@@ -631,7 +670,7 @@
         }
     };
 
-    XCLJsTool.Date = {
+    lib.Date = {
         /**
          * 是否为int（私有）
          * @param {string} val
@@ -948,7 +987,7 @@
         }
     };
     
-    XCLJsTool.Events={
+    lib.Events={
         /**
          * 阻止事件，默认类名（私有）
          */
@@ -983,7 +1022,7 @@
     };
 
 
-    XCLJsTool.Browser={
+    lib.Browser={
         /**
          * 判断是否为IE
          * @param {int} version（6，7，8，9） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
@@ -1027,7 +1066,7 @@
         }
     };
 
-    XCLJsTool.Mobile={
+    lib.Mobile={
         /**
          * 判断是否为Android
          */
@@ -1066,14 +1105,14 @@
         }
     };
     
-    XCLJsTool.Math={
+    lib.Math={
         /**
          * 返回指定值中的最小值
          * @param {type} val 可以为一个数组，也可以为多个参数
          * @returns {Number}
          */
         Min:function(val){
-            if(XCLJsTool.Data.IsArray(val)){
+            if(lib.Data.IsArray(val)){
                 return Math.min.apply(null,val);
             }else{
                 return Math.min(arguments);
@@ -1085,7 +1124,7 @@
          * @returns {Number}
          */        
         Max:function(val){
-            if(XCLJsTool.Data.IsArray(val)){
+            if(lib.Data.IsArray(val)){
                 return Math.max.apply(null,val);
             }else{
                 return Math.max(arguments);
@@ -1093,7 +1132,7 @@
         }
     };
     
-    XCLJsTool.Random={
+    lib.Random={
         /**
          * 生成指定范围内的随机数
          * @param {type} min 最小值
@@ -1116,7 +1155,7 @@
         }
     };
     
-    XCLJsTool.Array={
+    lib.Array={
         /**
          * 合并多个数组为一个数组
          * @param {type} args 要合并的数组参数，如：arr1,arr2,arr3...
@@ -1144,7 +1183,7 @@
         }
     };
     
-    XCLJsTool.URL={
+    lib.URL={
         /**
          * 向URL中添加新的参数
          * @param {type} url
@@ -1168,6 +1207,6 @@
         }
     };
     
-    win.XCLJsTool=win.XCLJsTool || XCLJsTool;
+    win.XCLJsTool=lib;
 
 })(window); 
