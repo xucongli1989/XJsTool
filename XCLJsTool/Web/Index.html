@@ -11,13 +11,7 @@
         XCLJsTool.Common.Write("Hello World!");
         
         
-        var sb = new XCLJsTool.String.Builder();
-        for (var i = 0; i < 100; i++) {
-            sb.Append(i.toString());
-        }
-
-        XCLJsTool.Common.Write(sb.ToString());
-        
+        var json=XCLJsTool.URL.GetUrlParamsJson("www.abc.com?a=1&b=2&c=3&c=4");
     </script>
 </body>
 </html>
