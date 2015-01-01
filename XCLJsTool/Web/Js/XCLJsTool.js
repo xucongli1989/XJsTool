@@ -143,7 +143,7 @@
         /**
          * 向form追加hidden，key为name和id
          * @param {object} $container 被追加的容器（默认为form对象）
-         * @param {json array} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
+         * @param {jsonArray} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
          */
         AddHiddens:function($container,data){
             $container=$container || $("form");
