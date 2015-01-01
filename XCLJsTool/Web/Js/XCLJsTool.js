@@ -10,14 +10,17 @@
     "use strict";
     
     if(win.XCLJsTool){
-        return win.XCLJsTool;
+        return;
     }
     
     var doc = win.document;
     var $ = $ || win.jQuery || {};
 
     var lib={
-        Version:"1.0",
+        /**
+         * 版本信息
+         */
+        Version:"V1.0,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool",
         /**
          * 公共model
          */
@@ -85,7 +88,11 @@
         /**
          * Url处理相关
          */
-        URL:{}
+        URL: {},
+        /**
+         * JSON处理相关
+         */
+        Json: {}
     };
 
 
@@ -1108,7 +1115,7 @@
     lib.Math={
         /**
          * 返回指定值中的最小值
-         * @param {type} val 可以为一个数组，也可以为多个参数
+         * @param {array} val 可以为一个数组，也可以为多个参数
          * @returns {Number}
          */
         Min:function(val){
@@ -1120,7 +1127,7 @@
         },
         /**
          * 返回指定值中的最大值
-         * @param {type} val 可以为一个数组，也可以为多个参数
+         * @param {array} val 可以为一个数组，也可以为多个参数
          * @returns {Number}
          */        
         Max:function(val){
@@ -1135,8 +1142,8 @@
     lib.Random={
         /**
          * 生成指定范围内的随机数
-         * @param {type} min 最小值
-         * @param {type} max 最大值
+         * @param {Number} min 最小值
+         * @param {Number} max 最大值
          * @returns {Number}
          */
         Range:function(min,max){
@@ -1158,7 +1165,7 @@
     lib.Array={
         /**
          * 合并多个数组为一个数组
-         * @param {type} args 要合并的数组参数，如：arr1,arr2,arr3...
+         * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
          * @returns {Array} 合并后的结果数组
          */
         Concat:function(args){
@@ -1166,8 +1173,8 @@
         },
         /**
          * 将一个或多个数组合并为一个字符串
-         * @param {type} separator 指定分隔符
-         * @param {type} args 要合并的数组参数(arr1,arr2,arr3...)
+         * @param {string} separator 指定分隔符
+         * @param {array} args 要合并的数组参数(arr1,arr2,arr3...)
          * @returns {string} 合并后的字符串
          */
         Join:function(separator,args){
@@ -1186,8 +1193,8 @@
     lib.URL={
         /**
          * 向URL中添加新的参数
-         * @param {type} url
-         * @param {type} params json参数,如：{k1:v1,k2:v2}
+         * @param {string} url
+         * @param {json} params json参数,如：{k1:v1,k2:v2}
          * @returns {String}
          */
         AddParam: function (url, params) {
@@ -1204,6 +1211,73 @@
                 url = url + '?' + query;
             }
             return url;
+        },
+        /**
+         * 将url查询参数转为json对象，如果该url中多个参数名一样，则该参数名对应的值是array类型
+         * 如："www.a.com?a=1&b=2&c=3&c=4" -> {"a":"1","b":"2","c":["3","4"]}
+         * @param {string} url
+         * @returns {json}
+         */
+        GetUrlParamsJson: function (url) {
+            var m = {};
+            var strUrl = [];
+            strUrl = url.substring(url.indexOf('?') + 1, url.length).split('&');
+            for (var i = 0; i < strUrl.length; i++) {
+                var curStr = strUrl[i].split('=');
+                if (curStr.length === 2) {
+                    var k=curStr[0];
+                    var v=curStr[1];
+                    if(lib.Json.HasKey(m,k)){
+                        //如果key已经存在，则该key值为数组类型，将值放入数组即可
+                        if(lib.Data.IsArray(m[k])){
+                            m[k].push(v);
+                        }else{
+                            var arr=[];
+                            arr.push(m[k],v);
+                            m[k]=arr;
+                        }
+                    }else{
+                        m[k]=v;
+                    }
+                }
+            }
+            return m;
+        }
+    };
+
+    lib.Json = {
+        /**
+         * 是否包含名key
+         * @param {json} json
+         * @param {string} keyName
+         * @returns {bool}
+         */
+        HasKey: function (json,keyName) {
+           var r=false;
+           if(json){
+               if(keyName in json){
+                   r=true;
+               }
+           }
+           return r;
+        },
+        /**
+         * 是否包含值value
+         * @param {json} json
+         * @param {string} keyValue
+         * @returns {bool}
+         */
+        HasValue: function (json,keyValue) {
+           var r=false;
+           if(json){
+               for(var k in json){
+                   if(json[k]===keyValue){
+                        r=true;
+                        break;
+                   }
+               }
+           }
+           return r;
         }
     };
     
