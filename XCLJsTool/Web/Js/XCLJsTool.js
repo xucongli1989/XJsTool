@@ -117,6 +117,22 @@
          */
         Write: function (str) {
             doc.write(str);
+        },
+        /**
+         * 创建全局命名空间
+         * @param {type} namespace 名称，如"A.B.C"
+         * @returns {object}
+         */
+        CreateNamespace:function(namespace){
+            var obj = this, tokens = namespace.split("."), token;
+            while (tokens.length > 0) {
+                token = tokens.shift();
+                if (typeof obj[token] === "undefined") {
+                    obj[token] = {};
+                }
+                obj = obj[token];
+            }
+            return obj;
         }
     };
 
