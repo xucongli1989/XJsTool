@@ -6,15 +6,14 @@
  * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
  */
 
-(function (win){
+(function (window){
     "use strict";
     
-    if(win.XCLJsTool){
-        return;
-    }
-    
-    var doc = win.document;
-    var $ = $ || win.jQuery || {};
+    //页面加载时的全局变量
+    var _xj=window.xj,
+    _XCLJsTool=window.XCLJsTool,
+    doc = window.document,
+    $ = window.jQuery;
 
     var lib={
         /**
@@ -93,6 +92,21 @@
          * JSON处理相关
          */
         Json: {}
+    };
+
+   /**
+    * 释放全局变量"xj/XCLJsTool"的控制权
+    * @param {bool} deep ,若为true，则也释放全局变量"XCLJsTool"的控制权；若为false，则仅释放全局变量"xj"的控制权
+    * @returns {object} 原始类的变量
+    */
+   lib.noConflict=function(deep){
+        if(window.xj===lib){
+                window.xj=_xj;
+        }
+        if(deep && window.XCLJsTool===lib){
+                window.XCLJsTool=_XCLJsTool;
+        }
+        return lib;
     };
 
 
@@ -476,9 +490,9 @@
                     xmlhttp = false;
                 }
             }
-            if (!xmlhttp && win.createRequest) {
+            if (!xmlhttp && window.createRequest) {
                 try {
-                    xmlhttp = win.createRequest();
+                    xmlhttp = window.createRequest();
                 } catch (e) {
                     xmlhttp = false;
                 }
@@ -1297,6 +1311,6 @@
         }
     };
     
-    win.XCLJsTool=lib;
+    window.XCLJsTool=window.xj=lib;
 
-})(window); 
+})(window);
