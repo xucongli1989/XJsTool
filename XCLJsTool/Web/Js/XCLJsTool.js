@@ -13,7 +13,19 @@
     var _xj=window.xj,
     _XCLJsTool=window.XCLJsTool,
     doc = window.document,
-    $ = window.jQuery;
+    jq = null;
+    
+    var isRequirejs=(typeof define==="function" && define.amd);
+
+    if(isRequirejs){
+        define(["jquery"],function(app){
+            jq=app;
+            return app;
+        });
+    }else{
+        jq=window.jQuery;
+    }
+
 
     var lib={
         /**
@@ -1311,6 +1323,14 @@
         }
     };
     
+    if(isRequirejs){
+        define("XCLJsTool",[],function(){
+            return lib;
+        });
+    }
+    
     window.XCLJsTool=window.xj=lib;
+    
+    return lib;
 
 })(window);
