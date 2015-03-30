@@ -4,6 +4,7 @@
  * By:XCL @ 2014.11 in Shanghai China
  * 使用说明：
  * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
+ * 当前版本：v1.1
  */
 
 (function (window){
@@ -31,7 +32,7 @@
         /**
          * 版本信息
          */
-        Version:"V1.0,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool",
+        Version:"V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool",
         /**
          * 公共model
          */
