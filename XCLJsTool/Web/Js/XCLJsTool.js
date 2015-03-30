@@ -10,17 +10,17 @@
     "use strict";
     
     //页面加载时的全局变量
-    var _xj=window.xj,
+    var _XJ = window.XJ,
     _XCLJsTool=window.XCLJsTool,
     doc = window.document,
     jq = null;
     
     var isRequirejs=(typeof define==="function" && define.amd);
 
-    if(isRequirejs){
-        define(["jquery"],function(app){
-            jq=app;
-            return app;
+    if (isRequirejs) {
+        require(["jquery"],function(jquery){
+            jq = jquery;
+            return;
         });
     }else{
         jq=window.jQuery;
@@ -107,13 +107,13 @@
     };
 
    /**
-    * 释放全局变量"xj/XCLJsTool"的控制权
-    * @param {bool} deep ,若为true，则也释放全局变量"XCLJsTool"的控制权；若为false，则仅释放全局变量"xj"的控制权
+    * 释放全局变量"XJ/XCLJsTool"的控制权
+    * @param {bool} deep ,若为true，则也释放全局变量"XCLJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
     * @returns {object} 原始类的变量
     */
    lib.noConflict=function(deep){
-        if(window.xj===lib){
-                window.xj=_xj;
+       if (window.XJ === lib) {
+           window.XJ = _XJ;
         }
         if(deep && window.XCLJsTool===lib){
                 window.XCLJsTool=_XCLJsTool;
@@ -1323,13 +1323,13 @@
         }
     };
     
-    if(isRequirejs){
-        define("XCLJsTool",[],function(){
+    if (isRequirejs) {
+        define("XCLJsTool", [], function () {
             return lib;
         });
     }
-    
-    window.XCLJsTool=window.xj=lib;
+
+    window.XCLJsTool = window.XJ = lib;
     
     return lib;
 
