@@ -1,13 +1,11 @@
 /**
  * ******************************************************************************************
  * 1：基本信息：
- * 开源协议：LGPL（https://github.com/xucongli1989/XCLJsTool/blob/master/LICENSE）
- * 基于 LGPL 的软件允许商业化销售，如果您对遵循 LGPL 的软件进行任何改动和/或再次开发并予以发布，则您的产品必须继承 LGPL 协议，不允许封闭源代码。但是如果您的程序对遵循 LGPL 的软件进行任何连接、调用而不是包含，则允许封闭源代码。
- *
+ * 开源协议：https://raw.githubusercontent.com/xucongli1989/XCLJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XCLJsTool
- * By:XCL @ 2014.11 in Shanghai. China
  * 贡献者：xucongli1989（https://github.com/xucongli1989）
- * e-mail:80213876@qq.com
+ * 电子邮件：80213876@qq.com
+ * Create By: XCL @ 2014.11 in Shanghai. China
  ********************************************************************************************
  * 2：使用说明：
  * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
