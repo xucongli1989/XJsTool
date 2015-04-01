@@ -1,10 +1,18 @@
 /**
- * 欢迎使用本程序，您可以任意修改、复制、分享本程序所有代码，只需要保留本注释即可，谢谢！
+ * ******************************************************************************************
+ * 1：基本信息：
+ * 开源协议：LGPL（https://github.com/xucongli1989/XCLJsTool/blob/master/LICENSE）
+ * 基于 LGPL 的软件允许商业化销售，如果您对遵循 LGPL 的软件进行任何改动和/或再次开发并予以发布，则您的产品必须继承 LGPL 协议，不允许封闭源代码。但是如果您的程序对遵循 LGPL 的软件进行任何连接、调用而不是包含，则允许封闭源代码。
+ *
  * 项目地址：https://github.com/xucongli1989/XCLJsTool
- * By:XCL @ 2014.11 in Shanghai China
- * 使用说明：
+ * By:XCL @ 2014.11 in Shanghai. China
+ * 贡献者：xucongli1989（https://github.com/xucongli1989）
+ * e-mail:80213876@qq.com
+ ********************************************************************************************
+ * 2：使用说明：
  * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
  * 当前版本：v1.1
+ * 更新时间：2015-04-01
  */
 
 (function (window){
@@ -762,6 +770,7 @@
         LZ: function (x) { return (x < 0 || x > 9 ? "" : "0") + x },
         /**
          * 格式化date
+         * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
          * @param {Date} date
          * @param {string} format
          * @returns {String}
