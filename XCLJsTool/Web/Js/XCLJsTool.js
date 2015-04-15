@@ -17,12 +17,10 @@
     "use strict";
     
     //页面加载时的全局变量
-    var _XJ = window.XJ,
-    _XCLJsTool=window.XCLJsTool,
-    doc = window.document,
-    jq = null;
-    
+    var _XJ = window.XJ, _XCLJsTool=window.XCLJsTool, doc = window.document, jq = null;
     var isRequirejs=(typeof define==="function" && define.amd);
+    var userAgent=navigator.userAgent;
+    var appVersion=navigator.appVersion;
 
     if (isRequirejs) {
         require(["jquery"],function(jquery){
@@ -33,92 +31,23 @@
         jq=window.jQuery;
     }
 
+    /**
+     * XCLJsTool的局部变量
+     */
+    var lib={};
+    
+    /**
+     * 版本信息
+     */    
+    lib.Version="V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool"
 
-    var lib={
-        /**
-         * 版本信息
-         */
-        Version:"V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool",
-        /**
-         * 公共model
-         */
-        Models:{},
-        /**
-         * 公共方法
-         */    
-        Common:{},
-        /**
-         * Dom操作
-         */    
-        Dom:{},
-        /**
-         * 正则相关
-         */    
-        Regex:{},
-        /**
-         * 字符串操作相关
-         */    
-        String:{},
-        /**
-         * Cookie操作相关
-         */    
-        Cookie:{},
-        /**
-         * Http操作相关
-         */    
-        Http:{},
-        /**
-         * Ajax操作相关
-         */    
-        Ajax:{},
-        /**
-         * 数据处理操作相关
-         */    
-        Data:{},
-        /**
-         * 日期时间处理相关
-         */    
-        Date:{},
-        /**
-         * 事件相关
-         */
-        Events:{},
-        /**
-         * 浏览器相关
-         */
-        Browser:{},
-        /**
-         * 移动端相关
-         */
-        Mobile:{},
-        /**
-         * 数学计算相关
-         */
-        Math:{},
-        /**
-         * 随机数相关
-         */
-        Random:{},
-        /**
-         * 数组相关
-         */
-        Array:{},
-        /**
-         * Url处理相关
-         */
-        URL: {},
-        /**
-         * JSON处理相关
-         */
-        Json: {}
-    };
 
    /**
     * 释放全局变量"XJ/XCLJsTool"的控制权
     * @param {bool} deep ,若为true，则也释放全局变量"XCLJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
     * @returns {object} 原始类的变量
     */
-   lib.noConflict=function(deep){
+    lib.noConflict=function(deep){
        if (window.XJ === lib) {
            window.XJ = _XJ;
         }
@@ -128,7 +57,9 @@
         return lib;
     };
 
-
+    /**
+     * 公共model
+     */
     lib.Models={
         /**
          * key value 模型
@@ -140,9 +71,11 @@
             this.value=value;
         }
     };
+    
 
-
-
+    /**
+     * 公共方法
+     */    
     lib.Common = {
         /**
          * 向document输出字符串
@@ -168,7 +101,10 @@
             return obj;
         }
     };
-
+    
+    /**
+     * Dom操作
+     */    
     lib.Dom = {
         /**
          * 根据id，获取或设置指定元素的value
@@ -197,22 +133,29 @@
             $selectObj.find("option[value='" + val + "']").prop({ "selected": true });
         },
         /**
-         * 向form追加hidden，key为name和id
-         * @param {object} $container 被追加的容器（默认为form对象）
+         * 向指定容器中追加hidden，key为name和id
          * @param {jsonArray} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
+         * @param {object} containerObj 被追加的容器（默认为form对象）
          */
-        AddHiddens:function($container,data){
-            $container=$container || $("form");
+        AddHiddens:function(data,containerObj){
+            containerObj=containerObj || doc.getElementsByTagName("form")[0];
             if(data && data.length>0){
                 var html="";
                 for(var i=0;i<data.length;i++){
                     html+=(lib.String.Format("<input type='hidden' name='{0}' id='{0}' value='{1}' />",data[i].key,data[i].value));
                 }
-                $container.append(html);
+                var div=doc.createElement("div");
+                div.style.display="none";
+                div.innerHTML=html;
+                containerObj.appendChild(div);
             }
         }
     };
-
+    
+    /**
+     * 正则相关
+     */    
+    lib.Regex={};
     /**
      * 正则常量
      */
@@ -342,7 +285,11 @@
             return regex.test(str);
         }
     };
-
+    
+    
+    /**
+     * 字符串操作相关
+     */    
     lib.String = {
         /**
          * 去左右空格
@@ -442,6 +389,10 @@
     };
     
 
+
+    /**
+     * Cookie操作相关
+     */    
     lib.Cookie = {
         /**
          * 根据cookie名，获取cookie
@@ -484,6 +435,9 @@
         }
     };
 
+    /**
+     * Http操作相关
+     */    
     lib.Http = {
         /**
          * 获取HttpRequest对象
@@ -520,6 +474,9 @@
         }
     };
 
+    /**
+     * Ajax操作相关
+     */    
     lib.Ajax = {
         /**
          * 获取同步请求的数据
@@ -537,6 +494,9 @@
         }
     };
 
+    /**
+     * 数据处理操作相关
+     */    
     lib.Data = {
         /**
          * 将值转为int型，若失败，则返回0
@@ -726,6 +686,9 @@
         }
     };
 
+    /**
+     * 日期时间处理相关
+     */    
     lib.Date = {
         /**
          * 是否为int（私有）
@@ -1044,6 +1007,9 @@
         }
     };
     
+    /**
+     * 事件相关
+     */    
     lib.Events={
         /**
          * 阻止事件，默认类名（私有）
@@ -1078,7 +1044,9 @@
         }
     };
 
-
+    /**
+     * 浏览器相关
+     */
     lib.Browser={
         /**
          * 判断是否为IE
@@ -1093,16 +1061,16 @@
             var result=false;
             switch(version){
                 case 6:
-                    result=/msie 6/i.test(navigator.userAgent);
+                    result=/msie 6/i.test(userAgent);
                     break;
                 case 7:
-                    result=/msie 7/i.test(navigator.userAgent);
+                    result=/msie 7/i.test(userAgent);
                     break;
                 case 8:
-                    result=/msie 8/i.test(navigator.userAgent);
+                    result=/msie 8/i.test(userAgent);
                     break;
                 case 9:
-                    result=ie && navigator.appVersion.match(/9./i)=="9.";
+                    result=ie && appVersion.match(/9./i)=="9.";
                     break;
             }
             return result;
@@ -1112,47 +1080,50 @@
          * 判断是否为Firefox
          */
         IsFirefox:function(){
-            return navigator.userAgent.indexOf("Firefox")>=0;
+            return userAgent.indexOf("Firefox")>=0;
         },
         
         /**
          * 判断是否为Chrome
          */
         IsChrome:function(){
-            return navigator.userAgent.indexOf("Chrome") >=0 ;
+            return userAgent.indexOf("Chrome") >=0 ;
         }
     };
 
+    /**
+     * 移动端相关
+     */
     lib.Mobile={
         /**
          * 判断是否为Android
          */
         IsAndroid:function(){
-            return navigator.userAgent.match(/Android/i);
+            return userAgent.match(/Android/i);
         },
         /**
          * 判断是否为BlackBerry
          */        
         IsBlackBerry: function() {
-            return navigator.userAgent.match(/BlackBerry/i);
+            return userAgent.match(/BlackBerry/i);
         },
         /**
          * 判断是否为IOS
          */        
         IsIOS: function() {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            return userAgent.match(/iPhone|iPad|iPod/i);
         },
         /**
          * 判断是否为Opera
          */        
         IsOpera: function() {
-            return navigator.userAgent.match(/Opera Mini/i);
+            return userAgent.match(/Opera Mini/i);
         },
         /**
          * 判断是否为IEMobile
          */        
         IsIEMobile: function() {
-            return navigator.userAgent.match(/IEMobile/i);
+            return userAgent.match(/IEMobile/i);
         },
         /**
          * 判断是否为移动端
@@ -1162,6 +1133,9 @@
         }
     };
     
+    /**
+     * 数学计算相关
+     */    
     lib.Math={
         /**
          * 返回指定值中的最小值
@@ -1189,6 +1163,9 @@
         }
     };
     
+    /**
+     * 随机数相关
+     */    
     lib.Random={
         /**
          * 生成指定范围内的随机数
@@ -1212,6 +1189,9 @@
         }
     };
     
+    /**
+     * 数组相关
+     */    
     lib.Array={
         /**
          * 合并多个数组为一个数组
@@ -1240,6 +1220,9 @@
         }
     };
     
+    /**
+     * Url处理相关
+     */    
     lib.URL={
         /**
          * 向URL中添加新的参数
@@ -1295,6 +1278,9 @@
         }
     };
 
+    /**
+     * JSON处理相关
+     */
     lib.Json = {
         /**
          * 是否包含名key
