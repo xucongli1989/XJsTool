@@ -15,6 +15,17 @@
 
 (function (window){
     "use strict";
+
+    /**
+     * XCLJsTool的局部变量
+     */
+    var lib = {};
+
+    /**
+     * 版本信息
+     */
+    lib.Version = "V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool"
+
     
     //页面加载时的全局变量
     var _XJ = window.XJ, _XCLJsTool=window.XCLJsTool, doc = window.document, jq = null;
@@ -30,16 +41,6 @@
     }else{
         jq=window.jQuery;
     }
-
-    /**
-     * XCLJsTool的局部变量
-     */
-    var lib={};
-    
-    /**
-     * 版本信息
-     */    
-    lib.Version="V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool"
 
 
    /**
@@ -121,16 +122,35 @@
             }else if(arguments.length===2){
                 if (obj) {
                     obj.value = val;
-                }                
+                }
             }
         },
         /**
          * 根据指定value，选中select对象中option
-         * @param {object} $selectObj
-         * @param {string} val
+         * @param {element object or element's id string} selectObj html元素对象或元素的id
+         * @param {string or array} val 要选中的值或值数组
          */
-        SelectOption: function ($selectObj, val) {
-            $selectObj.find("option[value='" + val + "']").prop({ "selected": true });
+        SelectOption: function (selectObj, val) {
+            var obj = null, valArr = [];
+            if (lib.Data.IsString(selectObj)) {
+                obj = doc.getElementById(selectObj);
+            } else {
+                obj = selectObj;
+            }
+            if (lib.Data.IsArray(val)) {
+                valArr = val;
+            } else {
+                valArr.push(val);
+            }
+            if (!obj || !obj.options || !valArr) {
+                return false;
+            }
+            var ops = obj.options;
+            for (var i = 0; i < ops.length; i++) {
+                if (lib.Array.InArray(ops[i].value,valArr)>-1) {
+                    ops[i].selected = true;
+                }
+            }
         },
         /**
          * 向指定容器中追加hidden，key为name和id
@@ -1217,6 +1237,25 @@
                 source=arguments[1];
             }
             return source.join(separator);
+        },
+        /**
+        * 判断指定val是否在数组array中
+        * @param {object} val 需要判断的值
+        * @param {Array} array 所在的数组
+        * @param {number} idx 从数组array的idx处开始判断，若未指定，则从整个数组array中判断
+        * @returns {number} val在array中的位置，若不在，则返回-1
+        */
+        InArray: function (val, array, idx) {
+            if (!array) return -1;
+            var arrLen = array.length;
+            idx = idx || 0;
+            idx = (idx < 0 || idx > array.length - 1) ? 0 : idx;
+            for (; idx < arrLen; idx++) {
+                if (array[idx] === val) {
+                    return idx;
+                }
+            }
+            return -1;
         }
     };
     
