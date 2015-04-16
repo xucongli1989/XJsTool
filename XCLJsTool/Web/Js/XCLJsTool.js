@@ -91,7 +91,7 @@
          * @returns {object}
          */
         CreateNamespace:function(namespace){
-            var obj = this, tokens = namespace.split("."), token;
+            var obj = window, tokens = namespace.split("."), token;
             while (tokens.length > 0) {
                 token = tokens.shift();
                 if (typeof obj[token] === "undefined") {
