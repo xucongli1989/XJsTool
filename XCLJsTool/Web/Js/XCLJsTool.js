@@ -24,7 +24,7 @@
     /**
      * 版本信息
      */
-    lib.Version = "V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool"
+    lib.Version = "V1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
 
     
     //页面加载时的全局变量
@@ -1272,7 +1272,7 @@
         AddParam: function (url, params) {
             var query="";
             if(params){
-                query=$.param(params);
+                query=lib.Json.ToParams(params);
             }
             if(query===""){
                 return url;
@@ -1353,6 +1353,25 @@
                }
            }
            return r;
+        },
+        /**
+         * json对象转成param形式的字符串，如{a:1,b:2,c:[3,4,5]}=>"a=1&b=2&c=3&c=4&c=5"
+         * @param {json} json 待转换的数据源
+         * @returns {string}
+         */
+        ToParams:function(json){
+            if(!json) return "";
+            var arr=[],temp="";
+            for(var m in json){
+                temp="";
+                if(lib.Data.IsArray(json[m])){
+                    temp=json[m].join("&"+m+"=");
+                }else{
+                    temp=json[m];
+                }
+                arr.push(m+"="+temp);
+            }
+            return arr.join("&");
         }
     };
     
