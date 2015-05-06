@@ -9,8 +9,10 @@
  ********************************************************************************************
  * 2：使用说明：
  * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
- * 当前版本：v1.1.1
- * 更新时间：2015-05-03
+ * 当前版本：v1.1.2
+ * 更新时间：2015-05-06
+ * 更新内容：
+ *              1、添加escapeHtml方法
  */
 
 (function (window){
@@ -42,6 +44,14 @@
         jq=window.jQuery;
     }
 
+    var entityMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': '&quot;',
+        "'": '&#39;',
+        "/": '&#x2F;'
+    };
 
    /**
     * 释放全局变量"XJ/XCLJsTool"的控制权
@@ -373,6 +383,15 @@
          */
         Builder:function(){
             this._arr=[];
+        },
+        /**
+        * 将html标签转换为实体形式
+        * @param {string} html 需要被替换的html
+        */
+        EscapeHtml: function (html) {
+            return String(html).replace(/[&<>"'\/]/g, function (s) {
+                return entityMap[s];
+            });
         }
     };
     /**
