@@ -13,9 +13,10 @@
  * 更新时间：2015-05-06
  * 更新内容：
  *              1、添加escapeHtml方法
+ *              2、添加ContentType判断文件类型
  */
 
-(function (window){
+;(function (window){
     "use strict";
 
     /**
@@ -300,20 +301,6 @@
          * @type RegExp
          */
         ChinaIDCard:/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
-    };
-    /**
-     * 正则验证
-     */
-    lib.Regex.ValidRegex = {
-        /**
-         * 验证指定值是否与正则匹配
-         * @param {RegExp} regex
-         * @param {string} str
-         * @returns {bool}
-         */
-        IsValid: function (regex, str) {
-            return regex.test(str);
-        }
     };
     
     
@@ -1393,6 +1380,44 @@
             return arr.join("&");
         }
     };
+
+    /**
+    * ContentType处理相关
+    */
+    lib.ContentType = {
+        /**
+        * 判断Content-Type(Mime-Type) 是否为gif格式
+        */
+        IsGif: function (type) {
+            return /^image\/gif$/i.test(type);
+        },
+        /**
+        * 判断Content-Type(Mime-Type) 是否为jpg/jpeg格式
+        */
+        IsJpg: function (type) {
+            return /^(image\/jpeg)|(application\/x\-jpg)$/i.test(type);
+        },
+        /**
+        * 判断Content-Type(Mime-Type) 是否为png格式
+        */
+        IsPng:function(type){
+            return /^(image\/png)|(application\/x\-png)$/i.test(type);
+        },
+        /**
+        * 判断Content-Type(Mime-Type) 是否为bmp格式
+        */
+        IsBmp: function (type) {
+            return /^application\/x\-bmp$/i.test(type);
+        },
+        /**
+        * 判断Content-Type(Mime-Type) 是否为gif/jpg/jpeg/png/bmp格式
+        */
+        IsImage: function (type) {
+            return /^(image\/(gif|jpeg|png))|(application\/(x\-jpg|x\-png|x\-bmp))$/i.test(type);
+        }
+    };
+
+
     
     if (isRequirejs) {
         define("XCLJsTool", [], function () {
