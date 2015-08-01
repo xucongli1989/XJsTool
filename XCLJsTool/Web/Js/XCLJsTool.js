@@ -27,7 +27,7 @@
     /**
      * 版本信息
      */
-    lib.Version = "V1.1.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
+    lib.Version = "V1.1.2,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
 
     
     //页面加载时的全局变量
@@ -300,7 +300,12 @@
          * 国内身份证号
          * @type RegExp
          */
-        ChinaIDCard:/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
+        ChinaIDCard: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+        /**
+        * 人类年龄
+        * @type RegExp
+        */
+        HumanAge: /^(([0-9])|([1-9][0-9])|(1[0-1][0-9])|(120))$/
     };
     
     
