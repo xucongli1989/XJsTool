@@ -9,11 +9,10 @@
  ********************************************************************************************
  * 2：使用说明：
  * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
- * 当前版本：v1.1.2
- * 更新时间：2015-05-06
+ * 当前版本：v1.1.3
+ * 更新时间：2015-09-15
  * 更新内容：
- *              1、添加escapeHtml方法
- *              2、添加ContentType判断文件类型
+ *              1、修复几个bug
  */
 
 ;(function (window){
@@ -27,7 +26,7 @@
     /**
      * 版本信息
      */
-    lib.Version = "V1.1.2,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
+    lib.Version = "V1.1.3,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
 
     
     //页面加载时的全局变量
@@ -132,7 +131,7 @@
                 return null;
             }else if(arguments.length===2){
                 if (obj) {
-                    obj.value = val;
+                    obj.value = value;
                 }
             }
         },
@@ -195,7 +194,7 @@
          * Email
          * @type RegExp
          */
-        Email: /^(?:\w+\.?)*\w+@(?:\w+\.)+\w+$/,
+        Email: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
         /**
          * Url
          * @type RegExp
@@ -449,12 +448,12 @@
          * @param {int} days 过期时间（天数）
          */
         SetCookie: function (name, value, days) {
+            var expires ="";
             if (days) {
                 var date = new Date();
                 date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                var expires = "; expires=" + date.toGMTString();
+                expires = "; expires=" + date.toGMTString();
             }
-            else var expires = "";
             doc.cookie = name + "=" + value + expires + "; path=/";
         },
         /**
@@ -471,11 +470,11 @@
      */    
     lib.Http = {
         /**
-         * 获取HttpRequest对象
-         * @returns {XMLHttpRequest|ActiveXObject|Boolean}
+         * 获取HttpRequest对象,若创建失败，则返回null
+         * @returns {XMLHttpRequest|ActiveXObject|Null}
          */
         GetHttpRequestObject: function () {
-            var xmlhttp = false;
+            var xmlhttp = null;
 
             try {
                 xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
@@ -483,7 +482,7 @@
                 try {
                     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                 } catch (E) {
-                    xmlhttp = false;
+                    xmlhttp = null;
                 }
             }
 
@@ -491,14 +490,14 @@
                 try {
                     xmlhttp = new XMLHttpRequest();
                 } catch (e) {
-                    xmlhttp = false;
+                    xmlhttp = null;
                 }
             }
             if (!xmlhttp && window.createRequest) {
                 try {
                     xmlhttp = window.createRequest();
                 } catch (e) {
-                    xmlhttp = false;
+                    xmlhttp = null;
                 }
             }
             return xmlhttp;
@@ -641,7 +640,7 @@
          * @returns {obj|Boolean}
          */
         IsElement: function (val) {
-             return typeof HTMLElement === "object" ? o instanceof HTMLElement :  o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string";
+             return typeof HTMLElement === "object" ? val instanceof HTMLElement :  val && typeof val === "object" && val !== null && val.nodeType === 1 && typeof val.nodeName==="string";
         },
         /**
          * 判断指定值是否为function
@@ -781,7 +780,7 @@
             var H = date.getHours();
             var m = date.getMinutes();
             var s = date.getSeconds();
-            var yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
+            //var yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
             // Convert real date parts into formatted versions
             var value = new Object();
             if (y.length < 4) { y = "" + (y - 0 + 1900); }
@@ -837,7 +836,7 @@
             var iFormat = 0;
             var c = "";
             var token = "";
-            var token2 = "";
+            //var token2 = "";
             var x, y;
             var now = new Date();
             var year = now.getYear();
@@ -883,8 +882,8 @@
                     }
                 } else if (token === "MMM" || token === "NNN") {
                     month = 0;
-                    for (var i = 0; i < monthsAll.length; i++) {
-                        var monthName = monthsAll[i];
+                    for (var i = 0; i < _this.MONTH_NAMES.length; i++) {
+                        var monthName = _this.MONTH_NAMES[i];
                         if (val.substring(iVal, iVal + monthName.length).toLowerCase() === monthName.toLowerCase()) {
                             if (token === "MMM" || (token === "NNN" && i > 11)) {
                                 month = i + 1;
@@ -900,8 +899,8 @@
                         return NaN;
                     }
                 } else if (token === "EE" || token === "E") {
-                    for (var n = 0; n < daysAll.length; n++) {
-                        var dayName = daysAll[n];
+                    for (var n = 0; n < _this.DAY_NAMES.length; n++) {
+                        var dayName = _this.DAY_NAMES[n];
                         if (val.substring(iVal, iVal + dayName.length).toLowerCase() === dayName.toLowerCase()) {
                             iVal += dayName.length;
                             break;
