@@ -8,14 +8,14 @@
  * Create By: XCL @ 2014.11 in Shanghai. China
  ********************************************************************************************
  * 2：使用说明：
- * 本程序部分功能依赖于jquery插件，本项目中使用的是jquery-1.11.1
- * 当前版本：v1.1.3
- * 更新时间：2015-09-15
+ * 本插件不依赖于其它js库
+ * 当前版本：v1.2
+ * 更新时间：2015-09-23
  * 更新内容：
- *              1、修复几个bug
+ *              1、优化代码，去掉对jquery依赖
  */
 
-;(function (window){
+;(function (window,undefined){
     "use strict";
 
     /**
@@ -26,23 +26,14 @@
     /**
      * 版本信息
      */
-    lib.Version = "V1.1.3,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
+    lib.Version = "V1.2,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
 
     
     //页面加载时的全局变量
-    var _XJ = window.XJ, _XCLJsTool=window.XCLJsTool, doc = window.document, jq = null;
+    var _XJ = window.XJ, _XCLJsTool = window.XCLJsTool, doc = window.document;
     var isRequirejs=(typeof define==="function" && define.amd);
     var userAgent=navigator.userAgent;
     var appVersion=navigator.appVersion;
-
-    if (isRequirejs) {
-        require(["jquery"],function(jquery){
-            jq = jquery;
-            return;
-        });
-    }else{
-        jq=window.jQuery;
-    }
 
     var entityMap = {
         "&": "&amp;",
@@ -508,20 +499,7 @@
      * Ajax操作相关
      */    
     lib.Ajax = {
-        /**
-         * 获取同步请求的数据
-         * @param {object} ajaxOption 自定义option
-         * @returns {object} 请求结果
-         */
-        GetSyncData: function (ajaxOption) {
-            var result = "";
-            ajaxOption.async=false;
-            ajaxOption.success=function(data){
-                result = data;
-            };
-            $.ajax(ajaxOption);
-            return result;
-        }
+        
     };
 
     /**
@@ -1041,37 +1019,7 @@
      * 事件相关
      */    
     lib.Events={
-        /**
-         * 阻止事件，默认类名（私有）
-         */
-        _stopEventClassName:"XCLJsToolStopEvent",
-        /**
-         * 阻止指定事件
-         * @param {object} $obj 被操作的元素
-         * @param {string} eventName 事件名，默认为click
-         * @param {string} className 绑定阻止事件时给元素$obj添加的类名，默认为"XCLJsToolStopEvent"
-         * @returns {Boolean}
-         */
-        StopEvent:function($obj,eventName,className){
-            var _this=this;
-            eventName=eventName || "click";
-            className=className || _this._stopEventClassName;
-            $obj.addClass(className);
-            $(doc).on(eventName,"."+className,function(){
-                return false;
-            })
-            return  false;
-        },
-        /**
-         * 移除阻止的事件
-         * @param {object} $obj 被操作的元素
-         * @param {string} className 移除的类名
-         */
-        RemoveStopEvent:function($obj,className){
-            var _this=this;
-            className=className || _this._stopEventClassName;
-            $obj.removeClass(className);
-        }
+        
     };
 
     /**
@@ -1421,16 +1369,15 @@
         }
     };
 
-
     
     if (isRequirejs) {
         define("XCLJsTool", [], function () {
             return lib;
         });
+    } else {
+        window.XCLJsTool = window.XJ = lib;
     }
 
-    window.XCLJsTool = window.XJ = lib;
-    
     return lib;
 
 })(window);

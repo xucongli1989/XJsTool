@@ -64,6 +64,7 @@
     <Content Include="Js\main.js" />
     <Content Include="Js\require.js" />
     <Content Include="Js\XCLJsTool.js" />
+    <Content Include="UseRequirejs.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

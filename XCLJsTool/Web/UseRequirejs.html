@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="Js/config.js"></script>
+    <script src="Js/require.js" data-main="Js/main.js"></script>
+</head>
+<body>
+    <div id="divContent"></div>
+    <br/><br /><br /><br />
+    <div id="appContent"></div>
+
+    <script type="text/javascript">
+        
+        require(["XCLJsTool"], function (x) {
+            var html = x.Version + "<br/>" + new Date().toString();
+            document.getElementById("divContent").innerHTML = html;
+        });
+
+
+        require(["App"], function (app) {
+            document.getElementById("appContent").innerHTML = app.title;
+        });
+
+    </script>
+</body>
+</html>
