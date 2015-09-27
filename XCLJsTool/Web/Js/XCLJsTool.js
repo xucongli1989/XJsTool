@@ -466,32 +466,16 @@
          */
         GetHttpRequestObject: function () {
             var xmlhttp = null;
-
-            try {
-                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
-                try {
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (E) {
-                    xmlhttp = null;
-                }
+            if (window.ActiveXObject) {
+                xmlhttp = new window.ActiveXObject("Msxml2.XMLHTTP") || new window.ActiveXObject("Microsoft.XMLHTTP");
             }
-
-            if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
-                try {
-                    xmlhttp = new XMLHttpRequest();
-                } catch (e) {
-                    xmlhttp = null;
-                }
+            if (!xmlhttp && window.XMLHttpRequest) {
+                xmlhttp = new window.XMLHttpRequest();
             }
             if (!xmlhttp && window.createRequest) {
-                try {
-                    xmlhttp = window.createRequest();
-                } catch (e) {
-                    xmlhttp = null;
-                }
+                xmlhttp = window.createRequest();
             }
-            return xmlhttp;
+            return xmlhttp || null;
         }
     };
 
