@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,7 +64,7 @@
     <Content Include="Js\jquery-1.11.1.min.js" />
     <Content Include="Js\main.js" />
     <Content Include="Js\require.js" />
-    <Content Include="Js\XCLJsTool.js" />
+    <Content Include="Js\XJsTool.js" />
     <Content Include="UseRequirejs.html" />
     <Content Include="Web.config" />
   </ItemGroup>

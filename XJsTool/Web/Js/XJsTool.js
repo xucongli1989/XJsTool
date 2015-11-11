@@ -1,16 +1,16 @@
 /**
  * ******************************************************************************************
  * 1：基本信息：
- * 开源协议：https://raw.githubusercontent.com/xucongli1989/XCLJsTool/master/LICENSE
- * 项目地址：https://github.com/xucongli1989/XCLJsTool
+ * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
+ * 项目地址：https://github.com/xucongli1989/XJsTool
  * 贡献者：xucongli1989（https://github.com/xucongli1989）
  * 电子邮件：80213876@qq.com
  * Create By: XCL @ 2014.11 in Shanghai. China
  ********************************************************************************************
  * 2：使用说明：
  * 本插件不依赖于其它js库
- * 当前版本：v1.3
- * 更新时间：2015-10-26
+ * 当前版本：v1.2.1
+ * 更新时间：2015-11-11
  * 更新内容：
  *              1、增加Date.Parse方法
  */
@@ -19,18 +19,18 @@
     "use strict";
 
     /**
-     * XCLJsTool的局部变量
+     * XJsTool的局部变量
      */
     var lib = {};
 
     /**
      * 版本信息
      */
-    lib.Version = "V1.3,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XCLJsTool";
+    lib.Version = "V1.2.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XJsTool";
 
     //页面加载时的全局变量
-    var _XJ = window.XJ, _XCLJsTool = window.XCLJsTool, doc = window.document;
-    var isRequirejs = (typeof define === "function" && define.amd);
+    var _XJ = window.XJ, _XJsTool = window.XJsTool, doc = window.document;
+    var isAMD = (typeof define === "function" && define.amd);
     var userAgent = navigator.userAgent;
     var appVersion = navigator.appVersion;
 
@@ -44,16 +44,16 @@
     };
 
     /**
-     * 释放全局变量"XJ/XCLJsTool"的控制权
-     * @param {bool} deep ,若为true，则也释放全局变量"XCLJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
+     * 释放全局变量"XJ/XJsTool"的控制权
+     * @param {bool} deep ,若为true，则也释放全局变量"XJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
      * @returns {object} 原始类的变量
      */
     lib.noConflict = function (deep) {
         if (window.XJ === lib) {
             window.XJ = _XJ;
         }
-        if (deep && window.XCLJsTool === lib) {
-            window.XCLJsTool = _XCLJsTool;
+        if (deep && window.XJsTool === lib) {
+            window.XJsTool = _XJsTool;
         }
         return lib;
     };
@@ -1041,7 +1041,13 @@
                     result = /msie 8/i.test(userAgent);
                     break;
                 case 9:
-                    result = ie && appVersion.match(/9./i) == "9.";
+                    result = appVersion.match(/9./i) == "9.";
+                    break;
+                case 10:
+                    result = (doc.all && doc.addEventListener && window.atob);
+                    break;
+                case 11:
+                    result = !!userAgent.match(/Trident\/7\./);
                     break;
             }
             return result;
@@ -1059,6 +1065,12 @@
          */
         IsChrome: function () {
             return userAgent.indexOf("Chrome") >= 0;
+        },
+        /**
+        * 判断是否为Safari
+        */
+        IsSafari: function () {
+            return userAgent.indexOf("Safari") >= 0;
         }
     };
 
@@ -1100,7 +1112,7 @@
          * 判断是否为移动端
          */
         IsMobile: function () {
-            return (this.IsAndroid() || this.IsBlackBerry() || this.IsIOS() || this.IsOpera() || this.IsWindows());
+            return (this.IsAndroid() || this.IsBlackBerry() || this.IsIOS() || this.IsOpera() || this.IsIEMobile());
         }
     };
 
@@ -1362,12 +1374,12 @@
         }
     };
 
-    if (isRequirejs) {
-        define("XCLJsTool", [], function () {
+    if (isAMD) {
+        define("XJsTool", [], function () {
             return lib;
         });
     } else {
-        window.XCLJsTool = window.XJ = lib;
+        window.XJsTool = window.XJ = lib;
     }
 
     return lib;
