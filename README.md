@@ -1,4 +1,4 @@
-XCLJsTool
+XJsTool
 =========
 
 ## 简介 ##
