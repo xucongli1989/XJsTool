@@ -9,10 +9,10 @@
  ********************************************************************************************
  * 2：使用说明：
  * 本插件不依赖于其它js库
- * 当前版本：v1.2.1
- * 更新时间：2015-11-11
+ * 当前版本：v1.2.2
+ * 更新时间：2015-11-21
  * 更新内容：
- *              1、增加Date.Parse方法
+ *              1、增加其它方法
  */
 
 ; (function (window, undefined) {
@@ -26,14 +26,17 @@
     /**
      * 版本信息
      */
-    lib.Version = "V1.2.1,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XJsTool";
+    lib.Version = "V1.2.2,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XJsTool";
 
     //页面加载时的全局变量
     var _XJ = window.XJ, _XJsTool = window.XJsTool, doc = window.document;
-    var isAMD = (typeof define === "function" && define.amd);
+    var isAMD = (typeof window.define === "function" && window.define.amd);
     var userAgent = navigator.userAgent;
     var appVersion = navigator.appVersion;
 
+    /**
+     * html转义实体
+     */
     var entityMap = {
         "&": "&amp;",
         "<": "&lt;",
@@ -86,11 +89,11 @@
         },
         /**
          * 创建全局命名空间
-         * @param {type} namespace 名称，如"A.B.C"
+         * @param {type} ns 名称，如"A.B.C"
          * @returns {object}
          */
-        CreateNamespace: function (namespace) {
-            var obj = window, tokens = namespace.split("."), token;
+        CreateNamespace: function (ns) {
+            var obj = window, tokens = ns.split("."), token;
             while (tokens.length > 0) {
                 token = tokens.shift();
                 if (typeof obj[token] === "undefined") {
@@ -290,7 +293,7 @@
          */
         ChinaIDCard: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
         /**
-        * 人类年龄
+        * 人类年龄(0~120)
         * @type RegExp
         */
         HumanAge: /^(([0-9])|([1-9][0-9])|(1[0-1][0-9])|(120))$/
@@ -1021,7 +1024,7 @@
     lib.Browser = {
         /**
          * 判断是否为IE
-         * @param {int} version（6，7，8，9） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
+         * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
          * @returns {bool}
          */
         IsIE: function (version) {
@@ -1041,7 +1044,7 @@
                     result = /msie 8/i.test(userAgent);
                     break;
                 case 9:
-                    result = appVersion.match(/9./i) == "9.";
+                    result = appVersion.match(/9./i) && appVersion.match(/9./i)[0] == "9.";
                     break;
                 case 10:
                     result = (doc.all && doc.addEventListener && window.atob);
@@ -1071,6 +1074,12 @@
         */
         IsSafari: function () {
             return userAgent.indexOf("Safari") >= 0;
+        },
+        /**
+         * 判断是否为Edge
+         */
+        IsEdge: function () {
+            return userAgent.indexOf("Edge/") >= 0;
         }
     };
 
@@ -1375,7 +1384,7 @@
     };
 
     if (isAMD) {
-        define("XJsTool", [], function () {
+        window.define("XJsTool", [], function () {
             return lib;
         });
     } else {
