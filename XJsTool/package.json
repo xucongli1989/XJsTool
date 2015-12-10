@@ -1,0 +1,23 @@
+{
+  "name": "xjstool",
+  "version": "1.0.0",
+  "description": "js tools",
+  "main": "index.js",
+  "dependencies": {
+    "amd-optimize": "",
+    "gulp": "^3.9.0",
+    "gulp-concat": "",
+    "gulp-header": "^1.7.1",
+    "gulp-jshint": "",
+    "gulp-uglify": "",
+    "gulp-webpack": "",
+    "jshint": "^2.8.0",
+    "requirejs": ""
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xcl",
+  "license": "MIT"
+}
