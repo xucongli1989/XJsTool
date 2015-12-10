@@ -9,6 +9,12 @@ var fs = require('fs');
 
 gulp.task('default',function(){
 	
+	
+	var txt=fs.readFileSync('./modules/copyright.txt', 'utf8');
+	txt=txt.replace('{{BuildDate}}',new Date().toString());
+	
+	
+	
 	gulp.src('./modules/*.js').pipe(webpack({
 		
 		entry:{
@@ -19,11 +25,12 @@ gulp.task('default',function(){
 			root:'./modules/'
 		}
 		
-	})).pipe(concat('XJsTool.js')).pipe(header(fs.readFileSync('./modules/copyright.txt', 'utf8'))).pipe(gulp.dest('bin/')).pipe(concat('XJsTool.min.js')).pipe(uglify({
-		
-		preserveComments:'license'
-		
-		
-	})).pipe(gulp.dest('bin/'));
+	})).pipe(concat('XJsTool.js'))
+	.pipe(header(txt))
+	.pipe(gulp.dest('build/'))
+	.pipe(concat('XJsTool.min.js'))
+	.pipe(uglify())
+	.pipe(header(txt))
+	.pipe(gulp.dest('build/'));
 	
 });
