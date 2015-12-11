@@ -1,7 +1,7 @@
 var gulp=require('gulp');
 var concat=require('gulp-concat');
-var amdOptimize=require('amd-optimize');
-var req=require('requirejs');
+//var amdOptimize=require('amd-optimize');
+//var req=require('requirejs');
 var webpack = require('gulp-webpack');
 var uglify = require('gulp-uglify');
 var header=require('gulp-header');

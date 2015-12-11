@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Thu Dec 10 2015 22:49:48 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Fri Dec 11 2015 17:03:50 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -162,11 +162,11 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		/**
 	     * 数组相关
 	     */
-	    return  {
+	    return {
 	        /**
 	         * 合并多个数组为一个数组
 	         * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
@@ -210,9 +210,32 @@
 	                }
 	            }
 	            return -1;
+	        },
+	        /**
+	         * 去掉array中的重复项
+	         * @param {Array} arr 需要去重的数组
+	         * @returns {Array} 去重后的新数组
+	         */
+	        Unique: function (arr) {
+	            if (!arr || arr.length <= 1) {
+	                return arr;
+	            }
+	            var _arr = arr.sort(), duplicateIdx = [], idxLength = 0;
+	            for (var i = 1; i < _arr.length; i++) {
+	                if (_arr[i] === _arr[i - 1]) {
+	                    idxLength = duplicateIdx.push(i);
+	                }
+	            }
+	            if (idxLength > 0) {
+	                while (idxLength--) {
+	                    _arr.splice(duplicateIdx[idxLength], 1);
+	                }
+	                arr = _arr;
+	            }
+	            return arr;
 	        }
 	    };
-		
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
@@ -749,52 +772,53 @@
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
-		
-		
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+	    /**
+	    * 是否为int（私有）
+	    * @param {string} val
+	    * @returns {Boolean}
+	    */
+	    var _isInteger = function (val) {
+	        var digits = "1234567890";
+	        for (var i = 0; i < val.length; i++) {
+	            if (digits.indexOf(val.charAt(i)) == -1) { return false; }
+	        }
+	        return true;
+	    };
+	    /**
+	     * 获取int（私有）
+	     * @param {string} str
+	     * @param {int} i
+	     * @param {int} minlength
+	     * @param {int} maxlength
+	     */
+	    var _getInt = function (str, i, minlength, maxlength) {
+	        for (var x = maxlength; x >= minlength; x--) {
+	            var token = str.substring(i, i + x);
+	            if (token.length < minlength) { return null; }
+	            if (_isInteger(token)) { return token; }
+	        }
+	        return null;
+	    };
+	    /**
+	     * 月份名数组
+	     * @type Array
+	     */
+	    var MONTH_NAMES = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+	    /**
+	     * 星期名数组
+	     * @type Array
+	     */
+	    var DAY_NAMES = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+	    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x };
+	    
+	    
+	    
+	    
 	    /**
 	     * 日期时间处理相关
 	     */
-	    return  {
-	        /**
-	         * 是否为int（私有）
-	         * @param {string} val
-	         * @returns {Boolean}
-	         */
-	        _isInteger: function (val) {
-	            var digits = "1234567890";
-	            for (var i = 0; i < val.length; i++) {
-	                if (digits.indexOf(val.charAt(i)) == -1) { return false; }
-	            }
-	            return true;
-	        },
-	        /**
-	         * 获取int（私有）
-	         * @param {string} str
-	         * @param {int} i
-	         * @param {int} minlength
-	         * @param {int} maxlength
-	         */
-	        _getInt: function (str, i, minlength, maxlength) {
-	            var _this = this;
-	            for (var x = maxlength; x >= minlength; x--) {
-	                var token = str.substring(i, i + x);
-	                if (token.length < minlength) { return null; }
-	                if (_this._isInteger(token)) { return token; }
-	            }
-	            return null;
-	        },
-	        /**
-	         * 月份名数组
-	         * @type Array
-	         */
-	        MONTH_NAMES: new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'),
-	        /**
-	         * 星期名数组
-	         * @type Array
-	         */
-	        DAY_NAMES: new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
-	        LZ: function (x) { return (x < 0 || x > 9 ? "" : "0") + x },
+	    return {
 	        /**
 	         * 格式化date
 	         * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
@@ -803,7 +827,6 @@
 	         * @returns {String}
 	         */
 	        FormatDate: function (date, format) {
-	            var _this = this;
 	            format = format + "";
 	            var result = "";
 	            var i_format = 0;
@@ -824,29 +847,29 @@
 	            value["yyyy"] = y;
 	            value["yy"] = y.substring(2, 4);
 	            value["M"] = M;
-	            value["MM"] = _this.LZ(M);
-	            value["MMM"] = _this.MONTH_NAMES[M - 1];
-	            value["NNN"] = _this.MONTH_NAMES[M + 11];
+	            value["MM"] = LZ(M);
+	            value["MMM"] = MONTH_NAMES[M - 1];
+	            value["NNN"] = MONTH_NAMES[M + 11];
 	            value["d"] = d;
-	            value["dd"] = _this.LZ(d);
-	            value["E"] = _this.DAY_NAMES[E + 7];
-	            value["EE"] = _this.DAY_NAMES[E];
+	            value["dd"] = LZ(d);
+	            value["E"] = DAY_NAMES[E + 7];
+	            value["EE"] = DAY_NAMES[E];
 	            value["H"] = H;
-	            value["HH"] = _this.LZ(H);
+	            value["HH"] = LZ(H);
 	            if (H == 0) { value["h"] = 12; }
 	            else if (H > 12) { value["h"] = H - 12; }
 	            else { value["h"] = H; }
-	            value["hh"] = _this.LZ(value["h"]);
+	            value["hh"] = LZ(value["h"]);
 	            if (H > 11) { value["K"] = H - 12; } else { value["K"] = H; }
 	            value["k"] = H + 1;
-	            value["KK"] = _this.LZ(value["K"]);
-	            value["kk"] = _this.LZ(value["k"]);
+	            value["KK"] = LZ(value["K"]);
+	            value["kk"] = LZ(value["k"]);
 	            if (H > 11) { value["a"] = "PM"; }
 	            else { value["a"] = "AM"; }
 	            value["m"] = m;
-	            value["mm"] = _this.LZ(m);
+	            value["mm"] = LZ(m);
 	            value["s"] = s;
-	            value["ss"] = _this.LZ(s);
+	            value["ss"] = LZ(s);
 	            while (i_format < format.length) {
 	                c = format.charAt(i_format);
 	                token = "";
@@ -865,7 +888,6 @@
 	         * @returns {Number}
 	         */
 	        GetDateFromFormat: function (val, format) {
-	            var _this = this;
 	            val = val + "";
 	            format = format + "";
 	            var iVal = 0;
@@ -904,7 +926,7 @@
 	                        x = 2;
 	                        y = 4;
 	                    }
-	                    year = _this._getInt(val, iVal, x, y);
+	                    year = _getInt(val, iVal, x, y);
 	                    if (year === null) {
 	                        return NaN;
 	                    }
@@ -918,8 +940,8 @@
 	                    }
 	                } else if (token === "MMM" || token === "NNN") {
 	                    month = 0;
-	                    for (var i = 0; i < _this.MONTH_NAMES.length; i++) {
-	                        var monthName = _this.MONTH_NAMES[i];
+	                    for (var i = 0; i < MONTH_NAMES.length; i++) {
+	                        var monthName = MONTH_NAMES[i];
 	                        if (val.substring(iVal, iVal + monthName.length).toLowerCase() === monthName.toLowerCase()) {
 	                            if (token === "MMM" || (token === "NNN" && i > 11)) {
 	                                month = i + 1;
@@ -935,58 +957,58 @@
 	                        return NaN;
 	                    }
 	                } else if (token === "EE" || token === "E") {
-	                    for (var n = 0; n < _this.DAY_NAMES.length; n++) {
-	                        var dayName = _this.DAY_NAMES[n];
+	                    for (var n = 0; n < DAY_NAMES.length; n++) {
+	                        var dayName = DAY_NAMES[n];
 	                        if (val.substring(iVal, iVal + dayName.length).toLowerCase() === dayName.toLowerCase()) {
 	                            iVal += dayName.length;
 	                            break;
 	                        }
 	                    }
 	                } else if (token === "MM" || token === "M") {
-	                    month = _this._getInt(val, iVal, token.length, 2);
+	                    month = _getInt(val, iVal, token.length, 2);
 	                    if (month === null || (month < 1) || (month > 12)) {
 	                        return NaN;
 	                    }
 	                    iVal += month.length;
 	                } else if (token === "dd" || token === "d") {
-	                    date = _this._getInt(val, iVal, token.length, 2);
+	                    date = _getInt(val, iVal, token.length, 2);
 	                    if (date === null || (date < 1) || (date > 31)) {
 	                        return NaN;
 	                    }
 	                    iVal += date.length;
 	                } else if (token === "hh" || token === "h") {
-	                    hh = _this._getInt(val, iVal, token.length, 2);
+	                    hh = _getInt(val, iVal, token.length, 2);
 	                    if (hh === null || (hh < 1) || (hh > 12)) {
 	                        return NaN;
 	                    }
 	                    iVal += hh.length;
 	                } else if (token === "HH" || token === "H") {
-	                    hh = _this._getInt(val, iVal, token.length, 2);
+	                    hh = _getInt(val, iVal, token.length, 2);
 	                    if (hh === null || (hh < 0) || (hh > 23)) {
 	                        return NaN;
 	                    }
 	                    iVal += hh.length;
 	                } else if (token === "KK" || token === "K") {
-	                    hh = _this._getInt(val, iVal, token.length, 2);
+	                    hh = _getInt(val, iVal, token.length, 2);
 	                    if (hh === null || (hh < 0) || (hh > 11)) {
 	                        return NaN;
 	                    }
 	                    iVal += hh.length;
 	                } else if (token === "kk" || token === "k") {
-	                    hh = _this._getInt(val, iVal, token.length, 2);
+	                    hh = _getInt(val, iVal, token.length, 2);
 	                    if (hh === null || (hh < 1) || (hh > 24)) {
 	                        return NaN;
 	                    }
 	                    iVal += hh.length;
 	                    hh--;
 	                } else if (token === "mm" || token === "m") {
-	                    mm = _this._getInt(val, iVal, token.length, 2);
+	                    mm = _getInt(val, iVal, token.length, 2);
 	                    if (mm === null || (mm < 0) || (mm > 59)) {
 	                        return NaN;
 	                    }
 	                    iVal += mm.length;
 	                } else if (token === "ss" || token === "s") {
-	                    ss = _this._getInt(val, iVal, token.length, 2);
+	                    ss = _getInt(val, iVal, token.length, 2);
 	                    if (ss === null || (ss < 0) || (ss > 59)) {
 	                        return NaN;
 	                    }
@@ -1089,18 +1111,18 @@
 	        }
 	    };
 
-		
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(7),__webpack_require__(2),__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g,dataLib,arrayLib,stringLib){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7), __webpack_require__(2), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib, arrayLib, stringLib) {
 		
-		    /**
-	     * Dom操作
-	     */
+	    /**
+	 * Dom操作
+	 */
 	    return {
 	        /**
 	         * 根据id，获取或设置指定元素的value
@@ -1164,9 +1186,38 @@
 	                div.innerHTML = html;
 	                containerObj.appendChild(div);
 	            }
+	        },
+	        /**
+	         * 绑定select数据源
+	         * @param {element object or element's id string} selectObj html元素对象或元素的id
+	         * @param {Array} dataSource Models.Dictionary数组
+	         * @param {String} defaultValue 默认选中项
+	         */
+	        BindSelect: function (selectObj, dataSource, defaultValue) {
+	            if (!dataSource) {
+	                return false;
+	            }
+
+	            var obj = null;
+	            if (dataLib.IsString(selectObj)) {
+	                obj = g.doc.getElementById(selectObj);
+	            } else {
+	                obj = selectObj;
+	            }
+
+	            if (!obj) {
+	                return false;
+	            }
+
+	            var html = [], len = dataSource.length;
+	            for (var i = 0; i < len; i++) {
+	                html.push('<option value="' + dataSource[i].value + '"' + (dataSource[i].value == defaultValue ? ' selected="selected" ' : '') + '>' + dataSource[i].key + '</option>');
+	            }
+	            obj.innerHTML = html.join('');
+
 	        }
 	    };
-		
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },

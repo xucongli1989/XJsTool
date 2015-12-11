@@ -1,8 +1,8 @@
-define(['global','data','array','string'],function(g,dataLib,arrayLib,stringLib){
+define(['global', 'data', 'array', 'string'], function (g, dataLib, arrayLib, stringLib) {
 	
-	    /**
-     * Dom操作
-     */
+    /**
+ * Dom操作
+ */
     return {
         /**
          * 根据id，获取或设置指定元素的value
@@ -66,7 +66,36 @@ define(['global','data','array','string'],function(g,dataLib,arrayLib,stringLib)
                 div.innerHTML = html;
                 containerObj.appendChild(div);
             }
+        },
+        /**
+         * 绑定select数据源
+         * @param {element object or element's id string} selectObj html元素对象或元素的id
+         * @param {Array} dataSource Models.Dictionary数组
+         * @param {String} defaultValue 默认选中项
+         */
+        BindSelect: function (selectObj, dataSource, defaultValue) {
+            if (!dataSource) {
+                return false;
+            }
+
+            var obj = null;
+            if (dataLib.IsString(selectObj)) {
+                obj = g.doc.getElementById(selectObj);
+            } else {
+                obj = selectObj;
+            }
+
+            if (!obj) {
+                return false;
+            }
+
+            var html = [], len = dataSource.length;
+            for (var i = 0; i < len; i++) {
+                html.push('<option value="' + dataSource[i].value + '"' + (dataSource[i].value == defaultValue ? ' selected="selected" ' : '') + '>' + dataSource[i].key + '</option>');
+            }
+            obj.innerHTML = html.join('');
+
         }
     };
-	
+
 });

@@ -1,49 +1,50 @@
-define(['global'],function(g){
-	
-	
+define(['global'], function (g) {
+    /**
+    * 是否为int（私有）
+    * @param {string} val
+    * @returns {Boolean}
+    */
+    var _isInteger = function (val) {
+        var digits = "1234567890";
+        for (var i = 0; i < val.length; i++) {
+            if (digits.indexOf(val.charAt(i)) == -1) { return false; }
+        }
+        return true;
+    };
+    /**
+     * 获取int（私有）
+     * @param {string} str
+     * @param {int} i
+     * @param {int} minlength
+     * @param {int} maxlength
+     */
+    var _getInt = function (str, i, minlength, maxlength) {
+        for (var x = maxlength; x >= minlength; x--) {
+            var token = str.substring(i, i + x);
+            if (token.length < minlength) { return null; }
+            if (_isInteger(token)) { return token; }
+        }
+        return null;
+    };
+    /**
+     * 月份名数组
+     * @type Array
+     */
+    var MONTH_NAMES = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+    /**
+     * 星期名数组
+     * @type Array
+     */
+    var DAY_NAMES = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
+    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x };
+    
+    
+    
+    
     /**
      * 日期时间处理相关
      */
-    return  {
-        /**
-         * 是否为int（私有）
-         * @param {string} val
-         * @returns {Boolean}
-         */
-        _isInteger: function (val) {
-            var digits = "1234567890";
-            for (var i = 0; i < val.length; i++) {
-                if (digits.indexOf(val.charAt(i)) == -1) { return false; }
-            }
-            return true;
-        },
-        /**
-         * 获取int（私有）
-         * @param {string} str
-         * @param {int} i
-         * @param {int} minlength
-         * @param {int} maxlength
-         */
-        _getInt: function (str, i, minlength, maxlength) {
-            var _this = this;
-            for (var x = maxlength; x >= minlength; x--) {
-                var token = str.substring(i, i + x);
-                if (token.length < minlength) { return null; }
-                if (_this._isInteger(token)) { return token; }
-            }
-            return null;
-        },
-        /**
-         * 月份名数组
-         * @type Array
-         */
-        MONTH_NAMES: new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'),
-        /**
-         * 星期名数组
-         * @type Array
-         */
-        DAY_NAMES: new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),
-        LZ: function (x) { return (x < 0 || x > 9 ? "" : "0") + x },
+    return {
         /**
          * 格式化date
          * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
@@ -52,7 +53,6 @@ define(['global'],function(g){
          * @returns {String}
          */
         FormatDate: function (date, format) {
-            var _this = this;
             format = format + "";
             var result = "";
             var i_format = 0;
@@ -73,29 +73,29 @@ define(['global'],function(g){
             value["yyyy"] = y;
             value["yy"] = y.substring(2, 4);
             value["M"] = M;
-            value["MM"] = _this.LZ(M);
-            value["MMM"] = _this.MONTH_NAMES[M - 1];
-            value["NNN"] = _this.MONTH_NAMES[M + 11];
+            value["MM"] = LZ(M);
+            value["MMM"] = MONTH_NAMES[M - 1];
+            value["NNN"] = MONTH_NAMES[M + 11];
             value["d"] = d;
-            value["dd"] = _this.LZ(d);
-            value["E"] = _this.DAY_NAMES[E + 7];
-            value["EE"] = _this.DAY_NAMES[E];
+            value["dd"] = LZ(d);
+            value["E"] = DAY_NAMES[E + 7];
+            value["EE"] = DAY_NAMES[E];
             value["H"] = H;
-            value["HH"] = _this.LZ(H);
+            value["HH"] = LZ(H);
             if (H == 0) { value["h"] = 12; }
             else if (H > 12) { value["h"] = H - 12; }
             else { value["h"] = H; }
-            value["hh"] = _this.LZ(value["h"]);
+            value["hh"] = LZ(value["h"]);
             if (H > 11) { value["K"] = H - 12; } else { value["K"] = H; }
             value["k"] = H + 1;
-            value["KK"] = _this.LZ(value["K"]);
-            value["kk"] = _this.LZ(value["k"]);
+            value["KK"] = LZ(value["K"]);
+            value["kk"] = LZ(value["k"]);
             if (H > 11) { value["a"] = "PM"; }
             else { value["a"] = "AM"; }
             value["m"] = m;
-            value["mm"] = _this.LZ(m);
+            value["mm"] = LZ(m);
             value["s"] = s;
-            value["ss"] = _this.LZ(s);
+            value["ss"] = LZ(s);
             while (i_format < format.length) {
                 c = format.charAt(i_format);
                 token = "";
@@ -114,7 +114,6 @@ define(['global'],function(g){
          * @returns {Number}
          */
         GetDateFromFormat: function (val, format) {
-            var _this = this;
             val = val + "";
             format = format + "";
             var iVal = 0;
@@ -153,7 +152,7 @@ define(['global'],function(g){
                         x = 2;
                         y = 4;
                     }
-                    year = _this._getInt(val, iVal, x, y);
+                    year = _getInt(val, iVal, x, y);
                     if (year === null) {
                         return NaN;
                     }
@@ -167,8 +166,8 @@ define(['global'],function(g){
                     }
                 } else if (token === "MMM" || token === "NNN") {
                     month = 0;
-                    for (var i = 0; i < _this.MONTH_NAMES.length; i++) {
-                        var monthName = _this.MONTH_NAMES[i];
+                    for (var i = 0; i < MONTH_NAMES.length; i++) {
+                        var monthName = MONTH_NAMES[i];
                         if (val.substring(iVal, iVal + monthName.length).toLowerCase() === monthName.toLowerCase()) {
                             if (token === "MMM" || (token === "NNN" && i > 11)) {
                                 month = i + 1;
@@ -184,58 +183,58 @@ define(['global'],function(g){
                         return NaN;
                     }
                 } else if (token === "EE" || token === "E") {
-                    for (var n = 0; n < _this.DAY_NAMES.length; n++) {
-                        var dayName = _this.DAY_NAMES[n];
+                    for (var n = 0; n < DAY_NAMES.length; n++) {
+                        var dayName = DAY_NAMES[n];
                         if (val.substring(iVal, iVal + dayName.length).toLowerCase() === dayName.toLowerCase()) {
                             iVal += dayName.length;
                             break;
                         }
                     }
                 } else if (token === "MM" || token === "M") {
-                    month = _this._getInt(val, iVal, token.length, 2);
+                    month = _getInt(val, iVal, token.length, 2);
                     if (month === null || (month < 1) || (month > 12)) {
                         return NaN;
                     }
                     iVal += month.length;
                 } else if (token === "dd" || token === "d") {
-                    date = _this._getInt(val, iVal, token.length, 2);
+                    date = _getInt(val, iVal, token.length, 2);
                     if (date === null || (date < 1) || (date > 31)) {
                         return NaN;
                     }
                     iVal += date.length;
                 } else if (token === "hh" || token === "h") {
-                    hh = _this._getInt(val, iVal, token.length, 2);
+                    hh = _getInt(val, iVal, token.length, 2);
                     if (hh === null || (hh < 1) || (hh > 12)) {
                         return NaN;
                     }
                     iVal += hh.length;
                 } else if (token === "HH" || token === "H") {
-                    hh = _this._getInt(val, iVal, token.length, 2);
+                    hh = _getInt(val, iVal, token.length, 2);
                     if (hh === null || (hh < 0) || (hh > 23)) {
                         return NaN;
                     }
                     iVal += hh.length;
                 } else if (token === "KK" || token === "K") {
-                    hh = _this._getInt(val, iVal, token.length, 2);
+                    hh = _getInt(val, iVal, token.length, 2);
                     if (hh === null || (hh < 0) || (hh > 11)) {
                         return NaN;
                     }
                     iVal += hh.length;
                 } else if (token === "kk" || token === "k") {
-                    hh = _this._getInt(val, iVal, token.length, 2);
+                    hh = _getInt(val, iVal, token.length, 2);
                     if (hh === null || (hh < 1) || (hh > 24)) {
                         return NaN;
                     }
                     iVal += hh.length;
                     hh--;
                 } else if (token === "mm" || token === "m") {
-                    mm = _this._getInt(val, iVal, token.length, 2);
+                    mm = _getInt(val, iVal, token.length, 2);
                     if (mm === null || (mm < 0) || (mm > 59)) {
                         return NaN;
                     }
                     iVal += mm.length;
                 } else if (token === "ss" || token === "s") {
-                    ss = _this._getInt(val, iVal, token.length, 2);
+                    ss = _getInt(val, iVal, token.length, 2);
                     if (ss === null || (ss < 0) || (ss > 59)) {
                         return NaN;
                     }
@@ -338,5 +337,5 @@ define(['global'],function(g){
         }
     };
 
-	
+
 });
