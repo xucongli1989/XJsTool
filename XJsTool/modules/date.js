@@ -1,3 +1,7 @@
+/**
+* 日期时间处理相关
+* @module Date
+*/
 define(['global'], function (g) {
     /**
     * 是否为int（私有）
@@ -41,10 +45,8 @@ define(['global'], function (g) {
     
     
     
-    /**
-     * 日期时间处理相关
-     */
-    return {
+    /** @alias module:Date  */
+    var app = {
         /**
          * 格式化date
          * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
@@ -337,5 +339,5 @@ define(['global'], function (g) {
         }
     };
 
-
+    return app;
 });

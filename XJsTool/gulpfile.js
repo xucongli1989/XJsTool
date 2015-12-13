@@ -6,6 +6,7 @@ var webpack = require('gulp-webpack');
 var uglify = require('gulp-uglify');
 var header=require('gulp-header');
 var fs = require('fs');
+var jsdoc=require('gulp-jsdoc');
 
 gulp.task('default',function(){
 	
@@ -14,8 +15,9 @@ gulp.task('default',function(){
 	txt=txt.replace('{{BuildDate}}',new Date().toString());
 	
 	
-	
-	gulp.src('./modules/*.js').pipe(webpack({
+	gulp.src('./modules/*.js')
+	.pipe(jsdoc('./doc/'))
+	.pipe(webpack({
 		
 		entry:{
 			

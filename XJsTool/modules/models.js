@@ -1,9 +1,12 @@
-define(['global'],function(g){
+
+/**
+* 公共model
+* @module Models
+*/
+define(['global'], function (g) {
 	
-	    /**
-     * 公共model
-     */
-    return  {
+    /** @alias module:Models  */
+    var app = {
         /**
          * key value 模型
          * @param {string} key
@@ -14,5 +17,7 @@ define(['global'],function(g){
             this.value = value;
         }
     };
-	
+
+    return app;
+
 });

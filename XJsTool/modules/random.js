@@ -1,9 +1,11 @@
-define(['global'],function(g){
+/**
+* 随机数相关
+* @module Random
+*/
+define(['global'], function (g) {
 	
-    /**
-     * 随机数相关
-     */
-    return  {
+    /** @alias module:Random  */
+    var app = {
         /**
          * 生成指定范围内的随机数
          * @param {Number} min 最小值
@@ -25,5 +27,6 @@ define(['global'],function(g){
             return guid;
         }
     };
-	
+    return app;
+
 });

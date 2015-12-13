@@ -1,11 +1,11 @@
+/**
+ * 浏览器相关
+ * @module Browser
+ */
 define(['global'],function(g){
 	
-	
-
-    /**
-     * 浏览器相关
-     */
-    return  {
+    /** @alias module:Browser  */
+	var app=  {
         /**
          * 判断是否为IE
          * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
@@ -67,5 +67,5 @@ define(['global'],function(g){
         }
     };
 
-	
+	return app;
 });

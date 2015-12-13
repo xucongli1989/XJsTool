@@ -1,9 +1,11 @@
+/**
+ * 公共方法
+ * @module Common
+ */
 define(['global'],function(g){
 	
-	  /**
-     * 公共方法
-     */
-    return {
+    /** @alias module:Common  */
+    var app= {
         /**
          * 向document输出字符串
          * @param {string} str
@@ -28,5 +30,7 @@ define(['global'],function(g){
             return obj;
         }
     };
+    
+    return app;
 	
 });

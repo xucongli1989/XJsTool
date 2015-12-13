@@ -1,8 +1,11 @@
+/**
+ * 数组相关
+ * @module Array
+ */
 define(['global'], function (g) {
-	/**
-     * 数组相关
-     */
-    return {
+    
+    /** @alias module:Array  */
+    var app= {
         /**
          * 合并多个数组为一个数组
          * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
@@ -71,5 +74,5 @@ define(['global'], function (g) {
             return arr;
         }
     };
-
+    return app;
 });

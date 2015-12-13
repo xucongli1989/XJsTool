@@ -1,8 +1,11 @@
-define(['global'],function(g){
-	    /**
-     * Cookie操作相关
-     */
-    return  {
+/**
+* Cookie操作相关
+* @module Cookie
+*/
+define(['global'], function (g) {
+
+    /** @alias module:Cookie  */
+    var app = {
         /**
          * 根据cookie名，获取cookie
          * @param {string} name
@@ -43,5 +46,7 @@ define(['global'],function(g){
             this.SetCookie(name, "", -1);
         }
     };
-	
+
+    return app;
+
 });

@@ -1,10 +1,12 @@
-define(['global'],function(g){
-	
-	
-    /**
-    * ContentType处理相关
-    */
-    return  {
+
+/**
+* ContentType处理相关
+* @module ContentType
+*/
+define(['global'], function (g) {
+
+    /** @alias module:ContentType  */
+    var app = {
         /**
         * 判断Content-Type(Mime-Type) 是否为gif格式
         */
@@ -36,5 +38,6 @@ define(['global'],function(g){
             return /^(image\/(gif|jpeg|png))|(application\/(x\-jpg|x\-png|x\-bmp))$/i.test(type);
         }
     };
-	
+
+    return app;
 });

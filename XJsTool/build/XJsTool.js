@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Fri Dec 11 2015 17:03:50 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Sun Dec 13 2015 16:37:36 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -125,9 +125,14 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	var __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 全局
+	* @module Global
+	*/
+	!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 
-	    var g={};
+	    /** @alias module:Global  */
+	    var g = {};
 
 	    //页面加载时的全局变量
 	    g._XJ = window.XJ, g._XJsTool = window.XJsTool, g.doc = window.document;
@@ -162,11 +167,14 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
-		/**
-	     * 数组相关
-	     */
-	    return {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * 数组相关
+	 * @module Array
+	 */
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+	    
+	    /** @alias module:Array  */
+	    var app= {
 	        /**
 	         * 合并多个数组为一个数组
 	         * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
@@ -235,21 +243,21 @@
 	            return arr;
 	        }
 	    };
-
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * 浏览器相关
+	 * @module Browser
+	 */
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
 		
-		
-
-	    /**
-	     * 浏览器相关
-	     */
-	    return  {
+	    /** @alias module:Browser  */
+		var app=  {
 	        /**
 	         * 判断是否为IE
 	         * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
@@ -311,19 +319,21 @@
 	        }
 	    };
 
-		
+		return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * 公共方法
+	 * @module Common
+	 */
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
 		
-		  /**
-	     * 公共方法
-	     */
-	    return {
+	    /** @alias module:Common  */
+	    var app= {
 	        /**
 	         * 向document输出字符串
 	         * @param {string} str
@@ -348,6 +358,8 @@
 	            return obj;
 	        }
 	    };
+	    
+	    return app;
 		
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -355,13 +367,15 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
-		
-		
-	    /**
-	    * ContentType处理相关
-	    */
-	    return  {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+	/**
+	* ContentType处理相关
+	* @module ContentType
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+
+	    /** @alias module:ContentType  */
+	    var app = {
 	        /**
 	        * 判断Content-Type(Mime-Type) 是否为gif格式
 	        */
@@ -393,18 +407,22 @@
 	            return /^(image\/(gif|jpeg|png))|(application\/(x\-jpg|x\-png|x\-bmp))$/i.test(type);
 	        }
 	    };
-		
+
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
-		    /**
-	     * Cookie操作相关
-	     */
-	    return  {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* Cookie操作相关
+	* @module Cookie
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+
+	    /** @alias module:Cookie  */
+	    var app = {
 	        /**
 	         * 根据cookie名，获取cookie
 	         * @param {string} name
@@ -445,20 +463,24 @@
 	            this.SetCookie(name, "", -1);
 	        }
 	    };
-		
+
+	    return app;
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g,stringLib){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 数据处理操作相关
+	* @module Data
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, stringLib) {
 		
 		
-	    /**
-	     * 数据处理操作相关
-	     */
-	    return  {
+	    /** @alias module:Data  */
+	    var app = {
 	        /**
 	         * 将值转为int型，若失败，则返回0
 	         * @param {string} val
@@ -647,17 +669,19 @@
 	        }
 	    };
 
-		
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
-		    /**
-	     * 字符串操作相关
-	     */
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 字符串操作相关
+	* @module String
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+	    /** @alias module:String  */
 	    var app = {
 	        /**
 	         * 去左右空格
@@ -718,6 +742,7 @@
 	        },
 	        /**
 	         * StringBuilder
+	         * @constructs
 	         */
 	        Builder: function () {
 	            this._arr = [];
@@ -765,14 +790,18 @@
 	        return this.ToString().length;
 	    };
 
-		return app;
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 日期时间处理相关
+	* @module Date
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 	    /**
 	    * 是否为int（私有）
 	    * @param {string} val
@@ -815,10 +844,8 @@
 	    
 	    
 	    
-	    /**
-	     * 日期时间处理相关
-	     */
-	    return {
+	    /** @alias module:Date  */
+	    var app = {
 	        /**
 	         * 格式化date
 	         * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
@@ -1111,19 +1138,22 @@
 	        }
 	    };
 
-
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7), __webpack_require__(2), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib, arrayLib, stringLib) {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+	/**
+	* 日期时间处理相关
+	* @module Dom
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7), __webpack_require__(2), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib, arrayLib, stringLib) {
 		
-	    /**
-	 * Dom操作
-	 */
-	    return {
+	    /** @alias module:Dom  */
+	    var app = {
 	        /**
 	         * 根据id，获取或设置指定元素的value
 	         * @param {string} id 元素的id值
@@ -1218,18 +1248,21 @@
 	        }
 	    };
 
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* Http操作相关
+	* @module Http
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		
-		    /**
-	     * Http操作相关
-	     */
-	    return  {
+	    /** @alias module:Http  */
+	    var app = {
 	        /**
 	         * 获取HttpRequest对象,若创建失败，则返回null
 	         * @returns {XMLHttpRequest|ActiveXObject|Null}
@@ -1248,20 +1281,24 @@
 	            return xmlhttp || null;
 	        }
 	    };
-		
+
+	    return app;
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g,dataLib){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* JSON处理相关
+	* @module Json
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
 		
 		
-	    /**
-	     * JSON处理相关
-	     */
-	    return  {
+	    /** @alias module:Json  */
+	    var app = {
 	        /**
 	         * 是否包含名key
 	         * @param {json} json
@@ -1315,20 +1352,23 @@
 	            return arr.join("&");
 	        }
 	    };
-		
+
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g,dataLib){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 数学计算相关
+	* @module Math
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
 		
 		
-	    /**
-	     * 数学计算相关
-	     */
-	    return  {
+	    /** @alias module:Math  */
+	    var app = {
 	        /**
 	         * 返回指定值中的最小值
 	         * @param {array} val 可以为一个数组，也可以为多个参数
@@ -1354,20 +1394,23 @@
 	            }
 	        }
 	    };
-		
+
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 移动端相关
+	* @module Mobile
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		
 		
-	    /**
-	     * 移动端相关
-	     */
-	    return {
+	    /** @alias module:Mobile  */
+	    var app = {
 	        /**
 	         * 判断是否为Android
 	         */
@@ -1406,19 +1449,23 @@
 	        }
 	    };
 
-		
+	    return app;
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+	/**
+	* 公共model
+	* @module Models
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		
-		    /**
-	     * 公共model
-	     */
-	    return  {
+	    /** @alias module:Models  */
+	    var app = {
 	        /**
 	         * key value 模型
 	         * @param {string} key
@@ -1429,19 +1476,23 @@
 	            this.value = value;
 	        }
 	    };
-		
+
+	    return app;
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 随机数相关
+	* @module Random
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		
-	    /**
-	     * 随机数相关
-	     */
-	    return  {
+	    /** @alias module:Random  */
+	    var app = {
 	        /**
 	         * 生成指定范围内的随机数
 	         * @param {Number} min 最小值
@@ -1463,18 +1514,21 @@
 	            return guid;
 	        }
 	    };
-		
+	    return app;
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* 正则相关
+	* @module Regex
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		
-		    /**
-	     * 正则相关
-	     */
+	    /** @alias module:Regex  */
 	    var regex = {};
 	    /**
 	     * 正则常量
@@ -1596,8 +1650,8 @@
 	        */
 	        HumanAge: /^(([0-9])|([1-9][0-9])|(1[0-1][0-9])|(120))$/
 	    };
-		
-	    
+
+
 	    return regex;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
@@ -1605,12 +1659,14 @@
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1),__webpack_require__(12),__webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g,jsonLib,dataLib){
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* Url处理相关
+	* @module Url
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, jsonLib, dataLib) {
 		
-	    /**
-	     * Url处理相关
-	     */
-	    return  {
+	    /** @alias module:Url  */
+	    var app = {
 	        /**
 	         * 向URL中添加新的参数
 	         * @param {string} url
@@ -1664,7 +1720,8 @@
 	            return m;
 	        }
 	    };
-		
+
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }

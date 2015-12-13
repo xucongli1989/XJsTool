@@ -1,9 +1,11 @@
-define(['global'],function(g){
+/**
+* Http操作相关
+* @module Http
+*/
+define(['global'], function (g) {
 	
-	    /**
-     * Http操作相关
-     */
-    return  {
+    /** @alias module:Http  */
+    var app = {
         /**
          * 获取HttpRequest对象,若创建失败，则返回null
          * @returns {XMLHttpRequest|ActiveXObject|Null}
@@ -22,5 +24,7 @@ define(['global'],function(g){
             return xmlhttp || null;
         }
     };
-	
+
+    return app;
+
 });

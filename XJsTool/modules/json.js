@@ -1,10 +1,12 @@
-define(['global','data'],function(g,dataLib){
+/**
+* JSON处理相关
+* @module Json
+*/
+define(['global', 'data'], function (g, dataLib) {
 	
 	
-    /**
-     * JSON处理相关
-     */
-    return  {
+    /** @alias module:Json  */
+    var app = {
         /**
          * 是否包含名key
          * @param {json} json
@@ -58,5 +60,6 @@ define(['global','data'],function(g,dataLib){
             return arr.join("&");
         }
     };
-	
+
+    return app;
 });

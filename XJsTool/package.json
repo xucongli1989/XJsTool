@@ -14,7 +14,9 @@
     "jshint": "^2.8.0",
     "requirejs": ""
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-jsdoc": "^0.1.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

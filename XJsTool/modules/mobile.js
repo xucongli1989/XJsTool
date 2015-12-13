@@ -1,10 +1,12 @@
-define(['global'],function(g){
+/**
+* 移动端相关
+* @module Mobile
+*/
+define(['global'], function (g) {
 	
 	
-    /**
-     * 移动端相关
-     */
-    return {
+    /** @alias module:Mobile  */
+    var app = {
         /**
          * 判断是否为Android
          */
@@ -43,5 +45,6 @@ define(['global'],function(g){
         }
     };
 
-	
+    return app;
+
 });

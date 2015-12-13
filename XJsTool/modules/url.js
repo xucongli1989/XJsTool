@@ -1,9 +1,11 @@
-define(['global','json','data'],function(g,jsonLib,dataLib){
+/**
+* Url处理相关
+* @module Url
+*/
+define(['global', 'json', 'data'], function (g, jsonLib, dataLib) {
 	
-    /**
-     * Url处理相关
-     */
-    return  {
+    /** @alias module:Url  */
+    var app = {
         /**
          * 向URL中添加新的参数
          * @param {string} url
@@ -57,5 +59,6 @@ define(['global','json','data'],function(g,jsonLib,dataLib){
             return m;
         }
     };
-	
+
+    return app;
 });

@@ -1,9 +1,12 @@
+
+/**
+* 日期时间处理相关
+* @module Dom
+*/
 define(['global', 'data', 'array', 'string'], function (g, dataLib, arrayLib, stringLib) {
 	
-    /**
- * Dom操作
- */
-    return {
+    /** @alias module:Dom  */
+    var app = {
         /**
          * 根据id，获取或设置指定元素的value
          * @param {string} id 元素的id值
@@ -98,4 +101,5 @@ define(['global', 'data', 'array', 'string'], function (g, dataLib, arrayLib, st
         }
     };
 
+    return app;
 });

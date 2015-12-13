@@ -1,7 +1,9 @@
-define(['global'],function(g){
-	    /**
-     * 字符串操作相关
-     */
+/**
+* 字符串操作相关
+* @module String
+*/
+define(['global'], function (g) {
+    /** @alias module:String  */
     var app = {
         /**
          * 去左右空格
@@ -62,6 +64,7 @@ define(['global'],function(g){
         },
         /**
          * StringBuilder
+         * @constructs
          */
         Builder: function () {
             this._arr = [];
@@ -109,5 +112,5 @@ define(['global'],function(g){
         return this.ToString().length;
     };
 
-	return app;
+    return app;
 });

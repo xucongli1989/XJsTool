@@ -1,8 +1,10 @@
-define(['global'],function(g){
+/**
+* 正则相关
+* @module Regex
+*/
+define(['global'], function (g) {
 	
-	    /**
-     * 正则相关
-     */
+    /** @alias module:Regex  */
     var regex = {};
     /**
      * 正则常量
@@ -124,7 +126,7 @@ define(['global'],function(g){
         */
         HumanAge: /^(([0-9])|([1-9][0-9])|(1[0-1][0-9])|(120))$/
     };
-	
-    
+
+
     return regex;
 });

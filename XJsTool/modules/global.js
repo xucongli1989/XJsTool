@@ -1,6 +1,11 @@
+/**
+* 全局
+* @module Global
+*/
 define(function () {
 
-    var g={};
+    /** @alias module:Global  */
+    var g = {};
 
     //页面加载时的全局变量
     g._XJ = window.XJ, g._XJsTool = window.XJsTool, g.doc = window.document;

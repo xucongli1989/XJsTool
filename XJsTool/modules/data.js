@@ -1,10 +1,12 @@
-define(['global','string'],function(g,stringLib){
+/**
+* 数据处理操作相关
+* @module Data
+*/
+define(['global', 'string'], function (g, stringLib) {
 	
 	
-    /**
-     * 数据处理操作相关
-     */
-    return  {
+    /** @alias module:Data  */
+    var app = {
         /**
          * 将值转为int型，若失败，则返回0
          * @param {string} val
@@ -193,5 +195,5 @@ define(['global','string'],function(g,stringLib){
         }
     };
 
-	
+    return app;
 });
