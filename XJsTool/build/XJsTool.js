@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Sun Dec 13 2015 16:37:36 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Tue Dec 15 2015 18:01:45 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -254,10 +254,10 @@
 	 * 浏览器相关
 	 * @module Browser
 	 */
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 		
 	    /** @alias module:Browser  */
-		var app=  {
+	    var app = {
 	        /**
 	         * 判断是否为IE
 	         * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
@@ -316,10 +316,26 @@
 	         */
 	        IsEdge: function () {
 	            return g.userAgent.indexOf("Edge/") >= 0;
+	        },
+	        /**
+	         * 判断浏览器是否支持html5
+	         */
+	        IsSupportHTML5: function () {
+	            return !!navigator.geolocation;
+	        },
+	        /**
+	         * 判断浏览器是否安装了flash
+	         */
+	        HasFlash: function () {
+	            var obj = null;
+	            try {
+	                obj = this.IsIE() ? new ActiveXObject('ShockwaveFlash.ShockwaveFlash') : navigator.plugins['Shockwave Flash'];
+	            } catch (e) { }
+	            return !!obj;
 	        }
 	    };
 
-		return app;
+	    return app;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },

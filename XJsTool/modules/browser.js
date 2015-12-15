@@ -2,10 +2,10 @@
  * 浏览器相关
  * @module Browser
  */
-define(['global'],function(g){
+define(['global'], function (g) {
 	
     /** @alias module:Browser  */
-	var app=  {
+    var app = {
         /**
          * 判断是否为IE
          * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
@@ -64,8 +64,24 @@ define(['global'],function(g){
          */
         IsEdge: function () {
             return g.userAgent.indexOf("Edge/") >= 0;
+        },
+        /**
+         * 判断浏览器是否支持html5
+         */
+        IsSupportHTML5: function () {
+            return !!navigator.geolocation;
+        },
+        /**
+         * 判断浏览器是否安装了flash
+         */
+        HasFlash: function () {
+            var obj = null;
+            try {
+                obj = this.IsIE() ? new ActiveXObject('ShockwaveFlash.ShockwaveFlash') : navigator.plugins['Shockwave Flash'];
+            } catch (e) { }
+            return !!obj;
         }
     };
 
-	return app;
+    return app;
 });
