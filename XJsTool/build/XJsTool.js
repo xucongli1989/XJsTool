@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Tue Dec 15 2015 18:01:45 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Thu Dec 17 2015 17:34:37 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -174,7 +174,7 @@
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 	    
 	    /** @alias module:Array  */
-	    var app= {
+	    var app = {
 	        /**
 	         * 合并多个数组为一个数组
 	         * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
@@ -241,6 +241,33 @@
 	                arr = _arr;
 	            }
 	            return arr;
+	        },
+	        /**
+	         * 在指定数组中删除指定的数据
+	         * @param {Array} sourceArr 待操作的数组
+	         * @param {Array} removeArr 需要删除的项
+	         * @returns {Array} 新的数组
+	         */
+	        Remove: function (sourceArr, removeArr) {
+	            if (!sourceArr || !removeArr || removeArr.length == 0) {
+	                return sourceArr;
+	            }
+	            removeArr = this.Unique(removeArr);
+	            var sourceLen = sourceArr.length,
+	                removeLen = removeArr.length,
+	                tempIdx = -1;
+
+	            for (var i = 0; i < sourceLen; i++) {
+	                for (var j = 0; j < removeLen; j++) {
+	                    tempIdx = this.InArray(removeArr[j], sourceArr);
+	                    if (tempIdx >= 0) {
+	                        sourceArr.splice(tempIdx, 1);
+	                        sourceLen = sourceArr.length;
+	                    }
+	                }
+	            }
+
+	            return sourceArr;
 	        }
 	    };
 	    return app;
