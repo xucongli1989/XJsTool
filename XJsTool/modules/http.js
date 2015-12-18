@@ -8,7 +8,7 @@ define(['global'], function (g) {
     var app = {
         /**
          * 获取HttpRequest对象,若创建失败，则返回null
-         * @returns {XMLHttpRequest|ActiveXObject|Null}
+         * @returns {object} XMLHttpRequest或ActiveXObject或Null
          */
         GetHttpRequestObject: function () {
             var xmlhttp = null;

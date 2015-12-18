@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Thu Dec 17 2015 17:34:37 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Fri Dec 18 2015 10:28:11 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -61,11 +61,14 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, r) {
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * XJsTool
+	 * @module XJsTool
+	 */
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, r) {
 		
-	    /**
-	     * XJsTool的局部变量
-	     */
+
+	    /** @alias module:XJsTool  */
 	    var app = {};
 
 	    /**
@@ -76,7 +79,7 @@
 
 	    /**
 	     * 释放全局变量"XJ/XJsTool"的控制权
-	     * @param {bool} deep ,若为true，则也释放全局变量"XJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
+	     * @param {bool} deep 若为true，则也释放全局变量"XJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
 	     * @returns {object} 原始类的变量
 	     */
 	    app.noConflict = function (deep) {
@@ -177,7 +180,7 @@
 	    var app = {
 	        /**
 	         * 合并多个数组为一个数组
-	         * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
+	         * @param {Array} args 要合并的数组参数，如：arr1,arr2,arr3...
 	         * @returns {Array} 合并后的结果数组
 	         */
 	        Concat: function (args) {
@@ -185,9 +188,9 @@
 	        },
 	        /**
 	         * 将一个或多个数组合并为一个字符串
-	         * @param {string} separator 指定分隔符
-	         * @param {array} args 要合并的数组参数(arr1,arr2,arr3...)
-	         * @returns {string} 合并后的字符串
+	         * @param {String} separator 指定分隔符
+	         * @param {Array} args 要合并的数组参数(arr1,arr2,arr3...)
+	         * @returns {String} 合并后的字符串
 	         */
 	        Join: function (separator, args) {
 	            var source = [];
@@ -202,10 +205,10 @@
 	        },
 	        /**
 	        * 判断指定val是否在数组array中
-	        * @param {object} val 需要判断的值
+	        * @param {Object} val 需要判断的值
 	        * @param {Array} array 所在的数组
-	        * @param {number} idx 从数组array的idx处开始判断，若未指定，则从整个数组array中判断
-	        * @returns {number} val在array中的位置，若不在，则返回-1
+	        * @param {Number} idx 从数组array的idx处开始判断，若未指定，则从整个数组array中判断
+	        * @returns {Number} val在array中的位置，若不在，则返回-1
 	        */
 	        InArray: function (val, array, idx) {
 	            if (!array) return -1;
@@ -288,7 +291,7 @@
 	        /**
 	         * 判断是否为IE
 	         * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
-	         * @returns {bool}
+	         * @returns {bool} 判断结果
 	         */
 	        IsIE: function (version) {
 	            var ie = (!-[1, ]);
@@ -321,6 +324,7 @@
 
 	        /**
 	         * 判断是否为Firefox
+	         * @returns {bool} 判断结果
 	         */
 	        IsFirefox: function () {
 	            return g.userAgent.indexOf("Firefox") >= 0;
@@ -328,30 +332,35 @@
 
 	        /**
 	         * 判断是否为Chrome
+	         * @returns {bool} 判断结果
 	         */
 	        IsChrome: function () {
 	            return g.userAgent.indexOf("Chrome") >= 0;
 	        },
 	        /**
 	        * 判断是否为Safari
+	        * @returns {bool} 判断结果
 	        */
 	        IsSafari: function () {
 	            return g.userAgent.indexOf("Safari") >= 0;
 	        },
 	        /**
 	         * 判断是否为Edge
+	         * @returns {bool} 判断结果
 	         */
 	        IsEdge: function () {
 	            return g.userAgent.indexOf("Edge/") >= 0;
 	        },
 	        /**
 	         * 判断浏览器是否支持html5
+	         * @returns {bool} 判断结果
 	         */
 	        IsSupportHTML5: function () {
 	            return !!navigator.geolocation;
 	        },
 	        /**
 	         * 判断浏览器是否安装了flash
+	         * @returns {bool} 判断结果
 	         */
 	        HasFlash: function () {
 	            var obj = null;
@@ -386,7 +395,7 @@
 	        },
 	        /**
 	         * 创建全局命名空间
-	         * @param {type} ns 名称，如"A.B.C"
+	         * @param {string} ns 名称，如"A.B.C"
 	         * @returns {object}
 	         */
 	        CreateNamespace: function (ns) {
@@ -421,30 +430,40 @@
 	    var app = {
 	        /**
 	        * 判断Content-Type(Mime-Type) 是否为gif格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
 	        */
 	        IsGif: function (type) {
 	            return /^image\/gif$/i.test(type);
 	        },
 	        /**
 	        * 判断Content-Type(Mime-Type) 是否为jpg/jpeg格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
 	        */
 	        IsJpg: function (type) {
 	            return /^(image\/jpeg)|(application\/x\-jpg)$/i.test(type);
 	        },
 	        /**
 	        * 判断Content-Type(Mime-Type) 是否为png格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果        
 	        */
 	        IsPng: function (type) {
 	            return /^(image\/png)|(application\/x\-png)$/i.test(type);
 	        },
 	        /**
 	        * 判断Content-Type(Mime-Type) 是否为bmp格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
 	        */
 	        IsBmp: function (type) {
 	            return /^application\/x\-bmp$/i.test(type);
 	        },
 	        /**
 	        * 判断Content-Type(Mime-Type) 是否为gif/jpg/jpeg/png/bmp格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
 	        */
 	        IsImage: function (type) {
 	            return /^(image\/(gif|jpeg|png))|(application\/(x\-jpg|x\-png|x\-bmp))$/i.test(type);
@@ -468,8 +487,8 @@
 	    var app = {
 	        /**
 	         * 根据cookie名，获取cookie
-	         * @param {string} name
-	         * @returns {string}
+	         * @param {string} name cookie名称
+	         * @returns {string} cookie值
 	         */
 	        GetCookie: function (name) {
 	            var nameEQ = name + "=";
@@ -526,7 +545,7 @@
 	    var app = {
 	        /**
 	         * 将值转为int型，若失败，则返回0
-	         * @param {string} val
+	         * @param {string} val 要转换的值
 	         * @returns {int}
 	         */
 	        GetInt: function (val) {
@@ -534,178 +553,178 @@
 	        },
 	        /**
 	         * 将值转为int型，若失败，则返回null
-	         * @param {string} val
-	         * @returns {int?}
+	         * @param {string} val 要转换的值
+	         * @returns {int?} 如果转换失败，则返回null
 	         */
 	        GetIntNull: function (val) {
 	            return this.GetIntDefault(val, null);
 	        },
 	        /**
 	         * 将值转为int型，若失败，则返回defaultValue
-	         * @param {string} val
-	         * @param {int} defaultValue
-	         * @returns {int}
+	         * @param {string} val 要转换的值
+	         * @param {int} defaultValue 默认值
+	         * @returns {int} 转换结果
 	         */
 	        GetIntDefault: function (val, defaultValue) {
 	            return parseInt(val, 10) || defaultValue;
 	        },
 	        /**
 	         * 将值转为float型，若失败，则返回0
-	         * @param {string} val
-	         * @returns {float}
+	         * @param {string} val 要转换的值
+	         * @returns {float} 转换结果
 	         */
 	        GetFloat: function (val) {
 	            return this.GetFloatDefault(val, 0);
 	        },
 	        /**
 	         * 将值转为float型，若失败，则返回null
-	         * @param {string} val
-	         * @returns {float?}
+	         * @param {string} val 要转换的值
+	         * @returns {float?} 转换结果
 	         */
 	        GetFloatNull: function (val) {
 	            return this.GetFloatDefault(val, null);
 	        },
 	        /**
 	         * 将值转为float型，若失败，则返回defaultValue
-	         * @param {string} val
-	         * @param {float} defaultValue
-	         * @returns {float}
+	         * @param {string} val 要转换的值
+	         * @param {float} defaultValue 默认值
+	         * @returns {float} 转换结果
 	         */
 	        GetFloatDefault: function (val, defaultValue) {
 	            return parseFloat(val) || defaultValue;
 	        },
 	        /**
 	         * 将值转为object(eval)
-	         * @param {string} val
-	         * @returns {object}
+	         * @param {string} val 要转换的值
+	         * @returns {object} 转换结果
 	         */
 	        GetObject: function (val) {
 	            return eval(val);
 	        },
 	        /**
 	         * 判断val是否为数字
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsNumber: function (val) {
 	            return (typeof (val) === 'number' || typeof (val) === 'string') && val !== '' && !isNaN(val);
 	        },
 	        /**
 	         * 判断指定值是否为一个对象
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsObject: function (val) {
 	            return val !== null && typeof val === 'object';
 	        },
 	        /**
 	         * 判断指定值是否为Date对象
-	         * @param {object} val
-	         * @returns {Boolean|Date}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsDate: function (val) {
 	            return val instanceof Date && !isNaN(val.valueOf());
 	        },
 	        /**
 	         * 判断指定值是否为数组
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsArray: function (val) {
 	            return Object.prototype.toString.call(val) === "[object Array]";
 	        },
 	        /**
 	         * 判断指定值为null或为空字符串
-	         * @param {string} val
-	         * @returns {Boolean}
+	         * @param {string} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsNullOrEmpty: function (val) {
 	            return null === val || val === "";
 	        },
 	        /**
 	         * 判断指定值为null，或为空字符串，或为空白字符串
-	         * @param {string} val
-	         * @returns {Boolean}
+	         * @param {string} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsNullOrWhiteSpace: function (val) {
 	            return this.IsNullOrEmpty(stringLib.Trim(val));
 	        },
 	        /**
 	         * 判断指定值是否为html元素
-	         * @param {object} val
-	         * @returns {obj|Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsElement: function (val) {
 	            return typeof HTMLElement === "object" ? val instanceof HTMLElement : val && typeof val === "object" && val !== null && val.nodeType === 1 && typeof val.nodeName === "string";
 	        },
 	        /**
 	         * 判断指定值是否为function
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsFunction: function (val) {
 	            return Object.prototype.toString.call(val) == '[object Function]';
 	        },
 	        /**
 	         * 判断指定值是否为String
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsString: function (val) {
 	            return typeof val == 'string' || val instanceof String;
 	        },
 	        /**
 	         * 判断指定字符串是否为"true"
-	         * @param {string} val
-	         * @returns {bool}
+	         * @param {string} val 要判断的值
+	         * @returns {bool} 判断结果
 	         */
 	        IsBoolean: function (val) {
 	            return /^true$/i.test(val);
 	        },
 	        /**
 	         * 判断指定值是否为RegExp对象
-	         * @param {object} val
-	         * @returns {bool}
+	         * @param {object} val 要判断的值
+	         * @returns {bool} 判断结果
 	         */
 	        IsRegExp: function (val) {
 	            return val && val instanceof RegExp;
 	        },
 	        /**
 	         * 判断指定值是否为NaN
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsNaN: function (val) {
 	            return isNaN(val);
 	        },
 	        /**
 	         * 判断指定值是否为null
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsNull: function (val) {
 	            return val === null;
 	        },
 	        /**
 	         * 判断指定值是否为undefined
-	         * @param {object} val
-	         * @returns {Boolean}
+	         * @param {object} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsUndefined: function (val) {
 	            return val === undefined || typeof (val) === "undefined";
 	        },
 	        /**
 	         * 指定值是否全部为大写
-	         * @param {string} val
-	         * @returns {Boolean}
+	         * @param {string} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsUpper: function (val) {
 	            return val.toUpperCase() === val;
 	        },
 	        /**
 	         * 指定值是否全部为小写
-	         * @param {string} val
-	         * @returns {Boolean}
+	         * @param {string} val 要判断的值
+	         * @returns {Boolean} 判断结果
 	         */
 	        IsLower: function (val) {
 	            return val.toLowerCase() === val;
@@ -728,32 +747,33 @@
 	    var app = {
 	        /**
 	         * 去左右空格
-	         * @param {string} str
-	         * @returns {string}
+	         * @param {string} str 待处理字符串
+	         * @returns {string} 处理后的字符串
 	         */
 	        Trim: function (str) {
 	            return str.replace(/^\s+|\s+$/g, "");
 	        },
 	        /**
 	         * 去左空格
-	         * @param {string} str
-	         * @returns {string}
+	         * @param {string} str 待处理字符串
+	         * @returns {string} 处理后的字符串
 	         */
 	        LTrim: function (str) {
 	            return str.replace(/^\s+/, "");
 	        },
 	        /**
 	         * 去右空格
-	         * @param {string} str
-	         * @returns {string}
+	         * @param {string} str 待处理字符串
+	         * @returns {string} 处理后的值
 	         */
 	        RTrim: function (str) {
 	            return str.replace(/\s+$/, "");
 	        },
 	        /**
 	         * 格式输出
-	         * @param {string} str
-	         * @returns {string}
+	         * @param {string} str 待处理字符串
+	         * @param {Arguments} arguments 格式
+	         * @returns {string} 处理后的值
 	         */
 	        Format: function (str) {
 	            if (arguments.length <= 1) {
@@ -770,7 +790,7 @@
 	         * @param {string} sourceStr 源字符串
 	         * @param {string} str 要查找的字符串
 	         * @param {Boolean} isIgnoreCase 是否忽略大小写
-	         * @returns {Boolean}
+	         * @returns {Boolean} 结果
 	         */
 	        Contains: function (sourceStr, str, isIgnoreCase) {
 	            if (sourceStr) {
@@ -793,6 +813,7 @@
 	        /**
 	        * 将html标签转换为实体形式
 	        * @param {string} html 需要被替换的html
+	        * @returns {string} 转换后的值
 	        */
 	        EscapeHtml: function (html) {
 	            return String(html).replace(/[&<>"'\/]/g, function (s) {
@@ -802,6 +823,7 @@
 	    };
 	    /**
 	     * 追加字符
+	     * @param str 要追加的字符串
 	     */
 	    app.Builder.prototype.Append = function (str) {
 	        this._arr.push(str);
@@ -814,7 +836,7 @@
 	    };
 	    /**
 	     * 返回StringBuilder的字符串
-	     * @returns {string}
+	     * @returns {string} 新的字符串
 	     */
 	    app.Builder.prototype.ToString = function () {
 	        return this._arr.join("");
@@ -827,7 +849,7 @@
 	    };
 	    /**
 	     * 返回StringBuilder的字符串的长度
-	     * @returns {int}
+	     * @returns {int} 长度
 	     */
 	    app.Builder.prototype.Length = function () {
 	        return this.ToString().length;
@@ -847,8 +869,8 @@
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 	    /**
 	    * 是否为int（私有）
-	    * @param {string} val
-	    * @returns {Boolean}
+	    * @param {string} val 要判断的值
+	    * @returns {Boolean} 判断结果
 	    */
 	    var _isInteger = function (val) {
 	        var digits = "1234567890";
@@ -892,9 +914,9 @@
 	        /**
 	         * 格式化date
 	         * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
-	         * @param {Date} date
-	         * @param {string} format
-	         * @returns {String}
+	         * @param {Date} date 时间
+	         * @param {string} format 格式
+	         * @returns {String} 格式化后的结果
 	         */
 	        FormatDate: function (date, format) {
 	            format = format + "";
@@ -953,9 +975,9 @@
 	        },
 	        /**
 	         * 根据指定格式，返回 1970 年 1 月 1 日至val的毫秒数
-	         * @param {string} val
-	         * @param {string} format
-	         * @returns {Number}
+	         * @param {string} val 时间
+	         * @param {string} format 格式
+	         * @returns {Number} 毫秒数
 	         */
 	        GetDateFromFormat: function (val, format) {
 	            val = val + "";
@@ -1133,9 +1155,9 @@
 	        },
 	        /**
 	         * 将date字符串转为Date对象
-	         * @param {string} date
-	         * @param {string} format
-	         * @returns {Date}
+	         * @param {string} date Date字符串
+	         * @param {string} format 格式
+	         * @returns {Date} Date对象
 	         */
 	        ParseDate: function (date, format) {
 	            var result = null;
@@ -1217,8 +1239,8 @@
 	        },
 	        /**
 	         * 根据指定value，选中select对象中option
-	         * @param {element object or element's id string} selectObj html元素对象或元素的id
-	         * @param {string or array} val 要选中的值或值数组
+	         * @param {object} selectObj html元素对象或元素的id
+	         * @param {object} val 要选中的值或值数组
 	         */
 	        SelectOption: function (selectObj, val) {
 	            var obj = null, valArr = [];
@@ -1244,8 +1266,8 @@
 	        },
 	        /**
 	         * 向指定容器中追加hidden，key为name和id
-	         * @param {jsonArray} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
-	         * @param {object} containerObj 被追加的容器（默认为form对象）
+	         * @param {Array} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
+	         * @param {Object} containerObj 被追加的容器（默认为form对象）
 	         */
 	        AddHiddens: function (data, containerObj) {
 	            containerObj = containerObj || g.doc.getElementsByTagName("form")[0];
@@ -1262,7 +1284,7 @@
 	        },
 	        /**
 	         * 绑定select数据源
-	         * @param {element object or element's id string} selectObj html元素对象或元素的id
+	         * @param {object} selectObj html元素对象或元素的id
 	         * @param {Array} dataSource Models.Dictionary数组
 	         * @param {String} defaultValue 默认选中项
 	         */
@@ -1308,7 +1330,7 @@
 	    var app = {
 	        /**
 	         * 获取HttpRequest对象,若创建失败，则返回null
-	         * @returns {XMLHttpRequest|ActiveXObject|Null}
+	         * @returns {object} XMLHttpRequest或ActiveXObject或Null
 	         */
 	        GetHttpRequestObject: function () {
 	            var xmlhttp = null;
@@ -1344,9 +1366,9 @@
 	    var app = {
 	        /**
 	         * 是否包含名key
-	         * @param {json} json
-	         * @param {string} keyName
-	         * @returns {bool}
+	         * @param {object} json json对象
+	         * @param {string} keyName key名
+	         * @returns {bool} 判断结果
 	         */
 	        HasKey: function (json, keyName) {
 	            var r = false;
@@ -1359,9 +1381,9 @@
 	        },
 	        /**
 	         * 是否包含值value
-	         * @param {json} json
-	         * @param {string} keyValue
-	         * @returns {bool}
+	         * @param {object} json json对象
+	         * @param {object} keyValue value值
+	         * @returns {bool} 判断结果
 	         */
 	        HasValue: function (json, keyValue) {
 	            var r = false;
@@ -1377,8 +1399,8 @@
 	        },
 	        /**
 	         * json对象转成param形式的字符串，如{a:1,b:2,c:[3,4,5]}=>"a=1&b=2&c=3&c=4&c=5"
-	         * @param {json} json 待转换的数据源
-	         * @returns {string}
+	         * @param {object} json 待转换的json数据源
+	         * @returns {string} 转换结果
 	         */
 	        ToParams: function (json) {
 	            if (!json) return "";
@@ -1415,7 +1437,7 @@
 	        /**
 	         * 返回指定值中的最小值
 	         * @param {array} val 可以为一个数组，也可以为多个参数
-	         * @returns {Number}
+	         * @returns {Number} 最小值
 	         */
 	        Min: function (val) {
 	            if (dataLib.IsArray(val)) {
@@ -1427,7 +1449,7 @@
 	        /**
 	         * 返回指定值中的最大值
 	         * @param {array} val 可以为一个数组，也可以为多个参数
-	         * @returns {Number}
+	         * @returns {Number} 最大值
 	         */
 	        Max: function (val) {
 	            if (dataLib.IsArray(val)) {
@@ -1456,36 +1478,42 @@
 	    var app = {
 	        /**
 	         * 判断是否为Android
+	         * @returns {bool} 判断结果
 	         */
 	        IsAndroid: function () {
 	            return g.userAgent.match(/Android/i);
 	        },
 	        /**
 	         * 判断是否为BlackBerry
+	         * @returns {bool} 判断结果
 	         */
 	        IsBlackBerry: function () {
 	            return g.userAgent.match(/BlackBerry/i);
 	        },
 	        /**
 	         * 判断是否为IOS
+	         * @returns {bool} 判断结果
 	         */
 	        IsIOS: function () {
 	            return g.userAgent.match(/iPhone|iPad|iPod/i);
 	        },
 	        /**
 	         * 判断是否为Opera
+	         * @returns {bool} 判断结果
 	         */
 	        IsOpera: function () {
 	            return g.userAgent.match(/Opera Mini/i);
 	        },
 	        /**
 	         * 判断是否为IEMobile
+	         * @returns {bool} 判断结果
 	         */
 	        IsIEMobile: function () {
 	            return g.userAgent.match(/IEMobile/i);
 	        },
 	        /**
 	         * 判断是否为移动端
+	         * @returns {bool} 判断结果
 	         */
 	        IsMobile: function () {
 	            return (this.IsAndroid() || this.IsBlackBerry() || this.IsIOS() || this.IsOpera() || this.IsIEMobile());
@@ -1511,8 +1539,8 @@
 	    var app = {
 	        /**
 	         * key value 模型
-	         * @param {string} key
-	         * @param {object} value
+	         * @param {string} key key名
+	         * @param {object} value value值
 	         */
 	        Dictionary: function (key, value) {
 	            this.key = key;
@@ -1540,7 +1568,7 @@
 	         * 生成指定范围内的随机数
 	         * @param {Number} min 最小值
 	         * @param {Number} max 最大值
-	         * @returns {Number}
+	         * @returns {Number} 结果值
 	         */
 	        Range: function (min, max) {
 	            return Math.random() * (max - min) + min;
@@ -1712,9 +1740,9 @@
 	    var app = {
 	        /**
 	         * 向URL中添加新的参数
-	         * @param {string} url
-	         * @param {json} params json参数,如：{k1:v1,k2:v2}
-	         * @returns {String}
+	         * @param {string} url url字符串
+	         * @param {object} params json参数,如：{k1:v1,k2:v2}
+	         * @returns {String} 新的url
 	         */
 	        AddParam: function (url, params) {
 	            var query = "";
@@ -1734,8 +1762,8 @@
 	        /**
 	         * 将url查询参数转为json对象，如果该url中多个参数名一样，则该参数名对应的值是array类型
 	         * 如："www.a.com?a=1&b=2&c=3&c=4" -> {"a":"1","b":"2","c":["3","4"]}
-	         * @param {string} url
-	         * @returns {json}
+	         * @param {string} url url字符串
+	         * @returns {object} json对象
 	         */
 	        GetUrlParamsJson: function (url) {
 	            var m = {};

@@ -1,8 +1,11 @@
+/**
+ * XJsTool
+ * @module XJsTool
+ */
 define(['global', 'require'], function (g, r) {
 	
-    /**
-     * XJsTool的局部变量
-     */
+
+    /** @alias module:XJsTool  */
     var app = {};
 
     /**
@@ -13,7 +16,7 @@ define(['global', 'require'], function (g, r) {
 
     /**
      * 释放全局变量"XJ/XJsTool"的控制权
-     * @param {bool} deep ,若为true，则也释放全局变量"XJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
+     * @param {bool} deep 若为true，则也释放全局变量"XJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权
      * @returns {object} 原始类的变量
      */
     app.noConflict = function (deep) {

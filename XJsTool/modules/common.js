@@ -15,7 +15,7 @@ define(['global'],function(g){
         },
         /**
          * 创建全局命名空间
-         * @param {type} ns 名称，如"A.B.C"
+         * @param {string} ns 名称，如"A.B.C"
          * @returns {object}
          */
         CreateNamespace: function (ns) {

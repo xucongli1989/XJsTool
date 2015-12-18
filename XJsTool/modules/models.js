@@ -9,8 +9,8 @@ define(['global'], function (g) {
     var app = {
         /**
          * key value 模型
-         * @param {string} key
-         * @param {object} value
+         * @param {string} key key名
+         * @param {object} value value值
          */
         Dictionary: function (key, value) {
             this.key = key;

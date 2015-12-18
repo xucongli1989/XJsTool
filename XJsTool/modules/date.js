@@ -5,8 +5,8 @@
 define(['global'], function (g) {
     /**
     * 是否为int（私有）
-    * @param {string} val
-    * @returns {Boolean}
+    * @param {string} val 要判断的值
+    * @returns {Boolean} 判断结果
     */
     var _isInteger = function (val) {
         var digits = "1234567890";
@@ -50,9 +50,9 @@ define(['global'], function (g) {
         /**
          * 格式化date
          * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
-         * @param {Date} date
-         * @param {string} format
-         * @returns {String}
+         * @param {Date} date 时间
+         * @param {string} format 格式
+         * @returns {String} 格式化后的结果
          */
         FormatDate: function (date, format) {
             format = format + "";
@@ -111,9 +111,9 @@ define(['global'], function (g) {
         },
         /**
          * 根据指定格式，返回 1970 年 1 月 1 日至val的毫秒数
-         * @param {string} val
-         * @param {string} format
-         * @returns {Number}
+         * @param {string} val 时间
+         * @param {string} format 格式
+         * @returns {Number} 毫秒数
          */
         GetDateFromFormat: function (val, format) {
             val = val + "";
@@ -291,9 +291,9 @@ define(['global'], function (g) {
         },
         /**
          * 将date字符串转为Date对象
-         * @param {string} date
-         * @param {string} format
-         * @returns {Date}
+         * @param {string} date Date字符串
+         * @param {string} format 格式
+         * @returns {Date} Date对象
          */
         ParseDate: function (date, format) {
             var result = null;

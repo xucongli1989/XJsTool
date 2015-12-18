@@ -10,7 +10,7 @@ define(['global', 'data'], function (g, dataLib) {
         /**
          * 返回指定值中的最小值
          * @param {array} val 可以为一个数组，也可以为多个参数
-         * @returns {Number}
+         * @returns {Number} 最小值
          */
         Min: function (val) {
             if (dataLib.IsArray(val)) {
@@ -22,7 +22,7 @@ define(['global', 'data'], function (g, dataLib) {
         /**
          * 返回指定值中的最大值
          * @param {array} val 可以为一个数组，也可以为多个参数
-         * @returns {Number}
+         * @returns {Number} 最大值
          */
         Max: function (val) {
             if (dataLib.IsArray(val)) {

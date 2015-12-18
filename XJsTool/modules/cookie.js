@@ -8,8 +8,8 @@ define(['global'], function (g) {
     var app = {
         /**
          * 根据cookie名，获取cookie
-         * @param {string} name
-         * @returns {string}
+         * @param {string} name cookie名称
+         * @returns {string} cookie值
          */
         GetCookie: function (name) {
             var nameEQ = name + "=";

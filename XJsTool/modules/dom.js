@@ -27,8 +27,8 @@ define(['global', 'data', 'array', 'string'], function (g, dataLib, arrayLib, st
         },
         /**
          * 根据指定value，选中select对象中option
-         * @param {element object or element's id string} selectObj html元素对象或元素的id
-         * @param {string or array} val 要选中的值或值数组
+         * @param {object} selectObj html元素对象或元素的id
+         * @param {object} val 要选中的值或值数组
          */
         SelectOption: function (selectObj, val) {
             var obj = null, valArr = [];
@@ -54,8 +54,8 @@ define(['global', 'data', 'array', 'string'], function (g, dataLib, arrayLib, st
         },
         /**
          * 向指定容器中追加hidden，key为name和id
-         * @param {jsonArray} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
-         * @param {object} containerObj 被追加的容器（默认为form对象）
+         * @param {Array} data json数组，如[{key:key1,value:value1},{key:key2,value:value2}]
+         * @param {Object} containerObj 被追加的容器（默认为form对象）
          */
         AddHiddens: function (data, containerObj) {
             containerObj = containerObj || g.doc.getElementsByTagName("form")[0];
@@ -72,7 +72,7 @@ define(['global', 'data', 'array', 'string'], function (g, dataLib, arrayLib, st
         },
         /**
          * 绑定select数据源
-         * @param {element object or element's id string} selectObj html元素对象或元素的id
+         * @param {object} selectObj html元素对象或元素的id
          * @param {Array} dataSource Models.Dictionary数组
          * @param {String} defaultValue 默认选中项
          */

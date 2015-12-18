@@ -7,32 +7,33 @@ define(['global'], function (g) {
     var app = {
         /**
          * 去左右空格
-         * @param {string} str
-         * @returns {string}
+         * @param {string} str 待处理字符串
+         * @returns {string} 处理后的字符串
          */
         Trim: function (str) {
             return str.replace(/^\s+|\s+$/g, "");
         },
         /**
          * 去左空格
-         * @param {string} str
-         * @returns {string}
+         * @param {string} str 待处理字符串
+         * @returns {string} 处理后的字符串
          */
         LTrim: function (str) {
             return str.replace(/^\s+/, "");
         },
         /**
          * 去右空格
-         * @param {string} str
-         * @returns {string}
+         * @param {string} str 待处理字符串
+         * @returns {string} 处理后的值
          */
         RTrim: function (str) {
             return str.replace(/\s+$/, "");
         },
         /**
          * 格式输出
-         * @param {string} str
-         * @returns {string}
+         * @param {string} str 待处理字符串
+         * @param {Arguments} arguments 格式
+         * @returns {string} 处理后的值
          */
         Format: function (str) {
             if (arguments.length <= 1) {
@@ -49,7 +50,7 @@ define(['global'], function (g) {
          * @param {string} sourceStr 源字符串
          * @param {string} str 要查找的字符串
          * @param {Boolean} isIgnoreCase 是否忽略大小写
-         * @returns {Boolean}
+         * @returns {Boolean} 结果
          */
         Contains: function (sourceStr, str, isIgnoreCase) {
             if (sourceStr) {
@@ -72,6 +73,7 @@ define(['global'], function (g) {
         /**
         * 将html标签转换为实体形式
         * @param {string} html 需要被替换的html
+        * @returns {string} 转换后的值
         */
         EscapeHtml: function (html) {
             return String(html).replace(/[&<>"'\/]/g, function (s) {
@@ -81,6 +83,7 @@ define(['global'], function (g) {
     };
     /**
      * 追加字符
+     * @param str 要追加的字符串
      */
     app.Builder.prototype.Append = function (str) {
         this._arr.push(str);
@@ -93,7 +96,7 @@ define(['global'], function (g) {
     };
     /**
      * 返回StringBuilder的字符串
-     * @returns {string}
+     * @returns {string} 新的字符串
      */
     app.Builder.prototype.ToString = function () {
         return this._arr.join("");
@@ -106,7 +109,7 @@ define(['global'], function (g) {
     };
     /**
      * 返回StringBuilder的字符串的长度
-     * @returns {int}
+     * @returns {int} 长度
      */
     app.Builder.prototype.Length = function () {
         return this.ToString().length;

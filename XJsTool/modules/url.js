@@ -8,9 +8,9 @@ define(['global', 'json', 'data'], function (g, jsonLib, dataLib) {
     var app = {
         /**
          * 向URL中添加新的参数
-         * @param {string} url
-         * @param {json} params json参数,如：{k1:v1,k2:v2}
-         * @returns {String}
+         * @param {string} url url字符串
+         * @param {object} params json参数,如：{k1:v1,k2:v2}
+         * @returns {String} 新的url
          */
         AddParam: function (url, params) {
             var query = "";
@@ -30,8 +30,8 @@ define(['global', 'json', 'data'], function (g, jsonLib, dataLib) {
         /**
          * 将url查询参数转为json对象，如果该url中多个参数名一样，则该参数名对应的值是array类型
          * 如："www.a.com?a=1&b=2&c=3&c=4" -> {"a":"1","b":"2","c":["3","4"]}
-         * @param {string} url
-         * @returns {json}
+         * @param {string} url url字符串
+         * @returns {object} json对象
          */
         GetUrlParamsJson: function (url) {
             var m = {};

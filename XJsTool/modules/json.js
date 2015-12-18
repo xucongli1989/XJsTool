@@ -9,9 +9,9 @@ define(['global', 'data'], function (g, dataLib) {
     var app = {
         /**
          * 是否包含名key
-         * @param {json} json
-         * @param {string} keyName
-         * @returns {bool}
+         * @param {object} json json对象
+         * @param {string} keyName key名
+         * @returns {bool} 判断结果
          */
         HasKey: function (json, keyName) {
             var r = false;
@@ -24,9 +24,9 @@ define(['global', 'data'], function (g, dataLib) {
         },
         /**
          * 是否包含值value
-         * @param {json} json
-         * @param {string} keyValue
-         * @returns {bool}
+         * @param {object} json json对象
+         * @param {object} keyValue value值
+         * @returns {bool} 判断结果
          */
         HasValue: function (json, keyValue) {
             var r = false;
@@ -42,8 +42,8 @@ define(['global', 'data'], function (g, dataLib) {
         },
         /**
          * json对象转成param形式的字符串，如{a:1,b:2,c:[3,4,5]}=>"a=1&b=2&c=3&c=4&c=5"
-         * @param {json} json 待转换的数据源
-         * @returns {string}
+         * @param {object} json 待转换的json数据源
+         * @returns {string} 转换结果
          */
         ToParams: function (json) {
             if (!json) return "";

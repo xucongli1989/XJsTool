@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: Http</title>
+    <title>JSDoc: Module: XJsTool</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: Http</h1>
+    <h1 class="page-title">Module: XJsTool</h1>
 
     
 
@@ -27,7 +27,7 @@
 
 <header>
     <h2>
-    Http
+    XJsTool
     </h2>
     
 </header>
@@ -38,7 +38,7 @@
 
     
         
-            <div class="description">Http操作相关</div>
+            <div class="description">XJsTool</div>
         
 
         
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="http.js.html">http.js</a>, <a href="http.js.html#line1">line 1</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -91,27 +91,20 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         <dl>
             
 <dt>
-    <h4 class="name" id="GetHttpRequestObject"><span class="type-signature">&lt;static> </span>GetHttpRequestObject<span class="signature">()</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="Version"><span class="type-signature">&lt;static> </span>Version<span class="type-signature"></span></h4>
 
     
 </dt>
 <dd>
-
     
     <div class="description">
-        获取HttpRequest对象,若创建失败，则返回null
+        版本信息
     </div>
-    
-
-    
-
     
 
     
@@ -139,7 +132,122 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="http.js.html">http.js</a>, <a href="http.js.html#line13">line 13</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<dt>
+    <h4 class="name" id="noConflict"><span class="type-signature">&lt;static> </span>noConflict<span class="signature">(deep)</span><span class="type-signature"> &rarr; {object}</span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        释放全局变量"XJ/XJsTool"的控制权
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>deep</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">bool</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">若为true，则也释放全局变量"XJsTool"的控制权；若为false，则仅释放全局变量"XJ"的控制权</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -166,7 +274,7 @@
     
             
 <div class="param-desc">
-    XMLHttpRequest或ActiveXObject或Null
+    原始类的变量
 </div>
 
 

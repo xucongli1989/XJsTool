@@ -8,7 +8,7 @@ define(['global'], function (g) {
     var app = {
         /**
          * 合并多个数组为一个数组
-         * @param {array} args 要合并的数组参数，如：arr1,arr2,arr3...
+         * @param {Array} args 要合并的数组参数，如：arr1,arr2,arr3...
          * @returns {Array} 合并后的结果数组
          */
         Concat: function (args) {
@@ -16,9 +16,9 @@ define(['global'], function (g) {
         },
         /**
          * 将一个或多个数组合并为一个字符串
-         * @param {string} separator 指定分隔符
-         * @param {array} args 要合并的数组参数(arr1,arr2,arr3...)
-         * @returns {string} 合并后的字符串
+         * @param {String} separator 指定分隔符
+         * @param {Array} args 要合并的数组参数(arr1,arr2,arr3...)
+         * @returns {String} 合并后的字符串
          */
         Join: function (separator, args) {
             var source = [];
@@ -33,10 +33,10 @@ define(['global'], function (g) {
         },
         /**
         * 判断指定val是否在数组array中
-        * @param {object} val 需要判断的值
+        * @param {Object} val 需要判断的值
         * @param {Array} array 所在的数组
-        * @param {number} idx 从数组array的idx处开始判断，若未指定，则从整个数组array中判断
-        * @returns {number} val在array中的位置，若不在，则返回-1
+        * @param {Number} idx 从数组array的idx处开始判断，若未指定，则从整个数组array中判断
+        * @returns {Number} val在array中的位置，若不在，则返回-1
         */
         InArray: function (val, array, idx) {
             if (!array) return -1;
