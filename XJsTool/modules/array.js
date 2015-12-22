@@ -2,7 +2,7 @@
  * 数组相关
  * @module Array
  */
-define(['global'], function (g) {
+define(['global', 'data'], function (g, dataLib) {
     
     /** @alias module:Array  */
     var app = {
@@ -99,6 +99,24 @@ define(['global'], function (g) {
             }
 
             return sourceArr;
+        },
+        /**
+         * 将obj转换为Array
+         * @param {object} obj 要转换为Array的对象
+         * @returns {Array} 转换后的数组
+         */
+        ToArray: function (obj) {
+            if (!obj) {
+                return null;
+            }
+            if (dataLib.IsString(obj)) {
+                obj = eval(obj);
+                return dataLib.IsArray(obj) ? obj : null;
+            }
+            if (!obj.length) {
+                return null;
+            }
+            return [].slice.call(obj);
         }
     };
     return app;

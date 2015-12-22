@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Fri Dec 18 2015 10:28:11 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Tue Dec 22 2015 13:03:27 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -94,11 +94,11 @@
 
 
 	    app.Array = __webpack_require__(2);
-	    app.Browser = __webpack_require__(3);
-	    app.Common = __webpack_require__(4);
-	    app.ContentType = __webpack_require__(5);
-	    app.Cookie = __webpack_require__(6);
-	    app.Data = __webpack_require__(7);
+	    app.Browser = __webpack_require__(5);
+	    app.Common = __webpack_require__(6);
+	    app.ContentType = __webpack_require__(7);
+	    app.Cookie = __webpack_require__(8);
+	    app.Data = __webpack_require__(3);
 	    app.Date = __webpack_require__(9);
 	    app.Dom = __webpack_require__(10);
 	    app.Http = __webpack_require__(11);
@@ -108,7 +108,7 @@
 	    app.Models = __webpack_require__(15);
 	    app.Random = __webpack_require__(16);
 	    app.Regex = __webpack_require__(17);
-	    app.String = __webpack_require__(8);
+	    app.String = __webpack_require__(4);
 	    app.Url = __webpack_require__(18);
 
 
@@ -174,7 +174,7 @@
 	 * 数组相关
 	 * @module Array
 	 */
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
 	    
 	    /** @alias module:Array  */
 	    var app = {
@@ -271,6 +271,24 @@
 	            }
 
 	            return sourceArr;
+	        },
+	        /**
+	         * 将obj转换为Array
+	         * @param {object} obj 要转换为Array的对象
+	         * @returns {Array} 转换后的数组
+	         */
+	        ToArray: function (obj) {
+	            if (!obj) {
+	                return null;
+	            }
+	            if (dataLib.IsString(obj)) {
+	                obj = eval(obj);
+	                return dataLib.IsArray(obj) ? obj : null;
+	            }
+	            if (!obj.length) {
+	                return null;
+	            }
+	            return [].slice.call(obj);
 	        }
 	    };
 	    return app;
@@ -281,264 +299,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
-	 * 浏览器相关
-	 * @module Browser
-	 */
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
-		
-	    /** @alias module:Browser  */
-	    var app = {
-	        /**
-	         * 判断是否为IE
-	         * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
-	         * @returns {bool} 判断结果
-	         */
-	        IsIE: function (version) {
-	            var ie = (!-[1, ]);
-	            if (!version) {
-	                return ie;
-	            }
-	            var result = false;
-	            switch (version) {
-	                case 6:
-	                    result = /msie 6/i.test(g.userAgent);
-	                    break;
-	                case 7:
-	                    result = /msie 7/i.test(g.userAgent);
-	                    break;
-	                case 8:
-	                    result = /msie 8/i.test(g.userAgent);
-	                    break;
-	                case 9:
-	                    result = g.appVersion.match(/9./i) && g.appVersion.match(/9./i)[0] == "9.";
-	                    break;
-	                case 10:
-	                    result = (g.doc.all && g.doc.addEventListener && window.atob);
-	                    break;
-	                case 11:
-	                    result = !!g.userAgent.match(/Trident\/7\./);
-	                    break;
-	            }
-	            return result;
-	        },
-
-	        /**
-	         * 判断是否为Firefox
-	         * @returns {bool} 判断结果
-	         */
-	        IsFirefox: function () {
-	            return g.userAgent.indexOf("Firefox") >= 0;
-	        },
-
-	        /**
-	         * 判断是否为Chrome
-	         * @returns {bool} 判断结果
-	         */
-	        IsChrome: function () {
-	            return g.userAgent.indexOf("Chrome") >= 0;
-	        },
-	        /**
-	        * 判断是否为Safari
-	        * @returns {bool} 判断结果
-	        */
-	        IsSafari: function () {
-	            return g.userAgent.indexOf("Safari") >= 0;
-	        },
-	        /**
-	         * 判断是否为Edge
-	         * @returns {bool} 判断结果
-	         */
-	        IsEdge: function () {
-	            return g.userAgent.indexOf("Edge/") >= 0;
-	        },
-	        /**
-	         * 判断浏览器是否支持html5
-	         * @returns {bool} 判断结果
-	         */
-	        IsSupportHTML5: function () {
-	            return !!navigator.geolocation;
-	        },
-	        /**
-	         * 判断浏览器是否安装了flash
-	         * @returns {bool} 判断结果
-	         */
-	        HasFlash: function () {
-	            var obj = null;
-	            try {
-	                obj = this.IsIE() ? new ActiveXObject('ShockwaveFlash.ShockwaveFlash') : navigator.plugins['Shockwave Flash'];
-	            } catch (e) { }
-	            return !!obj;
-	        }
-	    };
-
-	    return app;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
-	 * 公共方法
-	 * @module Common
-	 */
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
-		
-	    /** @alias module:Common  */
-	    var app= {
-	        /**
-	         * 向document输出字符串
-	         * @param {string} str
-	         */
-	        Write: function (str) {
-	            g.doc.write(str);
-	        },
-	        /**
-	         * 创建全局命名空间
-	         * @param {string} ns 名称，如"A.B.C"
-	         * @returns {object}
-	         */
-	        CreateNamespace: function (ns) {
-	            var obj = window, tokens = ns.split("."), token;
-	            while (tokens.length > 0) {
-	                token = tokens.shift();
-	                if (typeof obj[token] === "undefined") {
-	                    obj[token] = {};
-	                }
-	                obj = obj[token];
-	            }
-	            return obj;
-	        }
-	    };
-	    
-	    return app;
-		
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-	/**
-	* ContentType处理相关
-	* @module ContentType
-	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
-
-	    /** @alias module:ContentType  */
-	    var app = {
-	        /**
-	        * 判断Content-Type(Mime-Type) 是否为gif格式
-	        * @param {string} type ContentType
-	        * @returns {bool} 判断结果
-	        */
-	        IsGif: function (type) {
-	            return /^image\/gif$/i.test(type);
-	        },
-	        /**
-	        * 判断Content-Type(Mime-Type) 是否为jpg/jpeg格式
-	        * @param {string} type ContentType
-	        * @returns {bool} 判断结果
-	        */
-	        IsJpg: function (type) {
-	            return /^(image\/jpeg)|(application\/x\-jpg)$/i.test(type);
-	        },
-	        /**
-	        * 判断Content-Type(Mime-Type) 是否为png格式
-	        * @param {string} type ContentType
-	        * @returns {bool} 判断结果        
-	        */
-	        IsPng: function (type) {
-	            return /^(image\/png)|(application\/x\-png)$/i.test(type);
-	        },
-	        /**
-	        * 判断Content-Type(Mime-Type) 是否为bmp格式
-	        * @param {string} type ContentType
-	        * @returns {bool} 判断结果
-	        */
-	        IsBmp: function (type) {
-	            return /^application\/x\-bmp$/i.test(type);
-	        },
-	        /**
-	        * 判断Content-Type(Mime-Type) 是否为gif/jpg/jpeg/png/bmp格式
-	        * @param {string} type ContentType
-	        * @returns {bool} 判断结果
-	        */
-	        IsImage: function (type) {
-	            return /^(image\/(gif|jpeg|png))|(application\/(x\-jpg|x\-png|x\-bmp))$/i.test(type);
-	        }
-	    };
-
-	    return app;
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
-	* Cookie操作相关
-	* @module Cookie
-	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
-
-	    /** @alias module:Cookie  */
-	    var app = {
-	        /**
-	         * 根据cookie名，获取cookie
-	         * @param {string} name cookie名称
-	         * @returns {string} cookie值
-	         */
-	        GetCookie: function (name) {
-	            var nameEQ = name + "=";
-	            var ca = g.doc.cookie.split(';');
-	            for (var i = 0; i < ca.length; i++) {
-	                var c = ca[i];
-	                while (c.charAt(0) == ' ')
-	                    c = c.substring(1, c.length);
-	                if (c.indexOf(nameEQ) == 0)
-	                    return c.substring(nameEQ.length, c.length);
-	            }
-	            return null;
-	        },
-	        /**
-	         * 设置cookie
-	         * @param {string} name cookie名
-	         * @param {string} value cookie值
-	         * @param {int} days 过期时间（天数）
-	         */
-	        SetCookie: function (name, value, days) {
-	            var expires = "";
-	            if (days) {
-	                var date = new Date();
-	                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-	                expires = "; expires=" + date.toGMTString();
-	            }
-	            g.doc.cookie = name + "=" + value + expires + "; path=/";
-	        },
-	        /**
-	         * 删除cookie
-	         * @param {string} name 名称
-	         */
-	        DelCookie: function (name) {
-	            this.SetCookie(name, "", -1);
-	        }
-	    };
-
-	    return app;
-
-	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 	* 数据处理操作相关
 	* @module Data
 	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, stringLib) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, stringLib) {
 		
 		
 	    /** @alias module:Data  */
@@ -735,7 +499,7 @@
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
-/* 8 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -856,6 +620,260 @@
 	    };
 
 	    return app;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * 浏览器相关
+	 * @module Browser
+	 */
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+		
+	    /** @alias module:Browser  */
+	    var app = {
+	        /**
+	         * 判断是否为IE
+	         * @param {int} version（6，7，8，9，10，11） 当指定此参数时，返回判断指定的IE版本结果，否则，则返回是否为IE
+	         * @returns {bool} 判断结果
+	         */
+	        IsIE: function (version) {
+	            var ie = (!-[1, ]);
+	            if (!version) {
+	                return ie;
+	            }
+	            var result = false;
+	            switch (version) {
+	                case 6:
+	                    result = /msie 6/i.test(g.userAgent);
+	                    break;
+	                case 7:
+	                    result = /msie 7/i.test(g.userAgent);
+	                    break;
+	                case 8:
+	                    result = /msie 8/i.test(g.userAgent);
+	                    break;
+	                case 9:
+	                    result = g.appVersion.match(/9./i) && g.appVersion.match(/9./i)[0] == "9.";
+	                    break;
+	                case 10:
+	                    result = (g.doc.all && g.doc.addEventListener && window.atob);
+	                    break;
+	                case 11:
+	                    result = !!g.userAgent.match(/Trident\/7\./);
+	                    break;
+	            }
+	            return result;
+	        },
+
+	        /**
+	         * 判断是否为Firefox
+	         * @returns {bool} 判断结果
+	         */
+	        IsFirefox: function () {
+	            return g.userAgent.indexOf("Firefox") >= 0;
+	        },
+
+	        /**
+	         * 判断是否为Chrome
+	         * @returns {bool} 判断结果
+	         */
+	        IsChrome: function () {
+	            return g.userAgent.indexOf("Chrome") >= 0;
+	        },
+	        /**
+	        * 判断是否为Safari
+	        * @returns {bool} 判断结果
+	        */
+	        IsSafari: function () {
+	            return g.userAgent.indexOf("Safari") >= 0;
+	        },
+	        /**
+	         * 判断是否为Edge
+	         * @returns {bool} 判断结果
+	         */
+	        IsEdge: function () {
+	            return g.userAgent.indexOf("Edge/") >= 0;
+	        },
+	        /**
+	         * 判断浏览器是否支持html5
+	         * @returns {bool} 判断结果
+	         */
+	        IsSupportHTML5: function () {
+	            return !!navigator.geolocation;
+	        },
+	        /**
+	         * 判断浏览器是否安装了flash
+	         * @returns {bool} 判断结果
+	         */
+	        HasFlash: function () {
+	            var obj = null;
+	            try {
+	                obj = this.IsIE() ? new ActiveXObject('ShockwaveFlash.ShockwaveFlash') : navigator.plugins['Shockwave Flash'];
+	            } catch (e) { }
+	            return !!obj;
+	        }
+	    };
+
+	    return app;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	 * 公共方法
+	 * @module Common
+	 */
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function(g){
+		
+	    /** @alias module:Common  */
+	    var app= {
+	        /**
+	         * 向document输出字符串
+	         * @param {string} str
+	         */
+	        Write: function (str) {
+	            g.doc.write(str);
+	        },
+	        /**
+	         * 创建全局命名空间
+	         * @param {string} ns 名称，如"A.B.C"
+	         * @returns {object}
+	         */
+	        CreateNamespace: function (ns) {
+	            var obj = window, tokens = ns.split("."), token;
+	            while (tokens.length > 0) {
+	                token = tokens.shift();
+	                if (typeof obj[token] === "undefined") {
+	                    obj[token] = {};
+	                }
+	                obj = obj[token];
+	            }
+	            return obj;
+	        }
+	    };
+	    
+	    return app;
+		
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+	/**
+	* ContentType处理相关
+	* @module ContentType
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+
+	    /** @alias module:ContentType  */
+	    var app = {
+	        /**
+	        * 判断Content-Type(Mime-Type) 是否为gif格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
+	        */
+	        IsGif: function (type) {
+	            return /^image\/gif$/i.test(type);
+	        },
+	        /**
+	        * 判断Content-Type(Mime-Type) 是否为jpg/jpeg格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
+	        */
+	        IsJpg: function (type) {
+	            return /^(image\/jpeg)|(application\/x\-jpg)$/i.test(type);
+	        },
+	        /**
+	        * 判断Content-Type(Mime-Type) 是否为png格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果        
+	        */
+	        IsPng: function (type) {
+	            return /^(image\/png)|(application\/x\-png)$/i.test(type);
+	        },
+	        /**
+	        * 判断Content-Type(Mime-Type) 是否为bmp格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
+	        */
+	        IsBmp: function (type) {
+	            return /^application\/x\-bmp$/i.test(type);
+	        },
+	        /**
+	        * 判断Content-Type(Mime-Type) 是否为gif/jpg/jpeg/png/bmp格式
+	        * @param {string} type ContentType
+	        * @returns {bool} 判断结果
+	        */
+	        IsImage: function (type) {
+	            return /^(image\/(gif|jpeg|png))|(application\/(x\-jpg|x\-png|x\-bmp))$/i.test(type);
+	        }
+	    };
+
+	    return app;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+	* Cookie操作相关
+	* @module Cookie
+	*/
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
+
+	    /** @alias module:Cookie  */
+	    var app = {
+	        /**
+	         * 根据cookie名，获取cookie
+	         * @param {string} name cookie名称
+	         * @returns {string} cookie值
+	         */
+	        GetCookie: function (name) {
+	            var nameEQ = name + "=";
+	            var ca = g.doc.cookie.split(';');
+	            for (var i = 0; i < ca.length; i++) {
+	                var c = ca[i];
+	                while (c.charAt(0) == ' ')
+	                    c = c.substring(1, c.length);
+	                if (c.indexOf(nameEQ) == 0)
+	                    return c.substring(nameEQ.length, c.length);
+	            }
+	            return null;
+	        },
+	        /**
+	         * 设置cookie
+	         * @param {string} name cookie名
+	         * @param {string} value cookie值
+	         * @param {int} days 过期时间（天数）
+	         */
+	        SetCookie: function (name, value, days) {
+	            var expires = "";
+	            if (days) {
+	                var date = new Date();
+	                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	                expires = "; expires=" + date.toGMTString();
+	            }
+	            g.doc.cookie = name + "=" + value + expires + "; path=/";
+	        },
+	        /**
+	         * 删除cookie
+	         * @param {string} name 名称
+	         */
+	        DelCookie: function (name) {
+	            this.SetCookie(name, "", -1);
+	        }
+	    };
+
+	    return app;
+
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ },
@@ -1215,7 +1233,7 @@
 	* 日期时间处理相关
 	* @module Dom
 	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7), __webpack_require__(2), __webpack_require__(8)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib, arrayLib, stringLib) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3), __webpack_require__(2), __webpack_require__(4)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib, arrayLib, stringLib) {
 		
 	    /** @alias module:Dom  */
 	    var app = {
@@ -1359,7 +1377,7 @@
 	* JSON处理相关
 	* @module Json
 	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
 		
 		
 	    /** @alias module:Json  */
@@ -1429,7 +1447,7 @@
 	* 数学计算相关
 	* @module Math
 	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, dataLib) {
 		
 		
 	    /** @alias module:Math  */
@@ -1734,7 +1752,7 @@
 	* Url处理相关
 	* @module Url
 	*/
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, jsonLib, dataLib) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, jsonLib, dataLib) {
 		
 	    /** @alias module:Url  */
 	    var app = {
