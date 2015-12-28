@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Tue Dec 22 2015 13:03:27 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Mon Dec 28 2015 17:22:22 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -11,9 +11,10 @@
  * 2：使用说明：
  * 本插件不依赖于其它js库
  * 当前版本：v1.2.2
- * 更新时间：2015-11-21
+ * 更新时间：2015-12-28
  * 更新内容：
  *              1、增加其它方法
+ *              2、使用webpack模块打包
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
