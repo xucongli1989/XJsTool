@@ -11,7 +11,7 @@ define(['global', 'require'], function (g, r) {
     /**
      * 版本信息
      */
-    app.Version = "V1.2.2,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XJsTool";
+    app.Version = "V1.3,By:XCL @ 2016.02 in Shenzhen China,project url:https://github.com/xucongli1989/XJsTool";
 
 
     /**

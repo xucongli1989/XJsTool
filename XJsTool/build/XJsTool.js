@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Mon Dec 28 2015 17:22:22 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Sat Feb 06 2016 14:47:59 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -10,11 +10,10 @@
  ********************************************************************************************
  * 2：使用说明：
  * 本插件不依赖于其它js库
- * 当前版本：v1.2.2
- * 更新时间：2015-12-28
+ * 当前版本：v1.3
+ * 更新时间：2016-02-06
  * 更新内容：
- *              1、增加其它方法
- *              2、使用webpack模块打包
+ *              1、修复判断ie的bug
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -75,7 +74,7 @@
 	    /**
 	     * 版本信息
 	     */
-	    app.Version = "V1.2.2,By:XCL @ 2014.11 in Shanghai China,project url:https://github.com/xucongli1989/XJsTool";
+	    app.Version = "V1.3,By:XCL @ 2016.02 in Shenzhen China,project url:https://github.com/xucongli1989/XJsTool";
 
 
 	    /**
@@ -643,7 +642,10 @@
 	        IsIE: function (version) {
 	            var ie = (!-[1, ]);
 	            if (!version) {
-	                return ie;
+	                if (ie) {
+	                    return true;
+	                }
+	                return /msie/i.test(g.userAgent) || (g.doc.all && g.doc.addEventListener && window.atob) || (!!g.userAgent.match(/Trident\/7\./));
 	            }
 	            var result = false;
 	            switch (version) {
@@ -657,10 +659,10 @@
 	                    result = /msie 8/i.test(g.userAgent);
 	                    break;
 	                case 9:
-	                    result = g.appVersion.match(/9./i) && g.appVersion.match(/9./i)[0] == "9.";
+	                    result = /msie 9/i.test(g.userAgent);
 	                    break;
 	                case 10:
-	                    result = (g.doc.all && g.doc.addEventListener && window.atob);
+	                    result = (!!g.doc.all && !!g.doc.addEventListener && !!window.atob);
 	                    break;
 	                case 11:
 	                    result = !!g.userAgent.match(/Trident\/7\./);

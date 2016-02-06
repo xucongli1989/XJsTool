@@ -14,7 +14,10 @@ define(['global'], function (g) {
         IsIE: function (version) {
             var ie = (!-[1, ]);
             if (!version) {
-                return ie;
+                if (ie) {
+                    return true;
+                }
+                return /msie/i.test(g.userAgent) || (g.doc.all && g.doc.addEventListener && window.atob) || (!!g.userAgent.match(/Trident\/7\./));
             }
             var result = false;
             switch (version) {
@@ -28,10 +31,10 @@ define(['global'], function (g) {
                     result = /msie 8/i.test(g.userAgent);
                     break;
                 case 9:
-                    result = g.appVersion.match(/9./i) && g.appVersion.match(/9./i)[0] == "9.";
+                    result = /msie 9/i.test(g.userAgent);
                     break;
                 case 10:
-                    result = (g.doc.all && g.doc.addEventListener && window.atob);
+                    result = (!!g.doc.all && !!g.doc.addEventListener && !!window.atob);
                     break;
                 case 11:
                     result = !!g.userAgent.match(/Trident\/7\./);
