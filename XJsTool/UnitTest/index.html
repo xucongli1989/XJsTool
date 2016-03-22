@@ -13,8 +13,9 @@
   <ol id="qunit-tests"></ol>
 </body>
 <script type="text/javascript">
+//Array
 test("XJ.Array.Concat", function() {
-  ok( XJ.Array.Concat([1,2],[3,4],[5,6]).toString() === "1,2,3,4,5,6", "Passed!" );
+  deepEqual( XJ.Array.Concat([1,2],[3,4],[5,6]) , [1,2,3,4,5,6], "Passed!" );
 });
 test("XJ.Array.Join", function() {
   ok(XJ.Array.Join(',',[1,2,3],[4,5],['a','b','c'])=="1,2,3,4,5,a,b,c","Passed!");
@@ -24,13 +25,49 @@ test("XJ.Array.InArray", function() {
   ok(XJ.Array.InArray('a',[1,2,3,'b','a','d','s'],5)===-1,"Passed!");
 });
 test("XJ.Array.Unique",function(){
-    ok(XJ.Array.Unique([1,1,2,2,3]).toString()==="1,2,3","Passed!");
+    deepEqual(XJ.Array.Unique([1,1,2,2,3]),[1,2,3],"Passed!");
 });
 test("XJ.Array.Remove",function(){
-    ok(XJ.Array.Remove([1,2,3,4,5],[4,5,6]).toString()==="1,2,3","Passed!");
+    deepEqual(XJ.Array.Remove([1,2,3,4,5],[4,5,6]),[1,2,3],"Passed!");
 });
 test("XJ.Array.ToArray",function(){
-    ok(XJ.Array.ToArray("[1,2,3]").toString()==="1,2,3","Passed!");
+    deepEqual(XJ.Array.ToArray("[1,2,3]"),[1,2,3],"Passed!");
 });
+//common
+test("XJ.Common.CreateNamespace",function(){
+    ok(XJ.Common.CreateNamespace("a.b.c.d.e")==a.b.c.d.e,"Passed!");
+});
+//ContentType
+test("XJ.ContentType.IsGif",function(){
+    ok(XJ.ContentType.IsGif("Image/Gif"),"Passed!");
+    ok(!XJ.ContentType.IsGif("Image/Jpeg"),"Passed!");
+});
+test("XJ.ContentType.IsJpg",function(){
+    ok(XJ.ContentType.IsJpg("Image/Jpeg"),"Passed!");
+    ok(XJ.ContentType.IsJpg("application/x-jpg"),"Passed!");
+    ok(!XJ.ContentType.IsJpg("application/x-x"),"Passed!");
+});
+test("XJ.ContentType.IsPng",function(){
+    ok(XJ.ContentType.IsPng("Image/png"),"Passed!");
+    ok(XJ.ContentType.IsPng("application/x-png"),"Passed!");
+    ok(!XJ.ContentType.IsPng("application/x-x"),"Passed!");
+});
+test("XJ.ContentType.IsBmp",function(){
+    ok(XJ.ContentType.IsBmp("application/x-bmp"),"Passed!");
+    ok(!XJ.ContentType.IsBmp("application/x-x"),"Passed!");
+});
+test("XJ.ContentType.IsImage",function(){
+    ok(XJ.ContentType.IsImage("Image/Gif"),"Passed!");
+    ok(XJ.ContentType.IsImage("Image/Jpeg"),"Passed!");
+    ok(XJ.ContentType.IsImage("Image/png"),"Passed!");
+    ok(XJ.ContentType.IsImage("application/x-jpg"),"Passed!");
+    ok(XJ.ContentType.IsImage("application/x-png"),"Passed!");
+    ok(XJ.ContentType.IsImage("application/x-bmp"),"Passed!");
+    
+    ok(!XJ.ContentType.IsImage("application/x-x"),"Passed!");
+});
+
+
+
 </script>
 </html>
