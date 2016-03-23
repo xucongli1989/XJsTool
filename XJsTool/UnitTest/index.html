@@ -67,7 +67,59 @@ test("XJ.ContentType.IsImage",function(){
     ok(!XJ.ContentType.IsImage("application/x-x"),"Passed!");
 });
 
-
+//Data
+test("XJ.Data.GetInt",function(){
+    ok(XJ.Data.GetInt("1")===1,"Passed!");
+    ok(XJ.Data.GetInt("a")===0,"Passed!");
+    ok(XJ.Data.GetInt("1.1")===1,"Passed!");
+    ok(XJ.Data.GetInt(null)===0,"Passed!");
+});
+test("XJ.Data.GetIntNull",function(){
+    ok(XJ.Data.GetIntNull("1")===1,"Passed!");
+    ok(XJ.Data.GetIntNull("abc")===null,"Passed!");
+    ok(XJ.Data.GetIntNull(null)===null,"Passed!");
+    ok(XJ.Data.GetIntNull(1.1)!=null,"Passed!");
+});
+test("XJ.Data.GetIntDefault",function(){
+    ok(XJ.Data.GetIntDefault("1",2)===1,"Passed!");
+    ok(XJ.Data.GetIntDefault("abc",100)===100,"Passed!");
+    ok(XJ.Data.GetIntDefault(null)===undefined,"Passed!");
+});
+test("XJ.Data.GetFloat",function(){
+    ok(XJ.Data.GetFloat("1")===1,"Passed!");
+    ok(XJ.Data.GetFloat("abc")===0,"Passed!");
+    ok(XJ.Data.GetFloat(null)===0,"Passed!");
+    ok(XJ.Data.GetFloat(1.123456)===1.123456,"Passed!");
+});
+test("XJ.Data.GetFloatNull",function(){
+    ok(XJ.Data.GetFloatNull("1")===1,"Passed!");
+    ok(XJ.Data.GetFloatNull("abc")===null,"Passed!");
+    ok(XJ.Data.GetFloatNull(null)===null,"Passed!");
+    ok(XJ.Data.GetFloatNull(1.123456)===1.123456,"Passed!");
+});
+test("XJ.Data.GetFloatDefault",function(){
+    ok(XJ.Data.GetFloatDefault("1.123",2)===1.123,"Passed!");
+    ok(XJ.Data.GetFloatDefault("abc",100.123)===100.123,"Passed!");
+    ok(XJ.Data.GetFloatDefault(null)===undefined,"Passed!");
+});
+test("XJ.Data.GetObject",function(){
+    ok(XJ.Data.GetObject("1.123")===1.123,"Passed!");
+    deepEqual(XJ.Data.GetObject("[{'name':'aaa'}]"),[{name:"aaa"}],"Passed!");
+});
+test("XJ.Data.IsNumber",function(){
+    ok(!XJ.Data.IsNumber(NaN),"Passed!");
+    ok(XJ.Data.IsNumber("123"),"Passed!");
+    ok(XJ.Data.IsNumber("1.123"),"Passed!");
+    ok(!XJ.Data.IsNumber("abc"),"Passed!");
+    ok(!XJ.Data.IsNumber(null),"Passed!");
+});
+test("XJ.Data.IsObject",function(){
+    ok(!XJ.Data.IsObject(NaN),"Passed!");
+    ok(!XJ.Data.IsObject("123"),"Passed!");
+    ok(XJ.Data.IsObject({}),"Passed!");
+    ok(XJ.Data.IsObject([]),"Passed!");
+    ok(!XJ.Data.IsObject(null),"Passed!");
+});
 
 </script>
 </html>
