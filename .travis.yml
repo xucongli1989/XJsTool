@@ -3,5 +3,5 @@ node_js:
   - "6"
 
 before_script:
-  - npm install -g gulp
+  - npm install gulp --save-dev
 script: gulp
