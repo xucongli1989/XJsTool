@@ -27,6 +27,9 @@
 ## 编译 ##
  在代码根目录执行 $ gulp
 
+## 文档 ##
+[在线预览文档](https://htmlpreview.github.io/?https://github.com/xucongli1989/XJsTool/blob/master/doc/index.html)
+
 ## 授权协议 ##
  免费，且开源，基于[LGPL](https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE)协议。
 
