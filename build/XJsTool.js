@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Sun Jul 10 2016 23:23:28 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Mon Jul 25 2016 14:40:16 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -889,6 +889,22 @@
 	*/
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g) {
 	    /**
+	     * 倒计时model
+	     */
+	    var dhmsModel = function () {
+	        this.d = 0;
+	        this.h = 0;
+	        this.m = 0;
+	        this.s = 0;
+	    };
+	    /**
+	     * 判断倒计时model是否有值（有效）
+	     */
+	    dhmsModel.prototype.isValid = function () {
+	        return this.d > 0 || this.h > 0 || this.m > 0 || this.s > 0;
+	    };
+
+	    /**
 	    * 是否为int（私有）
 	    * @param {string} val 要判断的值
 	    * @returns {Boolean} 判断结果
@@ -926,12 +942,27 @@
 	     */
 	    var DAY_NAMES = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
 	    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x };
-	    
-	    
-	    
-	    
+
+
+
+
 	    /** @alias module:Date  */
 	    var app = {
+	        /**
+	         * 将秒数转换为天、时、分、秒的model
+	         * @param  {Number} sec 秒数
+	         */
+	        ToDHMS : function (sec) {
+	            var model = new dhmsModel();
+	            if (sec <= 0) {
+	                return model;
+	            }
+	            model.d = parseInt(sec / 86400);
+	            model.h = parseInt(sec % 86400 / 3600);
+	            model.m = parseInt(sec % 86400 % 3600 / 60);
+	            model.s = parseInt(sec % 86400 % 3600 % 60);
+	            return model;
+	        },
 	        /**
 	         * 格式化date
 	         * 参考于：Matt Kruse's Blog （Date Functions: http://javascripttoolbox.com/lib/date/）
