@@ -15,7 +15,8 @@
     "requirejs": ""
   },
   "devDependencies": {
-    "gulp-jsdoc": "^0.1.5"
+    "gulp-jsdoc": "^0.1.5",
+    "gulp-jshint-html-reporter": "^0.1.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
