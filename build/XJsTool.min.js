@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Wed Aug 03 2016 17:11:45 GMT+0800 (中国标准时间)
+ * 本文件编译时间：2016-08-03 18:46:49
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool

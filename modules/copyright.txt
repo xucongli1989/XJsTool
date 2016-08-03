@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：{{BuildDate}}
+ * 本文件编译时间：<%= now %>
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
