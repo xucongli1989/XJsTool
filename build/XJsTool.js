@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：Wed Aug 03 2016 16:39:11 GMT+0800 (中国标准时间)
+ * 本文件编译时间：Wed Aug 03 2016 17:04:38 GMT+0800 (中国标准时间)
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -252,7 +252,7 @@
 	         * @returns {Array} 新的数组
 	         */
 	        Remove: function (sourceArr, removeArr) {
-	            if (!sourceArr || !removeArr || removeArr.length == 0) {
+	            if (!sourceArr || !removeArr || removeArr.length === 0) {
 	                return sourceArr;
 	            }
 	            removeArr = this.Unique(removeArr);
@@ -846,7 +846,7 @@
 	                var c = ca[i];
 	                while (c.charAt(0) == ' ')
 	                    c = c.substring(1, c.length);
-	                if (c.indexOf(nameEQ) == 0)
+	                if (c.indexOf(nameEQ) === 0)
 	                    return c.substring(nameEQ.length, c.length);
 	            }
 	            return null;
@@ -941,7 +941,7 @@
 	     * @type Array
 	     */
 	    var DAY_NAMES = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
-	    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x };
+	    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x; };
 
 
 
@@ -985,7 +985,7 @@
 	            var s = date.getSeconds();
 	            //var yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
 	            // Convert real date parts into formatted versions
-	            var value = new Object();
+	            var value = {};
 	            if (y.length < 4) { y = "" + (y - 0 + 1900); }
 	            value["y"] = "" + y;
 	            value["yyyy"] = y;

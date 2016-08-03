@@ -80,7 +80,7 @@ define(['global', 'data'], function (g, dataLib) {
          * @returns {Array} 新的数组
          */
         Remove: function (sourceArr, removeArr) {
-            if (!sourceArr || !removeArr || removeArr.length == 0) {
+            if (!sourceArr || !removeArr || removeArr.length === 0) {
                 return sourceArr;
             }
             removeArr = this.Unique(removeArr);

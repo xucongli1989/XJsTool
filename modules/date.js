@@ -56,7 +56,7 @@ define(['global'], function (g) {
      * @type Array
      */
     var DAY_NAMES = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat');
-    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x };
+    var LZ = function (x) { return (x < 0 || x > 9 ? "" : "0") + x; };
 
 
 
@@ -100,7 +100,7 @@ define(['global'], function (g) {
             var s = date.getSeconds();
             //var yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
             // Convert real date parts into formatted versions
-            var value = new Object();
+            var value = {};
             if (y.length < 4) { y = "" + (y - 0 + 1900); }
             value["y"] = "" + y;
             value["yyyy"] = y;
