@@ -14,7 +14,7 @@ gulp.task('checkCode',function () {
 	gulp.src('./modules/*.js')
 	.pipe(jshint())
 	.pipe(jshint.reporter('gulp-jshint-html-reporter', {
-      filename: __dirname + '/build/jshint-output.html',
+      filename: './build/jshint-output.html',
       createMissingFolders : false  
     }));	
 });
