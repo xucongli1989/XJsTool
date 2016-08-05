@@ -65,12 +65,36 @@ define(['global'], function (g) {
     var app = {
         /**
          * 将秒数转换为天、时、分、秒的model
+         * 注意：本函数最小精度为秒
          * @param  {Number} sec 秒数
+         * @param {String} precision 精度（d:天，h:小时，m:分，s:秒）。默认是s(秒)
+         * @param {Boolean} isCeil 是否向上取整（与precision配合使用，如果指定的精度是天，当需要计算的时间为一天零一秒时，若该值为true，则返回2天整，否则返回1天零1秒）。默认是false
+         * @returns {Object} x天x小时x分x秒
          */
-        ToDHMS : function (sec) {
+        ToDHMS: function (sec, precision, isCeil) {
+            isCeil = !!isCeil;
             var model = new dhmsModel();
             if (sec <= 0) {
                 return model;
+            }
+            if (precision) {
+                switch (precision) {
+                    case "d":
+                        if (parseInt(sec % 86400) > 0) {
+                            sec = parseInt(sec / 86400) * 86400 + (isCeil ? 86400 : 0);
+                        }
+                        break;
+                    case "h":
+                        if (parseInt(sec % 3600) > 0) {
+                            sec = parseInt(sec / 3600) * 3600 + (isCeil ? 3600 : 0);
+                        }
+                        break;
+                    case "m":
+                        if (parseInt(sec % 60) > 0) {
+                            sec = parseInt(sec / 60) * 60 + (isCeil ? 60 : 0);
+                        }
+                        break
+                }
             }
             model.d = parseInt(sec / 86400);
             model.h = parseInt(sec % 86400 / 3600);
@@ -98,8 +122,6 @@ define(['global'], function (g) {
             var H = date.getHours();
             var m = date.getMinutes();
             var s = date.getSeconds();
-            //var yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
-            // Convert real date parts into formatted versions
             var value = {};
             if (y.length < 4) { y = "" + (y - 0 + 1900); }
             value["y"] = "" + y;
@@ -153,7 +175,6 @@ define(['global'], function (g) {
             var iFormat = 0;
             var c = "";
             var token = "";
-            //var token2 = "";
             var x, y;
             var now = new Date();
             var year = now.getYear();
@@ -165,13 +186,11 @@ define(['global'], function (g) {
             var ampm = "";
 
             while (iFormat < format.length) {
-                // Get next token from format string
                 c = format.charAt(iFormat);
                 token = "";
                 while ((format.charAt(iFormat) === c) && (iFormat < format.length)) {
                     token += format.charAt(iFormat++);
                 }
-                // Extract contents of value based on format token
                 if (token === "yyyy" || token === "yy" || token === "y") {
                     if (token === "yyyy") {
                         x = 4;
@@ -289,13 +308,10 @@ define(['global'], function (g) {
                     }
                 }
             }
-            // If there are any trailing characters left in the value, it doesn't match
             if (iVal !== val.length) {
                 return NaN;
             }
-            // Is date valid for month?
             if (month === 2) {
-                // Check for leap year
                 if (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0)) { // leap year
                     if (date > 29) {
                         return NaN;
@@ -311,7 +327,6 @@ define(['global'], function (g) {
                     return NaN;
                 }
             }
-            // Correct hours value
             if (hh < 12 && ampm === "PM") {
                 hh = hh - 0 + 12;
             } else if (hh > 11 && ampm === "AM") {
