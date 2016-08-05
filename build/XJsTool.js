@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：2016-08-03 18:46:49
+ * 本文件编译时间：2016-08-05 18:10:38
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -583,6 +583,22 @@
 	            return String(html).replace(/[&<>"'\/]/g, function (s) {
 	                return g.entityMap[s];
 	            });
+	        },
+	        /**
+	         * @param  {String} str 要重复的字符串
+	         * @param  {Number} count 重复次数
+	         * @returns {String} 新的字符串
+	         */
+	        Repeat: function (str, count) {
+	            if (str === null || typeof (str) === 'undefined') {
+	                return null;
+	            }
+	            if (count <= 0) return '';
+	            var s = [];
+	            while (count--) {
+	                s.push(str);
+	            }
+	            return s.join('');
 	        }
 	    };
 	    /**

@@ -79,6 +79,22 @@ define(['global'], function (g) {
             return String(html).replace(/[&<>"'\/]/g, function (s) {
                 return g.entityMap[s];
             });
+        },
+        /**
+         * @param  {String} str 要重复的字符串
+         * @param  {Number} count 重复次数
+         * @returns {String} 新的字符串
+         */
+        Repeat: function (str, count) {
+            if (str === null || typeof (str) === 'undefined') {
+                return null;
+            }
+            if (count <= 0) return '';
+            var s = [];
+            while (count--) {
+                s.push(str);
+            }
+            return s.join('');
         }
     };
     /**
