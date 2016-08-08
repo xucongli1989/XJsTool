@@ -27,6 +27,24 @@
 ## 编译 ##
  在代码根目录执行 $ gulp
 
+## 使用 ##
+
+- 方法一：直接引用
+
+	`<script src="../build/XJsTool.js"></script>`
+
+- 方法二：使用require方式
+
+	`var require={
+		paths:{
+			XJsTool:'../build/XJsTool'
+		}
+	};`
+
+    `require(["XJsTool"], function (x) {
+		//......
+     });`
+
 ## 文档 ##
 [在线预览文档](https://htmlpreview.github.io/?https://github.com/xucongli1989/XJsTool/blob/master/doc/index.html)
 
