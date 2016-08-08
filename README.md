@@ -35,15 +35,17 @@
 
 - 方法二：使用require方式
 
-	`var require={
+	<pre>
+	require.config({
 		paths:{
 			XJsTool:'../build/XJsTool'
 		}
-	};`
-
-    `require(["XJsTool"], function (x) {
+	});
+	
+	require(["XJsTool"], function (x) {
 		//......
-     });`
+	});
+	</pre>
 
 ## 文档 ##
 [在线预览文档](https://htmlpreview.github.io/?https://github.com/xucongli1989/XJsTool/blob/master/doc/index.html)
