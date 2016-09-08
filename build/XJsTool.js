@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：2016-08-08 14:06:43
+ * 本文件编译时间：2016-09-08 10:25:48
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -10,14 +10,9 @@
  ********************************************************************************************
  * 2：使用说明：
  * 本插件不依赖于其它js库
- * 当前版本：v1.3
- * 更新时间：2016-08-08
+ * 当前版本：v1.4
+ * 更新时间：2016-08-10
  * 更新内容：
- *              1、修复判断ie的bug
- *              2、添加部分单元测试
- *              3、添加String.Repeat函数
- *              4、添加Date.ToDHMS函数
- *              5、其它
  */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -78,7 +73,7 @@
 	    /**
 	     * 版本信息
 	     */
-	    app.Version = "V1.3,By:XCL @ 2016.08 in Shenzhen China,project url:https://github.com/xucongli1989/XJsTool";
+	    app.Version = "V1.4,By:XCL @ 2016.08 in Shenzhen China,project url:https://github.com/xucongli1989/XJsTool";
 
 
 	    /**
@@ -1287,6 +1282,27 @@
 	                return null;
 	            }
 	            return date;
+	        },
+	        /**
+	         * 返回指定日期所在月的第一天
+	         * @param {Date} date Date对象
+	         * @returns {Date} Date对象
+	         */
+	        GetFirstDayOfMonth: function (date) {
+	            if (!date) return null;
+	            return new Date(date.getFullYear(), date.getMonth(), 1);
+	        },
+	        /**
+	         * 返回指定日期所在月的最后一天
+	         * @param {Date} date Date对象
+	         * @returns {Date} Date对象
+	         */
+	        GetLastDayOfMonth: function (date) {
+	            if (!date) return null;
+	            //下个月
+	            date.setMonth(date.getMonth() + 1);
+	            //下个月第一天减去一天
+	            return new Date(this.GetFirstDayOfMonth(date) - 24 * 60 * 60 * 1000);
 	        }
 	    };
 

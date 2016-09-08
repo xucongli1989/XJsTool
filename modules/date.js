@@ -382,6 +382,27 @@ define(['global'], function (g) {
                 return null;
             }
             return date;
+        },
+        /**
+         * 返回指定日期所在月的第一天
+         * @param {Date} date Date对象
+         * @returns {Date} Date对象
+         */
+        GetFirstDayOfMonth: function (date) {
+            if (!date) return null;
+            return new Date(date.getFullYear(), date.getMonth(), 1);
+        },
+        /**
+         * 返回指定日期所在月的最后一天
+         * @param {Date} date Date对象
+         * @returns {Date} Date对象
+         */
+        GetLastDayOfMonth: function (date) {
+            if (!date) return null;
+            //下个月
+            date.setMonth(date.getMonth() + 1);
+            //下个月第一天减去一天
+            return new Date(this.GetFirstDayOfMonth(date) - 24 * 60 * 60 * 1000);
         }
     };
 
