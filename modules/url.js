@@ -3,7 +3,7 @@
 * @module Url
 */
 define(['global', 'json', 'data'], function (g, jsonLib, dataLib) {
-	
+
     /** @alias module:Url  */
     var app = {
         /**
@@ -25,6 +25,30 @@ define(['global', 'json', 'data'], function (g, jsonLib, dataLib) {
             } else {
                 url = url + '?' + query;
             }
+            return url;
+        },
+        /**
+         * 更新URL中的参数，若参数不存在，则新增该参数
+         * @param {string} url url字符串
+         * @param {object} params json参数,如：{k1:v1,k2:v2}
+         * @returns {String} 新的url
+         */
+        UpdateParam: function (url, params) {
+            if (!url || !params) {
+                return url;
+            }
+            var oldParam = this.GetUrlParamsJson(url);
+            for (var m in params) {
+                if (dataLib.IsUndefined(params[m])) {
+                    continue;
+                }
+                oldParam[m] = params[m];
+            }
+            var sIdx = url.indexOf('?');
+            if (sIdx >= 0) {
+                url = url.substring(0, sIdx);
+            }
+            url = this.AddParam(url, oldParam);
             return url;
         },
         /**

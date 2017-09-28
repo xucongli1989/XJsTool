@@ -121,5 +121,20 @@ test("XJ.Data.IsObject",function(){
     ok(!XJ.Data.IsObject(null),"Passed!");
 });
 
+//url
+test("XJ.Url.UpdateParam",function(){
+    var url1='http://www.abc.com';
+    var url2='http://www.abc.com?a=b&c=d';
+    var url3='http://www.abc.com?';
+    ok(XJ.Url.UpdateParam(url1,{"a":"b","c":"d"})==="http://www.abc.com?a=b&c=d","Passed!");
+    ok(XJ.Url.UpdateParam(url1,{})===url1,"Passed!");
+    ok(XJ.Url.UpdateParam(url1,null)===url1,"Passed!");
+    ok(XJ.Url.UpdateParam(url2,{"a":"bbb","c":"d"})==="http://www.abc.com?a=bbb&c=d","Passed!");
+    ok(XJ.Url.UpdateParam(url2,{"a":"bbb","c":""})==="http://www.abc.com?a=bbb&c=","Passed!");
+    ok(XJ.Url.UpdateParam(url2,{"a":"b","c":"d"})==="http://www.abc.com?a=b&c=d","Passed!");
+    ok(XJ.Url.UpdateParam(url2,{"x":"123","y":"456"})==="http://www.abc.com?a=b&c=d&x=123&y=456","Passed!");    
+    ok(XJ.Url.UpdateParam(url3,{"a":"b","c":"d"})==="http://www.abc.com?a=b&c=d","Passed!");
+});
+
 </script>
 </html>

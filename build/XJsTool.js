@@ -1,6 +1,6 @@
 /**
  * ******************************************************************************************
- * 本文件编译时间：2016-09-08 10:25:48
+ * 本文件编译时间：2017-09-28 20:29:18
  * 1：基本信息：
  * 开源协议：https://raw.githubusercontent.com/xucongli1989/XJsTool/master/LICENSE
  * 项目地址：https://github.com/xucongli1989/XJsTool
@@ -73,7 +73,7 @@
 	    /**
 	     * 版本信息
 	     */
-	    app.Version = "V1.4,By:XCL @ 2016.08 in Shenzhen China,project url:https://github.com/xucongli1989/XJsTool";
+	    app.Version = "V1.5,By:XCL @ 2017.09 in Shenzhen China,project url:https://github.com/xucongli1989/XJsTool";
 
 
 	    /**
@@ -1838,7 +1838,7 @@
 	* @module Url
 	*/
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1), __webpack_require__(12), __webpack_require__(3)], __WEBPACK_AMD_DEFINE_RESULT__ = function (g, jsonLib, dataLib) {
-		
+
 	    /** @alias module:Url  */
 	    var app = {
 	        /**
@@ -1860,6 +1860,30 @@
 	            } else {
 	                url = url + '?' + query;
 	            }
+	            return url;
+	        },
+	        /**
+	         * 更新URL中的参数，若参数不存在，则新增该参数
+	         * @param {string} url url字符串
+	         * @param {object} params json参数,如：{k1:v1,k2:v2}
+	         * @returns {String} 新的url
+	         */
+	        UpdateParam: function (url, params) {
+	            if (!url || !params) {
+	                return url;
+	            }
+	            var oldParam = this.GetUrlParamsJson(url);
+	            for (var m in params) {
+	                if (dataLib.IsUndefined(params[m])) {
+	                    continue;
+	                }
+	                oldParam[m] = params[m];
+	            }
+	            var sIdx = url.indexOf('?');
+	            if (sIdx >= 0) {
+	                url = url.substring(0, sIdx);
+	            }
+	            url = this.AddParam(url, oldParam);
 	            return url;
 	        },
 	        /**
