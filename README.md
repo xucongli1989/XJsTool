@@ -1,3 +1,5 @@
+## 注意：此项目不再更新维护，您可以考虑这个项目：[x-js-kit](https://github.com/xucongli1989/x-js-kit)
+
 ## CI ##
 
 [![Build Status](https://travis-ci.org/xucongli1989/XJsTool.svg?branch=master)](https://travis-ci.org/xucongli1989/XJsTool)
